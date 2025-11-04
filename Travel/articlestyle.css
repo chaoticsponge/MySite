@@ -129,7 +129,8 @@ a:hover {
 /* hide Home/Blog icons on desktop */
   .social-links a[href*="/index.html"],
   .social-links a[href*="../AboutMe.html"],
-  .social-links a[href*="/blogpage.html"]{display:none}
+  .social-links a[href*="/blogpage.html"],
+  .social-links a[href*="../photos/photos.html"]{display:none}
 
 
 /* Article content */
@@ -186,7 +187,8 @@ a:hover {
 
   .social-links a[href*="/index.html"],
   .social-links a[href*="/AboutMe.html"],
-  .social-links a[href*="/blogpage.html"]{display:inline-flex}
+  .social-links a[href*="/blogpage.html"],
+  .social-links a[href*="../photos/photos.html"]{display:inline-flex}
   .social-links img{margin:0}
 
   /* content */

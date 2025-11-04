@@ -129,16 +129,11 @@ a:hover {
   filter: none;
   opacity: 1;
 }
-/* Slightly enlarge the About Me icon for visual balance */
-.social-links a[href*="AboutMe.html"] img {
-  width: 24px;
-  height: 24px;
-}
-
 /* Hide Home/Blog icons on desktop */
 .social-links a[href*="index.html"],
 .social-links a[href*="blogpage.html"],
-.social-links a[href*="AboutMe.html"] {
+.social-links a[href*="AboutMe.html"],
+.social-links a[href*="photos/photos.html"] {
   display: none;
 }
 
@@ -412,7 +407,8 @@ h1.large {
   /* Show Home/Blog icons on mobile */
   .social-links a[href*="index.html"],
   .social-links a[href*="blogpage.html"],
-  .social-links a[href*="AboutMe.html"] {
+  .social-links a[href*="AboutMe.html"],
+  .social-links a[href*="photos/photos.html"] {
     display: inline-flex;
   }
 
