@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DVWA - What I learned from it</title>
+  <link rel="stylesheet" href="articlestyle.css" />
+  <meta name="description" content="Hands-on guide to DVWA (Damn Vulnerable Web App): safe setup, practical learning path, and tips to turn vulnerable-app practice into portfolio-ready writeups for beginners." />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "My takeaways from DVWA",
+  "description": "Hands-on guide to DVWA (Damn Vulnerable Web App): safe setup, practical learning path, and tips to turn vulnerable-app practice into portfolio-ready writeups for beginners.",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez"
+  },
+  "datePublished": "2025-01-01",
+  "publisher": {
+    "@type": "Organization",
+    "name": "emmr.me"
+  }
+}
+</script>
+
+</head>
+
+<body class="home-page">
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <ul class="nav-links">
+<li><a href="/index.html">Home</a></li>
+<li><a href="/AboutMe.html">About Me</a></li>
+<li><a href="/blogpage.html">Blog</a></li>
+</ul>
+
+    <!-- Icon Navigation (Mobile + Social Links) -->
+    <div class="social-links">
+      <!-- Local Home icon -->
+      <a href="/index.html" title="Home">
+        <img src="https://api.iconify.design/material-symbols:home-rounded.svg" alt="Home icon" />
+      </a>
+            <a href="../AboutMe.html">
+  <img src="https://api.iconify.design/material-symbols:person-outline-rounded.svg
+" alt="About Me icon" />
+  <span>About Me</span>
+</a>
+
+      <!-- Local Blog icon -->
+      <a href="/blogpage.html" title="Blog">
+        <img src="https://api.iconify.design/material-symbols:edit-square-rounded.svg" alt="Blog icon" />
+      </a>
+
+      <!-- Social Icons -->
+      <a href="https://t.me/spongier" target="_blank" title="Telegram">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg"
+          alt="Telegram icon"
+        />
+        <span>Telegram</span>
+      </a>
+
+      <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+          alt="LinkedIn icon"
+        />
+        <span>LinkedIn</span>
+      </a>
+
+      <a href="mailto:contact@emmr.me" title="Email">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg"
+          alt="Email icon"
+        />
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+
+
+  <div class="page-wrapper">
+    <main class="article-container">
+<article>
+  <h1>My takeaways from DVWA</h1>
+
+  <p>
+    I spent a week working through the <strong>Damn Vulnerable Web Application (DVWA)</strong> and it changed how I think about web security. DVWA is a deliberately insecure PHP/MySQL app that you run locally (I ran mine in a Kali VM). It’s intentionally small and noisy, perfect for learning the mechanics behind real-world bugs without touching anyone else’s systems. The official repo is here: <a href="https://github.com/digininja/DVWA" target="_blank" rel="noopener noreferrer">DVWA on GitHub</a>.
+  </p>
+
+    <p>
+    Personally, I did this using my VAPT client document template, treating DVWA as a real client test. It helped me document findings properly and think like a consultant. A consequence to this is I can't share the report and I'm too lazy to re-write it :) It definitely helps if you document your findings as you go along in building your cybersecurity soft-skills.
+  </p>
+
+  <h2>Why I think DVWA is important</h2>
+
+  <h3>It turned theory into muscle memory</h3>
+  <p>
+    Before DVWA, I could read about SQL Injection, XSS, or file upload flaws and nod along. I understood them in concept. DVWA forced me to <em>do</em> the steps: identify the input, intercept the request, modify the payload, observe the result, and then think about why it happened. That repetitive loop (try → observe → adjust → document) is what turned textbook knowledge into practical intuition.
+  </p>
+
+  <h3>Safe and repeatable practice</h3>
+  <p>
+    One of the biggest barriers I had starting out was fear: fear of breaking something or doing something unethical. Because DVWA lives on your machine or an isolated VM/Docker container, I could experiment freely and make mistakes without consequences. If a test went wrong I could restore a snapshot and try again.
+  </p>
+
+  <h3>It exposes the whole workflow</h3>
+  <p>
+    DVWA teaches a workflow: reconnaissance, parameter discovery, request interception (I used Burp Repeater), incremental payload testing, and finally remediation. That workflow is exactly what interviewers and real teams want to see in a junior tester: methodical thinking and repeatable results.
+  </p>
+
+  <h2>How DVWA helped me understand web app testing better</h2>
+
+  <h3>I learned to look for intent, not just input</h3>
+  <p>
+    An input field is only interesting if it influences application behavior. DVWA taught me to ask: “What does this input do on the server?” — and then design tests to confirm that. For example, I stopped blindly throwing payloads at every form and instead used the browser devtools and Burp to see how parameters were used, which made my tests faster and less noisy.
+  </p>
+
+  <h3>I practiced multiple defensive perspectives</h3>
+  <p>
+    For every vulnerability I exploited, I wrote the defensive fix: parameterized queries for SQLi, contextual output encoding for XSS, safe upload handling (MIME checks + store outside web root) for file uploads. Thinking about the fix immediately after the exploit cemented why each vulnerability is dangerous and how developers should realistically fix it.
+  </p>
+
+  <h2>Concrete skills I gained (and how I practiced them)</h2>
+
+  <h3>Reconnaissance & tooling</h3>
+  <p>
+    I practiced using <strong>browser DevTools</strong> for quick checks, <strong>curl</strong> for reproducible requests, and <strong>Burp Suite Community</strong> (Repeater, Proxy) to iterate on payloads.
+  </p>
+
+  <h3>Understanding query/response shaping</h3>
+  <p>
+    I learned to spot where user input ended up — URL params, POST bodies, cookies, headers — and how the server reflected or processed those inputs. That insight helped me pick the right tests (boolean checks, UNION-style probes, or output encoding tests) instead of random fuzzing.
+  </p>
+
+  <h2>Further resources I used</h2>
+  <ul>
+    <li><a href="https://github.com/digininja/DVWA" target="_blank" rel="noopener noreferrer">DVWA — official GitHub</a></li>
+    <li><a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">OWASP Foundation / Top Ten</a></li>
+  </ul>
+</article>
+
+
+            <br>
+      <p>Also read: <a href="TryHackMe-guide.html">My TryHackMe Guide</a></p>
+    </main>
+  </div>
+
+  <script>
+    document.fonts.ready.then(() => {
+      document.documentElement.style.visibility = '';
+    });
+  </script>
+</body>
+</html>

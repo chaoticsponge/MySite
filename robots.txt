@@ -1,0 +1,25 @@
+# robots.txt for emmr.me
+# Last updated: 2025-11-03
+# Allow all search engines to crawl and index your public pages
+
+User-agent: *
+Disallow: /error/
+Disallow: /.git/
+Disallow: /.htaccess
+Disallow: /Dockerfile
+Disallow: /fly.toml
+Disallow: /notes.txt
+Disallow: /cgi-bin/
+Allow: /
+
+# Crawl-delay is optional; uncomment if you're rate-limited or on a small VM
+# Crawl-delay: 5
+
+# Explicitly allow these important sections (if you have them)
+Allow: /Posts/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+
+# Sitemap (important for search engine indexing)
+Sitemap: https://emmr.me/sitemap.xml

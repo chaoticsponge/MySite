@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How I Used TryHackMe to Learn Cybersecurity — A Practical Guide for Fresh Grads</title>
+
+  <!-- External stylesheet -->
+  <link rel="stylesheet" href="articlestyle.css" />
+  <meta name="description" content="Learn cybersecurity hands-on with TryHackMe! A beginner-friendly 8-week roadmap for fresh grads — from guided labs to building a real portfolio recruiters notice." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How I Used TryHackMe to Learn Cybersecurity — A Practical Guide for Fresh Grads",
+  "description": "Learn cybersecurity hands-on with TryHackMe! A beginner-friendly 8-week roadmap for fresh grads — from guided labs to building a real portfolio recruiters notice.",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez"
+  },
+  "datePublished": "2025-05-01",
+  "publisher": {
+    "@type": "Organization",
+    "name": "emmr.me"
+  }
+}
+</script>
+
+ 
+</head>
+
+<body class="home-page">
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <ul class="nav-links">
+<li><a href="/index.html">Home</a></li>
+<li><a href="/AboutMe.html">About Me</a></li>
+<li><a href="/blogpage.html">Blog</a></li>
+</ul>
+
+    <!-- Icon Navigation (Mobile + Social Links) -->
+    <div class="social-links">
+      <!-- Local Home icon -->
+      <a href="/index.html" title="Home">
+        <img src="https://api.iconify.design/material-symbols:home-rounded.svg" alt="Home icon" />
+      </a>
+            <a href="../AboutMe.html">
+  <img src="https://api.iconify.design/material-symbols:person-outline-rounded.svg
+" alt="About Me icon" />
+  <span>About Me</span>
+</a>
+
+      <!-- Local Blog icon -->
+      <a href="/blogpage.html" title="Blog">
+        <img src="https://api.iconify.design/material-symbols:edit-square-rounded.svg" alt="Blog icon" />
+      </a>
+
+      <!-- Social Icons -->
+      <a href="https://t.me/spongier" target="_blank" title="Telegram">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg"
+          alt="Telegram icon"
+        />
+        <span>Telegram</span>
+      </a>
+
+      <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+          alt="LinkedIn icon"
+        />
+        <span>LinkedIn</span>
+      </a>
+
+      <a href="mailto:contact@emmr.me" title="Email">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg"
+          alt="Email icon"
+        />
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Article Content -->
+  <main class="article-container">
+    <article>
+      <h1>How I Used TryHackMe to Learn Cybersecurity</h1>
+
+      <p><em>TL;DR:</em> TryHackMe is the single best place I found to turn curiosity into hands-on cybersecurity skills. This guide shows a beginner-friendly path, how to get the most from rooms, an example walkthrough pattern you can copy, and how to turn your TryHackMe work into a portfolio that actually helps land interviews.</p>
+
+      <h2>Why TryHackMe? (Short and practical)</h2>
+      <p>When you’re starting out, concepts are easy to read about but hard to internalize. TryHackMe bridges that gap with guided, bite-sized labs (“rooms”) that teach a concept, give you a controlled environment to practice, and usually finish with a small assessment or challenge. That mix of explain, show and practice is why TryHackMe accelerates learning faster than videos or pure theory alone.</p>
+
+      <h2>Who this article is for</h2>
+      <ul>
+        <li>Fresh grads or career-switchers who want a structured, practical way to learn cybersecurity.</li>
+        <li>People who prefer doing labs over passive watching/reading.</li>
+        <li>Future applicants who want concrete, demonstrable work to show recruiters.</li>
+        <li>People looking for a fast and (not so) easy way to gain practical skills and hands-on cybersecurity training</li>
+      </ul>
+
+      <h2>My recommended TryHackMe learning path (first 8 weeks)</h2>
+      <p>Follow this suggested progression, spending ~5–10 hours per week depending on your schedule. The idea is to alternate theory + short labs with progressively harder challenges.</p>
+      <ol>
+        <li><strong>Weeks 1–2 — Foundations:</strong> Start with the “Complete Beginner” / “Pre-Security” learning paths. Focus on Linux basics, SSH, and simple networking concepts.</li>
+        <li><strong>Weeks 3–4 — Web basics & OWASP intro:</strong> Do web fundamentals rooms, then a few OWASP-style labs that demonstrate SQLi and XSS conceptually.</li>
+        <li><strong>Weeks 5–6 — Offense fundamentals:</strong> Work through “Web Exploitation” and “Active Directory” introductory rooms, plus 1–2 easy HTB/THM machines if you feel ready.</li>
+        <li><strong>Weeks 7–8 — Defensive awareness:</strong> Try SOC or Blue Team beginner rooms to understand detection and logging (this makes you a well-rounded candidate).</li>
+      </ol>
+
+      <h2>A reusable 5-step lab workflow (copy this for every room)</h2>
+      <p>Every time you open a TryHackMe room, follow this pattern. It trains your methodology and gives you consistent notes for writeups.</p>
+      <ol>
+        <li><strong>Read the room intro & objectives.</strong> Note expected skills and tools (nmap, curl, burp, etc.).</li>
+        <li><strong>Attempt the tasks hands-on.</strong> Type commands—don’t copy/paste blindly. If you get stuck, read one hint at a time.</li>
+        <li><strong>Record commands + short outputs.</strong> Keep a notes file with the exact commands that worked and a one-sentence explanation of why they worked.</li>
+        <li><strong>Write a mini writeup (200–400 words).</strong> Include your approach, key commands, and the lesson learned.</li>
+      </ol>
+<p>This helps you go back to your notes often when yo get stuck as you progress through more rooms. Writing also helps reinforce your learning.</p>
+
+      <h2>Example: Walkthrough template</h2>
+      <pre class="mac-terminal"><code>Title: [Room Name] — Quick Walkthrough
+Objective: [What the room teaches]
+
+Environment:
+- VM IP:
+- Tools used: nmap, gobuster, curl, browser, burpsuite (as applicable)
+
+Steps:
+1) Recon: nmap -sC -sV -oN nmap.txt &lt;target-ip&gt;
+2) Enumeration: found X service on port Y; discovered /admin via gobuster
+3) Exploitation: submitted payload "..." and received...
+4) Root/Privilege Escalation: used "..." (if applicable)
+5) Cleanup and lessons learned
+
+TL;DR: [1–2 sentence summary of the vulnerability and how you exploited it]
+</code></pre>
+<p>
+Include any code you used in the writeup as well as explanations of why you used it. Explain where you found it (hints, docs, forums, etc.). Code you use is code you should eventually be able to write. Try to memorize common commands and their flags.
+
+</p>
+
+
+      <h2>Common tools you’ll actually use on TryHackMe</h2>
+      <ul>
+        <li><strong>Nmap</strong> — port scanning and basic service discovery</li>
+        <li><strong>Gobuster/Dirb</strong> — discover hidden directories and files</li>
+        <li><strong>Burp Suite / curl</strong> — HTTP inspection & manual request crafting</li>
+        <li><strong>Netcat (nc)</strong> — quick connection and reverse shells</li>
+        <li><strong>Linux shell tools</strong> — grep, awk, sed, ssh</li>
+      </ul>
+
+      <h2>How to handle hitting a wall (when a room feels too hard)</h2>
+      <ul>
+        <li><strong>Take one hint:</strong> Read a single hint and try again rather than skipping to the solution.</li>
+        <li><strong>Break the problem down:</strong> If you can’t exploit something, verify each step—can you reach the port? Does the service respond? Can you fetch a known file?</li>
+        <li><strong>Ask the community:</strong> TryHackMe Discord and room discussion threads are great—ask for nudges, not full answers. Worst case you can always refer to a writeup for guidance. Use this very sparingly.</li>
+        <li><strong>Document failure:</strong> Write what you tried; future you (and interviewers) will appreciate the troubleshooting mindset.</li>
+      </ul>
+
+
+      <h2>Final notes — what I wish I’d done earlier</h2>
+      <p>Start writing early. Even short, messy writeups after each room build writing stamina and technical communication skills. Recruiters don’t expect perfection—what matters is consistency, curiosity, and evidence that you can learn by doing. TryHackMe gives you the environment to prove that; your job is to record and present the evidence.</p>
+    </article>
+          <br>
+      <p>Also read: <a href="DVWA.html"> What is DVWA and why you should do it</a></p>
+  </main>
+
+  <script>
+    document.fonts.ready.then(() => {
+      document.documentElement.style.visibility = '';
+    });
+  </script>
+</body>
+</html>

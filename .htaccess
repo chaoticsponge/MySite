@@ -1,0 +1,67 @@
+RewriteEngine On
+
+# Redirect .html requests to the clean URL
+# Redirect index.html → /
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Redirect .html requests to clean URLs (except index)
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.html [NC]
+RewriteCond %1 !=index
+RewriteRule ^ /%1 [R=301,L]
+
+# Serve .html file if it exists
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# Remove trailing slashes from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# ------------------------------------------
+# Disable directory listing
+Options -Indexes
+
+# Default page
+DirectoryIndex index.html
+
+# ------------------------------------------
+# Error Pages
+ErrorDocument 403 /error/403.html
+ErrorDocument 404 /error/404.html
+
+# ------------------------------------------
+# Security Headers
+# ------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+</IfModule>
+
+# Block access to hidden files
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "(\.env|\.git|\.htaccess|\.htpasswd|Dockerfile|fly\.toml|\.DS_Store|notes\.txt)$">
+  Require all denied
+</FilesMatch>
+
+<LimitExcept GET HEAD>
+  Require all denied
+</LimitExcept>
+
+AddDefaultCharset UTF-8
+
+SetEnvIfNoCase User-Agent "MJ12bot|AhrefsBot|SemrushBot|Baiduspider" bad_bot
+Deny from env=bad_bot
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType image/png "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 7 days"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
