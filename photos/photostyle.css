@@ -146,9 +146,9 @@ a:hover {
 
 /* Hide text-only nav duplicates on desktop */
 .social-links a[href*="/index.html"],
-.social-links a[href*="../AboutMe.html"],
+.social-links a[href*="/AboutMe.html"],
 .social-links a[href*="/blogpage.html"],
-.social-links a[href*="photos.html"] {
+.social-links a[href*="/photos/photos.html"] {
   display: none;
 }
 
@@ -308,7 +308,7 @@ main.photo-gallery {
   .social-links a[href*="/index.html"],
   .social-links a[href*="/AboutMe.html"],
   .social-links a[href*="/blogpage.html"],
-  .social-links a[href*="photos.html"] {
+  .social-links a[href*="/photos/photos.html"] {
     display: inline-flex;
   }
 
