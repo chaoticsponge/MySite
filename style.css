@@ -320,6 +320,14 @@ a:hover {
     font-size: var(--font-size-timeline-text-mobile);
   }
 }
+h1.large {
+  font-size: 8rem; /* responsive scaling */
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 2rem 0;
+  font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+}
 
 
 /* Responsive layout */
@@ -330,6 +338,14 @@ a:hover {
   .article-container {
     margin-left: 170px;
     padding: 3rem 1.5rem;
+  }
+    h1.large {
+  font-size: 6rem; /* responsive scaling */
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 2rem 0;
+  font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
   }
 }
 
@@ -347,6 +363,15 @@ a:hover {
   .nav-links a {
     font-size: var(--font-size-nav-mobile);
   }
+    h1.large {
+  font-size: 5rem; /* responsive scaling */
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 2rem 0;
+  font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+  }
+
 }
 
 @media (max-width: 600px) {
@@ -354,6 +379,15 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  h1.large {
+  font-size: 4rem; /* responsive scaling */
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 2rem 0;
+  font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
   }
 
   .sidebar {
@@ -399,6 +433,8 @@ a:hover {
     max-width: 90%;
   }
 }
+
+
 
 @media (min-width: 1600px) {
   .article-container {
@@ -448,7 +484,7 @@ a:hover {
   transform-origin: center;
   opacity: 0.95;
   transition: none !important; /* Prevent animation or rotation on hover */
-  
+
 }
 
 .post-link:hover .pinned-icon {
