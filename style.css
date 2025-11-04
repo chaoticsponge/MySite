@@ -136,9 +136,9 @@ a:hover {
 }
 
 /* Hide Home/Blog icons on desktop */
-.social-links a[href*="/index.html"],
-.social-links a[href*="/blogpage.html"],
-.social-links a[href*="/AboutMe.html"] {
+.social-links a[href*="index.html"],
+.social-links a[href*="blogpage.html"],
+.social-links a[href*="AboutMe.html"] {
   display: none;
 }
 

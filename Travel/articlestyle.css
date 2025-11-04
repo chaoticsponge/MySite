@@ -197,6 +197,16 @@ a:hover {
   }
 }
 
+/* Homepage grid background */
+.home-page {
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
 /* Large screens (≥1600px) */
 @media (min-width:1600px){
   .article-container{max-width:800px;padding:5rem 2rem}
@@ -259,6 +269,7 @@ a:hover {
   overflow-x: visible;
   overflow-y: visible;
   max-height: none;
+  background-color: transparent;
 }
 
 /* Shell-like syntax colors */
