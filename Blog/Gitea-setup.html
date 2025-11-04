@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selfhosting Git using Gitea on Raspberry Pi</title>
+  <link rel="stylesheet" href="articlestyle.css" />
+<meta name="description" content="Step-by-step guide to self-host Git with Gitea on a Raspberry Pi. Learn to install Gitea, configure MariaDB, set permissions, and host your own lightweight Git server." />
+
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Selfhosting Git using Gitea on Raspberry Pi",
+  "description": "Step-by-step guide to self-host Git with Gitea on a Raspberry Pi. Learn to install Gitea, configure MariaDB, set permissions, and host your own lightweight Git server.",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez"
+  },
+  "datePublished": "2025-01-01",
+  "publisher": {
+    "@type": "Organization",
+    "name": "emmr.me"
+  }
+}
+</script>
+
+</head>
+
+<body class="home-page">
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <ul class="nav-links">
+<li><a href="/index.html">Home</a></li>
+<li><a href="/AboutMe.html">About Me</a></li>
+<li><a href="/blogpage.html">Blog</a></li>
+</ul>
+
+    <!-- Icon Navigation (Mobile + Social Links) -->
+    <div class="social-links">
+      <!-- Local Home icon -->
+      <a href="/index.html" title="Home">
+        <img src="https://api.iconify.design/material-symbols:home-rounded.svg" alt="Home icon" />
+      </a>
+            <a href="../AboutMe.html">
+  <img src="https://api.iconify.design/material-symbols:person-outline-rounded.svg
+" alt="About Me icon" />
+  <span>About Me</span>
+</a>
+
+      <!-- Local Blog icon -->
+      <a href="/blogpage.html" title="Blog">
+        <img src="https://api.iconify.design/material-symbols:edit-square-rounded.svg" alt="Blog icon" />
+      </a>
+
+      <!-- Social Icons -->
+      <a href="https://t.me/spongier" target="_blank" title="Telegram">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg"
+          alt="Telegram icon"
+        />
+        <span>Telegram</span>
+      </a>
+
+      <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+          alt="LinkedIn icon"
+        />
+        <span>LinkedIn</span>
+      </a>
+
+      <a href="mailto:contact@emmr.me" title="Email">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg"
+          alt="Email icon"
+        />
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Wrapper (animation + scrollable content) -->
+<div class="page-wrapper">
+<main class="article-container">
+
+<article>
+  <h1>Setting up a Self-Hosted Git Server with Gitea (Raspberry Pi Guide)</h1>
+  <p>
+    Gitea is a lightweight, self-hosted Git service that runs efficiently on devices like the Raspberry Pi.  
+    This guide walks through installing and configuring Gitea on a Raspberry Pi 400 (ARM64) with MariaDB.
+  </p>
+
+  <h2>1. Install Git and Dependencies</h2>
+  <pre class="mac-terminal"><code>sudo apt update && sudo apt upgrade -y
+sudo apt install git mariadb-server wget -y
+git --version
+</code></pre>
+
+  <h2>2. Create a Dedicated Git User</h2>
+  <p>It’s not recommended to run Gitea as root. Create a dedicated system user instead:</p>
+  <pre class="mac-terminal"><code>sudo adduser \
+--system \
+--shell /bin/bash \
+--gecos 'Git Version Control' \
+--group \
+--disabled-password \
+--home /home/git \
+git
+</code></pre>
+
+  <h2>3. Download and Configure Gitea</h2>
+  <p>Download the correct binary for ARM64 from the official Gitea site and make it executable.</p>
+  <pre class="mac-terminal"><code>wget -O gitea https://dl.gitea.com/gitea/1.22.3/gitea-1.22.3-linux-arm64
+chmod +x gitea
+sudo mv gitea /usr/local/bin/
+</code></pre>
+
+  <h2>4. Prepare Gitea Directories</h2>
+  <p>Create directories for Gitea data, configuration, and logs.</p>
+  <pre class="mac-terminal"><code>sudo mkdir -p /var/lib/gitea/{custom,data,log}
+sudo chown -R git:git /var/lib/gitea/
+sudo chmod -R 750 /var/lib/gitea/
+sudo mkdir /etc/gitea
+sudo chown root:git /etc/gitea
+sudo chmod 770 /etc/gitea
+</code></pre>
+
+  <h2>5. Enable Shell Autocompletion (Optional)</h2>
+  <p>Add Gitea autocompletion for zsh or bash.</p>
+  <pre class="mac-terminal"><code># For ZSH
+cd /usr/share/zsh
+sudo wget -O _gitea https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/autocompletion/zsh_autocomplete
+
+# For Bash
+sudo wget -O /etc/bash_completion.d/gitea https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/autocompletion/bash_autocomplete
+</code></pre>
+
+  <h2>6. Create a systemd Service</h2>
+  <p>Download the sample service file and enable Gitea as a background service.</p>
+  <pre class="mac-terminal"><code>sudo wget -O /etc/systemd/system/gitea.service https://raw.githubusercontent.com/go-gitea/gitea/release/v1.22/contrib/systemd/gitea.service
+
+# Enable MySQL/MariaDB dependencies in gitea.service
+sudo sed -i '/Wants=mysql.service/s/^#//; /After=mysql.service/s/^#//' /etc/systemd/system/gitea.service
+sudo sed -i '/Wants=mariadb.service/s/^#//; /After=mariadb.service/s/^#//' /etc/systemd/system/gitea.service
+
+# Start Gitea service
+sudo systemctl daemon-reload
+sudo systemctl enable gitea
+sudo systemctl start gitea
+</code></pre>
+
+  <h2>7. Configure MariaDB</h2>
+  <p>Secure and create the database for Gitea.</p>
+  <pre class="mac-terminal"><code>sudo mysql_secure_installation
+
+sudo mysql -u root -p
+CREATE DATABASE gitea CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci';
+CREATE USER 'gitea'@'localhost' IDENTIFIED BY 'StrongPassword';
+GRANT ALL PRIVILEGES ON gitea.* TO 'gitea'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+</code></pre>
+
+  <h2>8. Access Gitea</h2>
+  <p>
+    Once started, Gitea runs at <strong>http://localhost:3000</strong>.  
+    Visit that URL on your Pi or network browser to complete setup.
+  </p>
+  <p>
+    During initial setup, use the following:
+  </p>
+  <ul>
+    <li><strong>Database Type:</strong> MySQL (MariaDB)</li>
+    <li><strong>Host:</strong> 127.0.0.1:3306</li>
+    <li><strong>Database Name:</strong> gitea</li>
+    <li><strong>Username:</strong> gitea</li>
+    <li><strong>Password:</strong> (the one you set above)</li>
+  </ul>
+
+  <h2>9. (Optional) Make Gitea Public</h2>
+  <p>
+    Point your domain or subdomain to your Raspberry Pi’s IP and use a reverse proxy (e.g. Nginx or Caddy) to serve it on ports 80/443.
+  </p>
+
+  <h2>TL;DR</h2>
+  <p>
+    Install Git + MariaDB → Create system user → Download Gitea binary → Set directory permissions → Enable service → Configure database → Visit <code>localhost:3000</code> to finish setup.
+  </p>
+</article>
+
+      <br>
+      <p>Also read: <a href="TryHackMe-guide.html"> How to learn cybersecurity with TryHackMe</a></p>
+
+    </main>
+  </div>
+
+  <script>
+    document.fonts.ready.then(() => {
+      document.documentElement.style.visibility = '';
+    });
+  </script>
+</body>
+</html>

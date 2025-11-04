@@ -1,62 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Home -->
-  <url>
-    <loc>https://emmr.me/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Top-level pages -->
   <url>
     <loc>https://emmr.me/AboutMe</loc>
+    <lastmod>2025-11-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
-
+  <url>
+    <loc>https://emmr.me/Blog/DVWA</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/Blog/Gitea-setup</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/Blog/Learning-Cybersecurity</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/Blog/TryHackMe-guide</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/Blog/git4dummies</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/Blog/post-template</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/Travel/Philippines -template</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/Travel/Singapore -template</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/Travel/post-template</loc>
+    <lastmod>2025-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
   <url>
     <loc>https://emmr.me/blogpage</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Blog posts -->
-  <url>
-    <loc>https://emmr.me/DVWA</loc>
+    <lastmod>2025-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
   <url>
-    <loc>https://emmr.me/Learning-Cybersecurity</loc>
+    <loc>https://emmr.me/index</loc>
+    <lastmod>2025-11-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
-  <url>
-    <loc>https://emmr.me/post-template</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://emmr.me/TryHackMe-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <!-- Travel section -->
-  <url>
-    <loc>https://emmr.me/Travel/Philippines</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://emmr.me/Travel/Singapore</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
 </urlset>

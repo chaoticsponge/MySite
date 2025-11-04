@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git for Dummies - A TLDR</title>
+  <link rel="stylesheet" href="articlestyle.css" />
+  <meta name="description" content="Git commands cheat sheet for beginners — learn how to push stable versions, undo mistakes, manage branches, and connect to GitHub or GitLab quickly." />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Git for Dummies - A TLDR",
+  "description": "Git commands cheat sheet for beginners — learn how to push stable versions, undo mistakes, manage branches, and connect to GitHub or GitLab quickly.",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez"
+  },
+  "datePublished": "2025-01-01",
+  "publisher": {
+    "@type": "Organization",
+    "name": "emmr.me"
+  }
+}
+</script>
+
+
+</head>
+
+<body class="home-page">
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <ul class="nav-links">
+<li><a href="/index.html">Home</a></li>
+<li><a href="/AboutMe.html">About Me</a></li>
+<li><a href="/blogpage.html">Blog</a></li>
+</ul>
+
+    <!-- Icon Navigation (Mobile + Social Links) -->
+    <div class="social-links">
+      <!-- Local Home icon -->
+      <a href="/index.html" title="Home">
+        <img src="https://api.iconify.design/material-symbols:home-rounded.svg" alt="Home icon" />
+      </a>
+            <a href="../AboutMe.html">
+  <img src="https://api.iconify.design/material-symbols:person-outline-rounded.svg
+" alt="About Me icon" />
+  <span>About Me</span>
+</a>
+
+      <!-- Local Blog icon -->
+      <a href="/blogpage.html" title="Blog">
+        <img src="https://api.iconify.design/material-symbols:edit-square-rounded.svg" alt="Blog icon" />
+      </a>
+
+      <!-- Social Icons -->
+      <a href="https://t.me/spongier" target="_blank" title="Telegram">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg"
+          alt="Telegram icon"
+        />
+        <span>Telegram</span>
+      </a>
+
+      <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg"
+          alt="LinkedIn icon"
+        />
+        <span>LinkedIn</span>
+      </a>
+
+      <a href="mailto:contact@emmr.me" title="Email">
+        <img
+          src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/maildotru.svg"
+          alt="Email icon"
+        />
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Wrapper (animation + scrollable content) -->
+<div class="page-wrapper">
+<main class="article-container">
+<article>
+  <h1>Git: main commands to push a stable version</h1>
+  <p>
+    Quick, copy-pasteable commands for beginners to save a stable file (e.g. index.html), connect to a remote, push, and recover from common mistakes. Mainly for me to refer to until it becomes muscle memory.
+    Install git <a href="#install">Here</a>.
+  </p>
+
+    <h2>Quick TL;DR</h2>
+    <pre class="mac-terminal"><code>
+    1) Save a stable version:
+    git add .
+    git commit -m "Stable version before changes"
+    git push
+
+    2) If something goes wrong
+    git restore "file name"
+  </code></pre>
+
+  <h2>All commands at a glance</h2>
+    <pre class="mac-terminal"><code># --- Setup & Configuration ---
+git init
+git clone https://github.com/username/repo.git
+
+# --- Check Status & History ---
+git status
+git log --oneline (shows commit IDs and messages)
+
+# --- Staging & Committing ---
+git add <file>
+git commit -m "Message"
+git reset HEAD <file> (to unstage a file)
+
+# --- Branching & Merging ---
+git branch
+git checkout <branch>
+git merge <branch>
+
+# --- Remote Repositories ---
+git remote -v (to view remotes)
+git fetch (to get latest from remote)
+git pull (to fetch + merge)
+git push (to push current branch)
+
+# --- Undo & Recovery ---
+git reset --soft HEAD~1 (to undo last commit, keep changes)
+git reset --hard HEAD~1 (to undo last commit, discard changes)
+git revert <commit-id> (lets you undo a bad commit)
+git checkout -- <file> (to discard changes in a file)
+git restore <file>
+
+# --- Ignore & Cleanup ---
+echo "node_modules/" >> .gitignore (to ignore node_modules)
+git clean -fd (to remove untracked files)
+git stash (to save changes temporarily)
+git stash apply (restore stashed changes)
+git stash pop (restore and remove from stash)
+
+# --- Tagging & Releases ---
+git tag
+git tag -a v1.0 -m "Version 1.0"
+git push origin v1.0
+</code></pre>
+
+  <h2>Push a stable version</h2>
+
+  <h3>Initialize, check, stage, commit, and push</h3>
+  <p>
+    Initialize a repo, stage the file, create a descriptive commit (a commit is a recorded snapshot of staged changes), connect to a remote repository, and push the branch to the remote.
+  </p>
+
+  <pre class="mac-terminal"><code>
+Environment:
+- Local repo: new or existing folder
+- Remote: GitHub/GitLab URL (replace with your repo URL)
+- File used in examples: index.html
+
+Steps:
+1) Initialize and check files:
+   git init
+   git status
+
+2) Stage and commit (commit = recorded snapshot with message):
+   git add index.html
+   git commit -m "Stable: update index.html"
+   git add . (to add all changed files)
+
+   Notes:
+   - The commit message should briefly describe what changed.
+   - Each commit has an ID (commit hash) like: a1b2c3d4e5f6...
+     You can see these IDs with `git log`.
+
+3) Connect to remote and push:
+   git remote add origin https://github.com/username/repo.git
+   git push -u origin main
+   # If your branch is 'master' or another name, replace 'main' accordingly.
+
+4) Verify remote history:
+   git log --oneline
+</code></pre>
+
+  <h2>If something goes wrong</h2>
+
+  <h3>Undo last commit but keep changes (edit and recommit)</h3>
+  <p>
+    Removes the last commit but leaves your working files and staged changes intact so you can fix and commit again.
+  </p>
+
+  <pre class="mac-terminal"><code>git reset --soft HEAD~1
+# After fixing files (if needed):
+git add index.html
+git commit -m "Fixed: corrected commit message / changes"
+git push origin main
+</code></pre>
+
+  <h3>Undo last commit and discard changes</h3>
+  <p>
+    Removes the last commit and any changes in the working directory (use only if you want to throw away edits).
+  </p>
+
+  <pre class="mac-terminal"><code>git reset --hard HEAD~1
+# If already pushed and you need remote to match local (dangerous):
+git push origin main --force
+</code></pre>
+
+  <h3>Restore a single file to last committed state</h3>
+  <p>
+    Use this to discard local edits to a file and return it to how it was in the last commit.
+  </p>
+
+  <pre class="mac-terminal"><code>git checkout -- index.html
+</code></pre>
+
+  <h3>Undo a specific commit that was already pushed (safe)</h3>
+  <p>
+    `git revert` creates a new commit that reverses the changes introduced by a previous commit. This is safe for shared repos because it preserves history.
+  </p>
+
+  <pre class="mac-terminal"><code>git log --oneline
+# Find the commit you want to undo; copy its short ID (e.g., a1b2c3d)
+git revert a1b2c3d
+# Resolve any merge/revert message, then:
+git push origin main
+</code></pre>
+
+  <h3>Force-overwrite remote history (last resort)</h3>
+  <p>
+    Replaces the remote branch with your local branch. This rewrites history on the remote and can break collaborators' clones. Use only if you understand consequences.
+  </p>
+
+  <pre class="mac-terminal"><code># After resetting or rewriting local commits:
+git push origin main --force
+</code></pre>
+
+
+
+<h2 id="install">Git Setup Commands</h2>
+<pre class="mac-terminal"><code># Install Git
+sudo apt install git             # Linux
+brew install git                 # macOS
+git --version
+
+# Global configuration
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main
+git config --global --list
+
+# Create and connect repository
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/username/repo.git
+git push -u origin main
+
+# Clone existing repository
+git clone https://github.com/username/repo.git
+</code></pre>
+You can set up git with github, gitlab or self host with my gitea guide <a href="Gitea-setup.html"> here</a>.
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>Use <code>git add</code>, <code>commit</code>, and <code>push</code> to save stable versions.</li>
+  <li><code>git reset</code> and <code>git revert</code> safely undo mistakes.</li>
+  <li>Always push descriptive commits — they form your project history.</li>
+</ul>
+
+
+</article>
+
+      <br>
+      <p>Also read: <a href="TryHackMe-guide.html"> How to learn cybersecurity with TryHackMe</a></p>
+
+    </main>
+  </div>
+
+  <script>
+    document.fonts.ready.then(() => {
+      document.documentElement.style.visibility = '';
+    });
+  </script>
+</body>
+</html>
