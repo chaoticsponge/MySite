@@ -414,7 +414,6 @@ a:hover {
 }
 
 /* Inline icon fix to keep icon and title aligned */
-/* Inline title and meta alignment */
 .post-link {
   display: block;
   text-decoration: none;
@@ -436,10 +435,6 @@ a:hover {
   transition: opacity 0.2s ease;
 }
 
-.post-link:hover .post-icon {
-  opacity: 1;
-}
-
 .post-meta {
   display: block;
   margin-left: calc(22px + 0.5rem);
@@ -447,17 +442,17 @@ a:hover {
   color: var(--color-meta);
 }
 
-/* Pin rotation */
 .pinned-icon {
   transform: rotate(-90deg);
   transform-origin: center;
   opacity: 0.95;
+  transition: none !important; /* Prevent animation or rotation on hover */
 }
 
 .post-link:hover .pinned-icon {
-  transform: rotate(-25deg) scale(1.05);
-  opacity: 1;
+  transform: rotate(-90deg); /* Force it to stay fixed */
 }
+
 
 /* Custom text highlight color */
 ::selection {

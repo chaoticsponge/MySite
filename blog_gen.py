@@ -28,13 +28,13 @@ def extract_title(file_path):
         return os.path.basename(file_path)
 
 def estimate_reading_time(file_path):
-    """Estimate reading time based on word count (200 wpm)."""
+    """Estimate reading time based on word count (60 wpm)."""
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             html = f.read()
         text = re.sub(r"<[^>]+>", " ", html)
         words = len(re.findall(r"\b\w+\b", text))
-        minutes = max(1, int(round(words / 200)))
+        minutes = max(1, int(round(words / 60)))
         return f"{minutes} min read"
     except Exception:
         return ""
