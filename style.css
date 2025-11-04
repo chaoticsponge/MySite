@@ -213,9 +213,6 @@ a:hover {
 .posts-list a {
   text-decoration: none;
 }
-.posts-list a:hover {
-  text-decoration: underline;
-}
 
 .post-link {
   display: inline-block;
@@ -237,6 +234,10 @@ a:hover {
   margin-top: -1rem; /* reduced from default ~1rem */
   font-size: var(--font-size-meta);
   color: var(--color-meta);
+}
+
+.post-link:hover .post-title {
+  text-decoration: underline;
 }
 
 /* Homepage grid background */
@@ -447,6 +448,7 @@ a:hover {
   transform-origin: center;
   opacity: 0.95;
   transition: none !important; /* Prevent animation or rotation on hover */
+  
 }
 
 .post-link:hover .pinned-icon {
