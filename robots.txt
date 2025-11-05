@@ -1,3 +1,12 @@
+#----------------------------------------------------#
+#   _______  ___      ___  ___      ___   _______    #
+#  /"     "||"  \    /"  ||"  \    /"  | /"      \   #
+# (: ______) \   \  //   | \   \  //   ||:        |  #
+#  \/    |   /\\  \/.    | /\\  \/.    ||_____/   )  #
+#  // ___)_ |: \.        ||: \.        | //      /   #
+# (:      "||.  \    /:  ||.  \    /:  ||:  __   \   #
+#  \_______)|___|\__/|___||___|\__/|___||__|  \___)  #
+#----------------------------------------------------#
 # robots.txt for emmr.me
 # Last updated: 2025-11-03
 # Allow all search engines to crawl and index your public pages
@@ -13,13 +22,11 @@ Disallow: /cgi-bin/
 Allow: /
 
 # Crawl-delay is optional; uncomment if you're rate-limited or on a small VM
-# Crawl-delay: 5
+Crawl-delay: 5
 
 # Explicitly allow these important sections (if you have them)
 Allow: /Posts/
 Allow: /images/
-Allow: /css/
-Allow: /js/
 
 # Sitemap (important for search engine indexing)
 Sitemap: https://emmr.me/sitemap.xml
