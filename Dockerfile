@@ -29,7 +29,8 @@ RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.co
     sed -i '/LoadModule headers_module/s/^#//g' /usr/local/apache2/conf/httpd.conf
 
 # Harden Apache config
-RUN sed -i 's/Options Indexes FollowSymLinks/Options -Indexes +FollowSymLinks/' /usr/local/apache2/conf/httpd.conf && \
+RUN echo 'ServerName localhost' >> /usr/local/apache2/conf/httpd.conf && \
+    sed -i 's/Options Indexes FollowSymLinks/Options -Indexes +FollowSymLinks/' /usr/local/apache2/conf/httpd.conf && \
     echo 'ServerSignature Off' >> /usr/local/apache2/conf/httpd.conf && \
     echo 'ServerTokens Prod' >> /usr/local/apache2/conf/httpd.conf && \
     echo 'Header set X-Content-Type-Options "nosniff"' >> /usr/local/apache2/conf/httpd.conf && \

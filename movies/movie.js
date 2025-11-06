@@ -1,3 +1,12 @@
+/*
+ * Adapted from letterboxd-to-markdown (https://github.com/dirtystylus/letterboxd-to-markdown)
+ * Copyright (c) 2021 dirtystylus
+ * Licensed under the GNU GPL v3.0
+ *
+ * Modifications made by Emmanuel Rodriguez on 2025-Nov-6.
+ */
+
+
 const MOVIE_DIR = '/letterboxd/movies/';
 
 async function fetchJSON(url) {

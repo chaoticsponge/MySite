@@ -1,5 +1,2 @@
-# Run at startup in case the schedule hasn't triggered yet
-@reboot /usr/local/bin/update_letterboxd.sh
-
 # Weekly refresh every Monday at 02:00 UTC
 0 2 * * 1 /usr/local/bin/update_letterboxd.sh
