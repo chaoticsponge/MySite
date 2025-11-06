@@ -72,6 +72,15 @@ a:hover {
   background-attachment: fixed;
 }
 
+h1.large {
+  font-size: 8rem; /* responsive scaling */
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 2rem 0;
+  font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -177,6 +186,15 @@ a:hover {
   .nav-links a {
     font-size: var(--font-size-nav-mobile);
   }
+  
+    h1.large {
+    font-size: 5rem; /* responsive scaling */
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 2rem 0;
+    font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+  }
 }
 
 @media (max-width: 600px) {
@@ -221,6 +239,15 @@ a:hover {
   .social-links a[href*="/blogpage.html"],
   .social-links a[href*="/photos/photos.html"] {
     display: inline-flex;
+  }
+
+    h1.large {
+    font-size: 4rem; /* responsive scaling */
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 2rem 0;
+    font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
   }
 
   .social-links img {
