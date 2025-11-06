@@ -1,158 +1,9 @@
-/* Theme variables (mirroring articlestyle.css) */
+/* Photo gallery specific styles */
 :root {
-  /* Colors */
-  --color-bg: #ffffff;
-  --color-text: #1a1a1a;
-  --color-link: #000000;
-  --color-meta: #666666;
-  --color-hover-bg: #f2f2f2;
-  --color-border: #e0e0e0;
-  --link-color: var(--color-link);
-
-  /* Layout */
-  --sidebar-width: 200px;
-  --max-content-width: 700px;
-  --side-padding: 2rem;
-
-  /* Fonts */
-  --font-serif: Georgia, "Times New Roman", serif;
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
-  /* Font Sizes */
-  --font-size-base: clamp(16px, 1.1vw, 18px);
-  --font-size-nav: 1.1rem;
-  --font-size-social: 1.1rem;
-  --font-size-body: 1.1rem;
-  --font-size-post-title: 1.3rem;
-  --font-size-meta: 0.9rem;
-  --font-size-timeline-year: 9rem;
-  --font-size-timeline-heading: 1.3rem;
-  --font-size-timeline-text: 1.1rem;
-  --font-size-timeline-year-mobile: 10rem;
-  --font-size-timeline-heading-mobile: 1.1rem;
-  --font-size-timeline-text-mobile: 0.9rem;
-  --font-size-nav-mobile: 1rem;
-
-  /* Photo page specific */
   --photo-border-color: rgba(0, 0, 0, 0.05);
   --photo-hover-shadow: rgba(0, 0, 0, 0.15);
 }
 
-/* Global */
-html {
-  font-size: var(--font-size-base);
-}
-
-body {
-  font-family: var(--font-serif);
-  background: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.7;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
-  animation: fadeInOpacity 0.6s ease-out forwards;
-  animation-delay: 0.2s;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  color: var(--color-link);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Sidebar */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: var(--sidebar-width);
-  background-color: var(--color-bg);
-  border-right: 1px solid var(--color-border);
-  padding-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-  z-index: 100;
-}
-
-/* Nav Links */
-.nav-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-links li {
-  width: 100%;
-}
-
-.nav-links a {
-  display: block;
-  padding: 1rem 1.5rem;
-  padding-left: 2.3rem;
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: var(--font-size-nav);
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.social-links a:hover,
-.nav-links a:hover {
-  color: var(--link-color);
-}
-
-/* Social Links */
-.social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding: 0 1.5rem 2rem 1.5rem;
-}
-
-.social-links a {
-  display: flex;
-  align-items: center;
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: var(--font-size-social);
-  border-radius: 6px;
-  padding: 0.4rem 0.6rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.social-links img {
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  filter: grayscale(100%);
-  align-items: center;
-  opacity: 0.8;
-  transition: filter 0.2s ease, opacity 0.2s ease;
-}
-
-.social-links a:hover img {
-  filter: none;
-  opacity: 1;
-}
-
-/* Hide text-only nav duplicates on desktop */
-.social-links a[href*="/index.html"],
-.social-links a[href*="/AboutMe.html"],
-.social-links a[href*="/blogpage.html"],
-.social-links a[href*="/photos/photos.html"] {
-  display: none;
-}
-
-/* Photo gallery layout */
 main.photo-gallery {
   margin-left: var(--sidebar-width);
   padding: 4rem var(--side-padding);
@@ -188,7 +39,6 @@ main.photo-gallery {
   opacity: 0.95;
 }
 
-/* Lightbox */
 .lightbox {
   display: none;
   position: fixed;
@@ -217,18 +67,18 @@ main.photo-gallery {
   position: absolute;
   top: 1.5rem;
   right: 2rem;
-  color: white;
+  color: #ffffff;
   font-size: 2rem;
   cursor: pointer;
   transition: opacity 0.2s ease;
   opacity: 0.8;
 }
 
-.close:hover {
+.close:hover,
+.close:focus-visible {
   opacity: 1;
 }
 
-/* Responsive layout adjustments */
 @media (max-width: 1024px) {
   .photo-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -236,10 +86,6 @@ main.photo-gallery {
 }
 
 @media (max-width: 900px) {
-  .sidebar {
-    width: 170px;
-  }
-
   main.photo-gallery {
     margin-left: 170px;
     width: calc(100% - 170px);
@@ -248,22 +94,10 @@ main.photo-gallery {
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    width: 160px;
-  }
-
   main.photo-gallery {
     margin-left: 160px;
     width: calc(100% - 160px);
     padding: 2.5rem 1.2rem;
-  }
-
-  .social-links a span {
-    display: none;
-  }
-
-  .nav-links a {
-    font-size: var(--font-size-nav-mobile);
   }
 }
 
@@ -275,56 +109,14 @@ main.photo-gallery {
 }
 
 @media (max-width: 600px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: auto;
-    border: none;
-    border-bottom: 1px solid var(--color-border);
-    padding: 0.6rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    background: var(--color-bg);
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .social-links {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 0.4rem 0;
-  }
-
-  .social-links a[href*="/index.html"],
-  .social-links a[href*="/AboutMe.html"],
-  .social-links a[href*="/blogpage.html"],
-  .social-links a[href*="/photos/photos.html"] {
-    display: inline-flex;
-  }
-
-  .social-links img {
-    margin: 0;
-  }
-
   main.photo-gallery {
-    margin: clamp(4.5rem, 12vw, 6.5rem) auto 0;
+    margin: 0 auto;
     width: 100%;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem calc(4.75rem + env(safe-area-inset-bottom, 0px));
     max-width: 100%;
   }
 }
 
-/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -335,25 +127,4 @@ main.photo-gallery {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes fadeInOpacity {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-/* Selection styling */
-::selection {
-  background: #d6d6d6;
-  color: #000;
-}
-
-::-moz-selection {
-  background: #d6d6d6;
-  color: #000;
 }
