@@ -7,6 +7,7 @@ html{
   max-width:var(--max-content-width);
   margin-left:var(--sidebar-width);
   padding:4rem var(--side-padding);
+  padding-bottom:1rem;
   box-sizing:border-box;
   text-align:left;
 }
@@ -28,10 +29,18 @@ html{
 
 /* Responsive */
 @media (max-width:900px){
-  .article-container{margin-left:170px;padding:3rem 1.5rem}
+  .article-container{
+    margin-left:170px;
+    padding:3rem 1.5rem;
+    padding-bottom:1rem;
+  }
 }
 @media (max-width:768px){
-  .article-container{margin-left:160px;padding:2.5rem 1.2rem}
+  .article-container{
+    margin-left:160px;
+    padding:2.5rem 1.2rem;
+    padding-bottom:1rem;
+  }
 }
 
 /* Mobile (≤600px) fixed top bar and auto offset */
@@ -40,121 +49,156 @@ html{
   .article-container{
     margin:0 auto;
     padding:2rem 1rem calc(4.5rem + env(safe-area-inset-bottom,0px));
+    padding-bottom:1rem;
     max-width:90%;
   }
 }
 
 /* Large screens (≥1600px) */
 @media (min-width:1600px){
-  .article-container{max-width:800px;padding:5rem 2rem}
+  .article-container{
+    max-width:800px;
+    padding:5rem 2rem;
+    padding-bottom:1rem;
+  }
 }
 
-/* macOS dark terminal theme */
-.mac-terminal {
-  position: relative;
-  background: #1e1e1e;
-  color: #dcdcdc;
-  border-radius: 10px;
-  font-family: "SF Mono", Menlo, Consolas, monospace;
-  padding: 2rem 1.25rem 1.25rem 1.25rem;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  overflow-x: auto;
-  margin: 2rem 0;
-}
-
-/* Traffic light buttons */
-.mac-terminal::before {
-  content: "";
-  position: absolute;
-  top: 0.7rem;
-  left: 1rem;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ff5f56;
-  box-shadow:
-    20px 0 #ffbd2e,
-    40px 0 #27c93f;
-}
-
-/* Terminal header line (subtle separator) */
-.mac-terminal::after {
-  content: "";
-  position: absolute;
-  top: 2rem;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* Code inside the terminal */
-.mac-terminal code {
-  padding-top: 1rem;
-  display: block;
-  color: #dcdcdc;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  white-space: pre-wrap;   /* wrap long lines */
-  word-break: break-word;  /* allow word breaks */
-  overflow-x: visible;
-  overflow-y: visible;
-  max-height: none;
-  background-color: transparent;
-}
-
-/* Shell-like syntax colors */
-.mac-terminal .dir,
-.mac-terminal .prompt {
-  color: #4fc1ff;
-}
-.mac-terminal .cmd {
-  color: #a0e08d;
-}
-.mac-terminal .error {
-  color: #ff5f56;
-}
-.mac-terminal .success {
-  color: #27c93f;
-}
-.mac-terminal .path {
-  color: #b19cd9;
-}
-
-.mac-terminal a {
-  color: #9c7bff;
-  text-decoration: none;
-}
-.mac-terminal a:hover {
-  text-decoration: underline;
-}
-
-/* Scrollbar styling */
-.mac-terminal::-webkit-scrollbar {
-  height: 8px;
-}
-.mac-terminal::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-/* Mobile fix (≤600px) */
-@media (max-width: 600px) {
-  .mac-terminal {
-    font-size: 0.9rem;
-    padding: 1.8rem clamp(0.75rem, 4vw, 1.15rem) 1rem;
-    margin-top: clamp(4.5rem, 12vw, 6.5rem); /* Leave space for fixed mobile nav */
-    margin-inline: auto;
-    margin-bottom: 1.5rem;
-    width: min(480px, calc(100% - 1.6rem));
-    border-radius: 8px;
-    overflow: visible;
-    z-index: 0;
+@keyframes travelFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
 
-  .mac-terminal::before {
-    top: 0.6rem;
-    left: 0.8rem;
-    transform: scale(0.9);
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SECTION WRAPPER — positions carousel beside sidebar */
+main.photo-section {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  max-width: none;
+  margin-right: 0;
+  padding: 0.1rem 0; /* visual spacing above/below */
+  box-sizing: border-box;
+  background: var(--color-bg);
+}
+
+/* CAROUSEL CONTAINER */
+.photo-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 320px;
+  gap: 1.2rem;
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: 1.2rem;
+  padding: 0 1.2rem 1rem;
+
+  /* smooth fade edges for visual polish */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 24px,
+    #000 calc(100% - 24px),
+    transparent
+  );
+
+  scrollbar-width: none; /* Firefox */
+}
+.photo-carousel::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+/* EACH PHOTO ITEM */
+.photo-carousel .photo-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--photo-border-color, rgba(0, 0, 0, 0.05));
+  background-color: var(--color-bg, #fff);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* IMAGES INSIDE */
+.photo-carousel .photo-item img,
+.photo-carousel .photo-item .travel-carousel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  display: block;
+}
+
+/* HOVER EFFECT — matches photo-grid styling */
+.photo-carousel .photo-item:hover {
+  transform: scale(1.025);
+  box-shadow: 0 10px 24px var(--photo-hover-shadow, rgba(0, 0, 0, 0.15));
+  opacity: 0.95;
+}
+
+/* FADE-IN ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -----------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+----------------------------------------------------------- */
+
+/* Tablet – matches your global sidebar scale */
+@media (max-width: 900px) {
+  main.photo-section {
+    margin-left: 170px;
+    width: calc(100% - 170px);
+    padding: 2.5rem 0;
+  }
+}
+
+/* Small tablet */
+@media (max-width: 768px) {
+  main.photo-section {
+    margin-left: 160px;
+    width: calc(100% - 160px);
+    padding: 2rem 0;
+  }
+}
+
+/* Mobile — when sidebar moves to bottom */
+@media (max-width: 600px) {
+  main.photo-section {
+    margin: 0;
+    width: 100%;
+    padding: 2rem 0 calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Compact screens — narrower cards */
+@media (max-width: 380px) {
+  .photo-carousel {
+    grid-auto-columns: min(320px, 86vw);
   }
 }
