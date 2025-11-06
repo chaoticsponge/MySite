@@ -13,3 +13,8 @@ dockerfile = "Dockerfile"
 
 [[vm]]
   size = "shared-cpu-1x"
+
+[processes]
+  app = "bin/server"
+  cron = "supercronic /app/crontab"
+  fly scale count app=2 cron=1

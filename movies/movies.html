@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movies</title>
+  <link rel="stylesheet" href="moviestyle.css" />
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <ul class="nav-links">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/AboutMe.html">About Me</a></li>
+      <li><a href="/blogpage.html">Blog</a></li>
+      <li><a href="/photos/photos.html">Photos</a></li>
+    </ul>
+
+    <!-- Icon Navigation (Mobile + Social Links) -->
+    <div class="social-links">
+      <!-- Local Home icon -->
+      <a href="/index.html" title="Home">
+        <img src="https://api.iconify.design/material-symbols:home-rounded.svg" alt="Home icon" />
+      </a>
+      <a href="/AboutMe.html" title="About Me">
+        <img src="https://api.iconify.design/material-symbols:account-box.svg" alt="About Me icon" />
+        <span>About Me</span>
+      </a>
+      <!-- Local Blog icon -->
+      <a href="/blogpage.html" title="Blog">
+        <img src="https://api.iconify.design/material-symbols:edit-square-rounded.svg" alt="Blog icon" />
+      </a>
+
+      <a href="/photos/photos.html" title="Photos">
+        <img src="https://api.iconify.design/material-symbols:android-camera.svg" alt="Photos icon" />
+      </a>
+      <a href="https://t.me/spongier" target="_blank" title="Telegram">
+        <img
+          src="https://api.iconify.design/bi:telegram.svg"
+          alt="Telegram icon"
+        />
+        <span>Telegram</span>
+      </a>
+
+      <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
+        <img
+          src="https://api.iconify.design/pajamas:linkedin.svg"
+          alt="LinkedIn icon"
+        />
+        <span>LinkedIn</span>
+      </a>
+
+      <!-- Social Icons -->
+    </div>
+  </nav>
+
+  <main class="movie-gallery">
+    <div id="movie-grid" class="movie-grid"></div>
+  </main>
+
+  <div class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" src="" alt="Expanded poster" />
+  </div>
+
+  <script src="movie.js"></script>
+</body>
+</html>

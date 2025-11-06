@@ -1,7 +1,29 @@
 FROM httpd:2.4
 
+ENV SUPERCRONIC_VERSION=0.2.18
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      curl \
+      python3 \
+      python3-yaml \
+      nodejs \
+      npm \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL -o /usr/local/bin/supercronic \
+      "https://github.com/aptible/supercronic/releases/download/v${SUPERCRONIC_VERSION}/supercronic-linux-amd64" && \
+    chmod +x /usr/local/bin/supercronic
+
 # Copy your static site content
 COPY . /usr/local/apache2/htdocs/
+
+RUN install -Dm755 /usr/local/apache2/htdocs/scripts/update_letterboxd.sh /usr/local/bin/update_letterboxd.sh && \
+    install -Dm644 /usr/local/apache2/htdocs/cron/letterboxd.cron /etc/supercronic/letterboxd.cron && \
+    install -Dm755 /usr/local/apache2/htdocs/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+# Install Letterboxd CLI dependencies
+RUN cd /usr/local/apache2/htdocs/letterboxd && npm install --production
 
 # Enable mod_rewrite and headers
 RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/httpd.conf && \
@@ -22,8 +44,6 @@ RUN sed -i 's/Options Indexes FollowSymLinks/Options -Indexes +FollowSymLinks/' 
 # Allow .htaccess to override settings (needed for clean URLs)
 RUN sed -i '/<Directory "\/usr\/local\/apache2\/htdocs">/,/<\/Directory>/s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf
 
-# Copy the .htaccess file (handles .html hiding + 403/404 logic)
-COPY .htaccess /usr/local/apache2/htdocs/.htaccess
-
 EXPOSE 80
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["httpd-foreground"]
