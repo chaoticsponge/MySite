@@ -1,6 +1,6 @@
 FROM httpd:2.4
 
-ENV SUPERCRONIC_VERSION=0.2.18
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/latest/download/supercronic-linux-amd64
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -11,8 +11,7 @@ RUN apt-get update && \
       npm \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -fsSL -o /usr/local/bin/supercronic \
-      "https://github.com/aptible/supercronic/releases/download/v${SUPERCRONIC_VERSION}/supercronic-linux-amd64" && \
+RUN curl -fsSL -o /usr/local/bin/supercronic "${SUPERCRONIC_URL}" && \
     chmod +x /usr/local/bin/supercronic
 
 # Copy your static site content
