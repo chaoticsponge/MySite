@@ -2,7 +2,8 @@
 .article-container{
   max-width:var(--max-content-width);
   margin-left:var(--sidebar-width);
-  padding:4rem var(--side-padding);
+  padding:1rem var(--side-padding);
+  padding-bottom:1rem;
   box-sizing:border-box;
   text-align:left;
 }
@@ -25,10 +26,10 @@
 
 /* Responsive */
 @media (max-width:900px){
-  .article-container{margin-left:170px;padding:3rem 1.5rem}
+  .article-container{margin-left:170px;padding:1rem 1.5rem;padding-bottom:1rem}
 }
 @media (max-width:768px){
-  .article-container{margin-left:160px;padding:2.5rem 1.2rem}
+  .article-container{margin-left:160px;padding:1rem 1.2rem;padding-bottom:1rem}
 }
 
 /* Mobile (≤600px) fixed top bar and auto offset */
@@ -39,7 +40,8 @@
   /* content */
   .article-container{
     margin:0 auto;
-    padding:2rem 1rem calc(4.5rem + env(safe-area-inset-bottom,0px));
+    padding:1rem 1rem calc(4.5rem + env(safe-area-inset-bottom,0px));
+    padding-bottom:1rem;
     max-width:90%;
   }
 }
@@ -56,7 +58,7 @@
 
 /* Large screens (≥1600px) */
 @media (min-width:1600px){
-  .article-container{max-width:800px;padding:5rem 2rem}
+  .article-container{max-width:800px;padding:1rem 2rem;padding-bottom:1rem}
 }
 
 /* macOS dark terminal theme */
