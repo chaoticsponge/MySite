@@ -164,7 +164,7 @@ h1.large {
 .social-links a[href*="/index.html"],
 .social-links a[href*="/AboutMe.html"],
 .social-links a[href*="/blogpage.html"],
-.social-links a[href*="/photos/photos.html"] {
+.social-links a[href*="/photos.html"] {
   display: none;
 }
 
@@ -237,7 +237,7 @@ h1.large {
   .social-links a[href*="/index.html"],
   .social-links a[href*="/AboutMe.html"],
   .social-links a[href*="/blogpage.html"],
-  .social-links a[href*="/photos/photos.html"] {
+  .social-links a[href*="/photos.html"] {
     display: inline-flex;
   }
 
