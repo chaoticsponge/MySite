@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wireshark Guide</title>
   <link rel="stylesheet" href="../globalstyles.css" />
   <link rel="stylesheet" href="articlestyle.css" />
-  
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
 </head>
 
 <body class="home-page">
   <!-- Sidebar Navigation -->
   <nav class="sidebar">
     <ul class="nav-links">
-<li><a href="/index.html">Home</a></li>
-<li><a href="/AboutMe.html">About Me</a></li>
-<li><a href="/blogpage.html">Blog</a></li>
-<li><a href="/photos.html">Photos</a></li>
-</ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/AboutMe.html">About Me</a></li>
+      <li><a href="/blogpage.html">Blog</a></li>
+      <li><a href="/photos.html">Photos</a></li>
+    </ul>
 
     <!-- Icon Navigation (Mobile + Social Links) -->
     <div class="social-links">
@@ -25,11 +43,11 @@
       <a href="/index.html" title="Home">
         <img src="https://api.iconify.design/material-symbols:home-rounded.svg" alt="Home icon" />
       </a>
-            <a href="/AboutMe.html">
-  <img src="https://api.iconify.design/material-symbols:account-box.svg
+      <a href="/AboutMe.html">
+        <img src="https://api.iconify.design/material-symbols:account-box.svg
 " alt="About Me icon" />
-  <span>About Me</span>
-</a>
+        <span>About Me</span>
+      </a>
 
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
@@ -40,18 +58,12 @@
         <img src="https://api.iconify.design/material-symbols:android-camera.svg" alt="Photos icon" />
       </a>
       <a href="https://t.me/spongier" target="_blank" title="Telegram">
-        <img
-          src="https://api.iconify.design/bi:telegram.svg"
-          alt="Telegram icon"
-        />
+        <img src="https://api.iconify.design/bi:telegram.svg" alt="Telegram icon" />
         <span>Telegram</span>
       </a>
 
       <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
-        <img
-          src="https://api.iconify.design/pajamas:linkedin.svg"
-          alt="LinkedIn icon"
-        />
+        <img src="https://api.iconify.design/pajamas:linkedin.svg" alt="LinkedIn icon" />
         <span>LinkedIn</span>
       </a>
 
@@ -62,15 +74,17 @@
   <!-- Main Wrapper (animation + scrollable content) -->
   <div class="page-wrapper">
     <main class="article-container">
-<article>
-  <h1>Wireshark Beginner’s Guide</h1>
-  <p>
-    Wireshark is a free, open-source network protocol analyzer used to capture and inspect network traffic in real time.  
-    It helps visualize how computers communicate over a network — essential for learning, troubleshooting, and security testing.
-  </p>
+      <article>
+        <h1>Wireshark Beginner’s Guide</h1>
+        <p>
+          Wireshark is a free, open-source network protocol analyzer used to capture and inspect network traffic in real
+          time.
+          It helps visualize how computers communicate over a network — essential for learning, troubleshooting, and
+          security testing.
+        </p>
 
-  <h2>1. Installation</h2>
-  <pre class="mac-terminal"><code># Linux
+        <h2>1. Installation</h2>
+        <pre class="mac-terminal"><code># Linux
 sudo apt update && sudo apt install wireshark -y
 
 # macOS (via Homebrew)
@@ -79,33 +93,33 @@ brew install wireshark
 # Windows
 # Download from https://www.wireshark.org/download.html
 </code></pre>
-  <p>
-    During installation, allow Wireshark to capture packets without root/admin rights (optional but useful).
-  </p>
+        <p>
+          During installation, allow Wireshark to capture packets without root/admin rights (optional but useful).
+        </p>
 
-  <h2>2. Key Terms</h2>
-  <ul>
-    <li><strong>Packet:</strong> A unit of data sent across a network.</li>
-    <li><strong>Protocol:</strong> A set of communication rules (e.g., HTTP, TCP, DNS).</li>
-    <li><strong>Capture:</strong> Recording network traffic in real time.</li>
-    <li><strong>Interface:</strong> The network device (Ethernet, Wi-Fi, etc.) you capture traffic from.</li>
-    <li><strong>Filter:</strong> A search or rule used to view specific packets.</li>
-  </ul>
+        <h2>2. Key Terms</h2>
+        <ul>
+          <li><strong>Packet:</strong> A unit of data sent across a network.</li>
+          <li><strong>Protocol:</strong> A set of communication rules (e.g., HTTP, TCP, DNS).</li>
+          <li><strong>Capture:</strong> Recording network traffic in real time.</li>
+          <li><strong>Interface:</strong> The network device (Ethernet, Wi-Fi, etc.) you capture traffic from.</li>
+          <li><strong>Filter:</strong> A search or rule used to view specific packets.</li>
+        </ul>
 
-  <h2>3. Basic Usage</h2>
-  <pre class="mac-terminal"><code># Start Wireshark
+        <h2>3. Basic Usage</h2>
+        <pre class="mac-terminal"><code># Start Wireshark
 # 1. Open Wireshark.
 # 2. Select your active network interface (Wi-Fi or Ethernet).
 # 3. Click "Start Capturing Packets".
 # 4. Use Stop button (red square) to stop capture.
 </code></pre>
 
-  <h2>4. Common Display Filters</h2>
-  <p>
-    Filters let you focus on specific protocols or traffic types.  
-    They can be typed in the top filter bar.
-  </p>
-  <pre class="mac-terminal"><code># Common filters
+        <h2>4. Common Display Filters</h2>
+        <p>
+          Filters let you focus on specific protocols or traffic types.
+          They can be typed in the top filter bar.
+        </p>
+        <pre class="mac-terminal"><code># Common filters
 # Show packets to/from this IP
 ip.addr == 192.168.1.5
 
@@ -135,11 +149,11 @@ frame contains "password"
 
 </code></pre>
 
-  <h2>5. Capture Filters</h2>
-  <p>
-    Applied before capturing, to limit what packets Wireshark records.
-  </p>
-  <pre class="mac-terminal"><code># Capture only traffic from a specific IP
+        <h2>5. Capture Filters</h2>
+        <p>
+          Applied before capturing, to limit what packets Wireshark records.
+        </p>
+        <pre class="mac-terminal"><code># Capture only traffic from a specific IP
 host 192.168.1.5
 
 # Capture only HTTP traffic
@@ -152,45 +166,48 @@ host 192.168.1.5 and host 192.168.1.10
 net 192.168.1.0/24
 </code></pre>
 
-  <h2>6. Understanding Wireshark Output</h2>
-  <p>
-    Wireshark’s window is split into three panes:
-  </p>
-  <ul>
-    <li><strong>Packet List Pane:</strong> Shows each captured packet (one line per packet).</li>
-    <li><strong>Packet Details Pane:</strong> Shows the protocols and fields within a packet.</li>
-    <li><strong>Packet Bytes Pane:</strong> Displays raw hexadecimal and ASCII data.</li>
-  </ul>
+        <h2>6. Understanding Wireshark Output</h2>
+        <p>
+          Wireshark’s window is split into three panes:
+        </p>
+        <ul>
+          <li><strong>Packet List Pane:</strong> Shows each captured packet (one line per packet).</li>
+          <li><strong>Packet Details Pane:</strong> Shows the protocols and fields within a packet.</li>
+          <li><strong>Packet Bytes Pane:</strong> Displays raw hexadecimal and ASCII data.</li>
+        </ul>
 
-  <h3>Color Coding (Default)</h3>
-  <ul>
-    <li><span style="color:green;">Green:</span> TCP traffic</li>
-    <li><span style="color:blue;">Blue:</span> DNS/UDP traffic</li>
-    <li><span style="color:black;">Black:</span> Problematic TCP packets (e.g., retransmissions)</li>
-  </ul>
+        <h3>Color Coding (Default)</h3>
+        <ul>
+          <li><span style="color:green;">Green:</span> TCP traffic</li>
+          <li><span style="color:blue;">Blue:</span> DNS/UDP traffic</li>
+          <li><span style="color:black;">Black:</span> Problematic TCP packets (e.g., retransmissions)</li>
+        </ul>
 
-  <h2>7. Saving and Exporting Captures</h2>
-  <pre class="mac-terminal"><code># Save capture to file
+        <h2>7. Saving and Exporting Captures</h2>
+        <pre class="mac-terminal"><code># Save capture to file
 File → Save As → mycapture.pcapng
 
 # Export specific packets
 File → Export Specified Packets
 </code></pre>
 
-  <h2>8. Common Configurations</h2>
-  <ul>
-    <li>Go to <strong>Edit → Preferences → Columns</strong> to customize visible columns (e.g., add “Source Port” or “Protocol”).</li>
-    <li>Enable “Name Resolution” to display hostnames instead of IPs.</li>
-    <li>Use “Statistics → Protocol Hierarchy” to view protocol breakdowns.</li>
-    <li>Use “Follow → TCP Stream” to reconstruct conversations (useful for HTTP logins, messages, etc.).</li>
-  </ul>
+        <h2>8. Common Configurations</h2>
+        <ul>
+          <li>Go to <strong>Edit → Preferences → Columns</strong> to customize visible columns (e.g., add “Source Port”
+            or “Protocol”).</li>
+          <li>Enable “Name Resolution” to display hostnames instead of IPs.</li>
+          <li>Use “Statistics → Protocol Hierarchy” to view protocol breakdowns.</li>
+          <li>Use “Follow → TCP Stream” to reconstruct conversations (useful for HTTP logins, messages, etc.).</li>
+        </ul>
 
-  <h2>TL;DR</h2>
-  <p>
-    Install Wireshark → Choose active interface → Start capture → Use filters to focus → Analyze packet details → Save capture.  
-    Common filters: <code>http</code>, <code>dns</code>, <code>ip.addr == &lt;ip&gt;</code>, <code>frame contains "text"</code>.
-  </p>
-</article>
+        <h2>TL;DR</h2>
+        <p>
+          Install Wireshark → Choose active interface → Start capture → Use filters to focus → Analyze packet details →
+          Save capture.
+          Common filters: <code>http</code>, <code>dns</code>, <code>ip.addr == &lt;ip&gt;</code>,
+          <code>frame contains "text"</code>.
+        </p>
+      </article>
 
       <br>
       <p>Also read: How to use <a href="git4dummies.html">Git</a> guide</p>
@@ -204,4 +221,5 @@ File → Export Specified Packets
     });
   </script>
 </body>
+
 </html>

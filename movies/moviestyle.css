@@ -52,19 +52,19 @@ main.movie-gallery {
 
 .movie-info {
   padding: 1rem 1.1rem 1.25rem;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   background: var(--color-bg);
 }
 
 .movie-info h3 {
   margin: 0 0 0.35rem;
-  font-size: 1.05rem;
+  font-size: var(--font-size-card-title);
   line-height: 1.4;
 }
 
 .movie-info p {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: var(--font-size-card-text);
   color: var(--color-meta);
 }
 
@@ -97,7 +97,7 @@ main.movie-gallery {
   top: 1.5rem;
   right: 2rem;
   color: #ffffff;
-  font-size: 2rem;
+  font-size: var(--font-size-icon-lg);
   cursor: pointer;
   transition: opacity 0.2s ease;
   opacity: 0.8;

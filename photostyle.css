@@ -68,7 +68,7 @@ main.photo-gallery {
   top: 1.5rem;
   right: 2rem;
   color: #ffffff;
-  font-size: 2rem;
+  font-size: var(--font-size-icon-lg);
   cursor: pointer;
   transition: opacity 0.2s ease;
   opacity: 0.8;

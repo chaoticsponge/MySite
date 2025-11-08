@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap");
+
 /* Global theme variables and shared layout */
 :root {
   /* Colors */
@@ -15,8 +17,10 @@
   --side-padding: 2rem;
 
   /* Fonts */
-  --font-serif: Georgia, "Times New Roman", serif;
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Montserrat", sans-serif;
+  --font-heading: "Playfair Display", serif;
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
 
   /* Font Sizes */
   --font-size-base: clamp(16px, 1.1vw, 18px);
@@ -32,6 +36,27 @@
   --font-size-timeline-heading-mobile: 1.1rem;
   --font-size-timeline-text-mobile: 0.9rem;
   --font-size-nav-mobile: 1rem;
+  --font-size-hero: 8rem;
+  --font-size-hero-tablet: 5rem;
+  --font-size-hero-mobile: 4rem;
+  --font-size-card-title: 1.05rem;
+  --font-size-card-text: 0.95rem;
+  --font-size-icon-lg: 2rem;
+}
+
+/* Typography */
+p {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
 
 html {
@@ -39,7 +64,7 @@ html {
 }
 
 body {
-  font-family: var(--font-serif);
+  font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--color-text);
   line-height: 1.7;
@@ -73,12 +98,16 @@ a:hover {
 }
 
 h1.large {
-  font-size: 8rem; /* responsive scaling */
+  font-size: var(--font-size-hero);
   line-height: 1.05;
   font-weight: 700;
   letter-spacing: -0.03em;
   margin: 2rem 0;
-  font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+  font-family: var(--font-heading);
+}
+
+h1 {
+  font-size: 3rem;
 }
 
 .sidebar {
@@ -114,7 +143,9 @@ h1.large {
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: var(--font-size-nav);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .nav-links a:hover,
@@ -143,7 +174,9 @@ h1.large {
   font-size: var(--font-size-social);
   border-radius: 6px;
   padding: 0.4rem 0.6rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .social-links img {
@@ -153,7 +186,9 @@ h1.large {
   filter: grayscale(100%);
   align-items: center;
   opacity: 0.8;
-  transition: filter 0.2s ease, opacity 0.2s ease;
+  transition:
+    filter 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .social-links a:hover img {
@@ -186,14 +221,17 @@ h1.large {
   .nav-links a {
     font-size: var(--font-size-nav-mobile);
   }
-  
-    h1.large {
-    font-size: 5rem; /* responsive scaling */
+
+  h1.large {
+    font-size: var(--font-size-hero-tablet);
     line-height: 1.05;
     font-weight: 700;
     letter-spacing: -0.03em;
     margin: 2rem 0;
-    font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+    font-family: var(--font-heading);
+  }
+  h1 {
+    font-size: 2rem;
   }
 }
 
@@ -211,7 +249,8 @@ h1.large {
     height: auto;
     border: none;
     border-top: 1px solid var(--color-border);
-    padding: 0.3rem clamp(0.9rem, 4vw, 1.6rem) calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    padding: 0.3rem clamp(0.9rem, 4vw, 1.6rem)
+      calc(0.5rem + env(safe-area-inset-bottom, 0px));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -241,13 +280,16 @@ h1.large {
     display: inline-flex;
   }
 
-    h1.large {
-    font-size: 4rem; /* responsive scaling */
+  h1.large {
+    font-size: var(--font-size-hero-mobile);
     line-height: 1.05;
     font-weight: 700;
     letter-spacing: -0.03em;
     margin: 2rem 0;
-    font-family: var(--font-sans, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+    font-family: var(--font-heading);
+  }
+  h1 {
+    font-size: 2rem;
   }
 
   .social-links img {
