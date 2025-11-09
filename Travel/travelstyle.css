@@ -151,72 +151,7 @@ main.photo-section {
     transform: translateY(0);
   }
 }
-/* Lightbox */
-.photo-carousel .photo-item {
-  cursor: zoom-in;
-}
 
-.photo-carousel .photo-item:focus-visible {
-  outline: 2px solid var(--color-link);
-  outline-offset: 3px;
-}
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 1.5rem;
-  display: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.lightbox.is-visible,
-.lightbox[aria-hidden="false"],
-.lightbox[data-state="open"] {
-  display: flex;
-  opacity: 1;
-}
-
-body.lightbox-open {
-  overflow: hidden;
-}
-
-.lightbox-content {
-  max-width: min(90%, 1100px);
-  max-height: 90vh;
-  border-radius: 12px;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.45);
-  object-fit: contain;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.lightbox-content:hover {
-  transform: scale(1.02);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
-}
-
-.close {
-  position: absolute;
-  top: clamp(0.75rem, 2vw, 1.5rem);
-  right: clamp(1rem, 3vw, 2rem);
-  color: #ffffff;
-  font-size: var(--font-size-icon-lg);
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-  opacity: 0.85;
-  line-height: 1;
-}
-
-.close:hover,
-.close:focus-visible {
-  opacity: 1;
-}
 /* Responsiveness */
 
 /* Tablet – matches your global sidebar scale */
