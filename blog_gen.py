@@ -8,8 +8,8 @@ from datetime import datetime
 BLOG_DIRS = ["Blog", "Travel"]
 BLOG_PAGE = "blogpage.html"
 
-ICON_IT = "https://api.iconify.design/tabler:device-laptop.svg?color=%23333333"
-ICON_TRAVEL = "https://api.iconify.design/mdi:airplane.svg"
+ICON_IT = "https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38"
+ICON_TRAVEL = "https://api.iconify.design/mdi:airplane.svg?color=%235DADE2"
 PIN_ICON = "https://api.iconify.design/pajamas:thumbtack-solid.svg?color=%23F8C471"
 
 # -------------------------------
