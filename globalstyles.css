@@ -10,6 +10,7 @@
   --color-hover-bg: #f2f2f2;
   --color-border: #e0e0e0;
   --link-color: var(--color-link);
+  --color-text-inverse: #ffffff;
 
   /* Layout */
   --sidebar-width: 200px;

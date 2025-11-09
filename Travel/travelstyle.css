@@ -106,11 +106,25 @@ main.photo-section {
   overscroll-behavior-x: contain;
   scroll-padding-inline: 1.2rem;
   padding: 0 1.2rem 1rem;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
 }
 
 .photo-carousel::-webkit-scrollbar {
-  display: none; /* WebKit */
+  height: 6px;
+}
+
+.photo-carousel::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 999px;
+}
+
+.photo-carousel::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 999px;
+}
+
+.photo-carousel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.45);
 }
 
 /* EACH PHOTO ITEM */
