@@ -2,8 +2,8 @@
 
 ## Assets directory
 
-- All shared CSS now lives under `assets/` (e.g. `assets/globalstyles.css`, `assets/style.css`, `assets/travelstyle.css`, etc.).
-- When adding new stylesheets, drop them in `assets/` and reference them with relative paths (e.g. `href="assets/new-styles.css"` from the root or `href="../assets/new-styles.css"` inside subfolders).
+- All CSS lives under `assets/`
+- When adding new stylesheets, drop them in `assets/` and reference them with relative paths from root.
 - If you relocate or rename a stylesheet, run `rg -n "old-name.css"` to update every `link` tag so pages don’t keep pointing at stale paths.
 
 ## File naming
