@@ -1,20 +1,33 @@
 import os
 import re
 from datetime import datetime
+from pathlib import Path
 
 # -------------------------------
 # CONFIG
 # -------------------------------
-BLOG_DIRS = ["Blog", "Travel"]
-BLOG_PAGE = "blogpage.html"
+BASE_DIR = Path(__file__).resolve().parent.parent
+BLOG_PAGE = BASE_DIR / "blogpage.html"
 
 ICON_IT = "https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38"
 ICON_TRAVEL = "https://api.iconify.design/mdi:airplane.svg?color=%235DADE2"
+ICON_LEARNING = "https://api.iconify.design/tabler:pencil.svg?color=%23fb8c00"
 PIN_ICON = "https://api.iconify.design/pajamas:thumbtack-solid.svg?color=%23F8C471"
+
+BLOG_SOURCES = [
+    {"path": BASE_DIR / "blog", "icon": ICON_IT},
+    {"path": BASE_DIR / "travel", "icon": ICON_TRAVEL},
+    {"path": BASE_DIR / "educational", "icon": ICON_LEARNING},
+]
 
 # -------------------------------
 # HELPERS
 # -------------------------------
+def normalize_href(href):
+    """Normalize href for comparisons (case-insensitive, no leading ./)."""
+    return href.strip().lstrip("./").replace("\\", "/").lower()
+
+
 def extract_title(file_path):
     """Extract <title> or <h1> from HTML file."""
     try:
@@ -58,9 +71,8 @@ def parse_display_date(date_str, fallback_path):
             pass
     # Fallback to filesystem modification time if parsing fails
     return datetime.fromtimestamp(os.path.getmtime(fallback_path))
-def generate_post_entry(post_path, title, date_str, reading_time, is_travel=False):
-    """Generate HTML list item for a post."""
-    icon = ICON_TRAVEL if is_travel else ICON_IT
+def generate_post_entry(post_path, title, date_str, reading_time, icon):
+    """Generate HTML list item for a post with the provided icon."""
     meta = f"{date_str} · {reading_time}" if reading_time else date_str
     return f"""
   <li>
@@ -95,14 +107,15 @@ def update_blogpage():
     pinned_matches = re.findall(
         r'(<li>.*?' + re.escape(PIN_ICON) + r'.*?</li>)', current_list, flags=re.DOTALL
     )
-    pinned_links = re.findall(r'href="([^"]+)"', "\n".join(pinned_matches))
+    pinned_links_raw = re.findall(r'href="([^"]+)"', "\n".join(pinned_matches))
+    pinned_links = {normalize_href(link) for link in pinned_links_raw}
 
     valid_pinned, removed_pinned = [], []
     for block in pinned_matches:
         link_match = re.search(r'href="([^"]+)"', block)
         if link_match:
             link = link_match.group(1)
-            if os.path.exists(link):
+            if (BASE_DIR / link).exists():
                 valid_pinned.append(block)
                 print(f"[{link}] - pinned (kept)")
             else:
@@ -112,33 +125,42 @@ def update_blogpage():
     # -------------------------------
     # Preserve existing <span class="post-meta"> dates
     # -------------------------------
-    existing_meta = dict(re.findall(
-        r'href="([^"]+)".*?<span class="post-meta">(.*?)</span>',
-        current_list, flags=re.DOTALL
-    ))
+    existing_meta = {
+        normalize_href(href): meta
+        for href, meta in re.findall(
+            r'href="([^"]+)".*?<span class="post-meta">(.*?)</span>',
+            current_list,
+            flags=re.DOTALL,
+        )
+    }
 
     posts, added_posts, unchanged_posts = [], [], []
-    all_current_posts = set(re.findall(r'href="([^"]+)"', current_list))
+    all_current_posts_raw = re.findall(r'href="([^"]+)"', current_list)
+    all_current_posts = {normalize_href(href) for href in all_current_posts_raw}
 
-    for folder in BLOG_DIRS:
-        if not os.path.exists(folder):
+    for source in BLOG_SOURCES:
+        folder = source["path"]
+        icon = source["icon"]
+
+        if not folder.exists():
             continue
         for file in os.listdir(folder):
             if not file.endswith(".html") or "template" in file.lower():
                 continue
 
-            rel_path = f"{folder}/{file}"
-            if rel_path in pinned_links:
+            path = folder / file
+            rel_path = path.relative_to(BASE_DIR).as_posix()
+            normalized_rel_path = normalize_href(rel_path)
+
+            if normalized_rel_path in pinned_links:
                 continue
 
-            path = os.path.join(folder, file)
             title = extract_title(path)
             reading_time = estimate_reading_time(path)
-            is_travel = "Travel" in folder
 
             # Preserve existing manually set date
-            if rel_path in existing_meta:
-                old_meta = existing_meta[rel_path]
+            if normalized_rel_path in existing_meta:
+                old_meta = existing_meta[normalized_rel_path]
                 old_date_match = re.match(r"([A-Za-z]{3} \d{1,2}, \d{4})", old_meta.strip())
                 if old_date_match:
                     date_str = old_date_match.group(1)
@@ -150,10 +172,10 @@ def update_blogpage():
             display_dt = parse_display_date(date_str, path)
             posts.append(
                 (display_dt,
-                 generate_post_entry(rel_path, title, date_str, reading_time, is_travel))
+                 generate_post_entry(rel_path, title, date_str, reading_time, icon))
             )
 
-            if rel_path in all_current_posts:
+            if normalized_rel_path in all_current_posts:
                 unchanged_posts.append(rel_path)
                 print(f"[{rel_path}] - unchanged")
             else:
@@ -164,7 +186,7 @@ def update_blogpage():
     posts.sort(key=lambda x: x[0], reverse=True)
 
     # Detect removed (deleted) posts
-    removed_posts = [href for href in all_current_posts if not os.path.exists(href)]
+    removed_posts = [href for href in all_current_posts_raw if not (BASE_DIR / href).exists()]
     for r in removed_posts:
         print(f"[{r}] - deleted")
 

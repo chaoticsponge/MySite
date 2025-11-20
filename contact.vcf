@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//macOS 26.0.1//EN
+N:Rodriguez;Emmanuel;;;
+FN:Emmanuel Rodriguez
+EMAIL;type=INTERNET;type=HOME;type=pref:contact@emmr.me
+NOTE:Feel free to reach out!
+item1.URL;type=pref:http://telegram.me/@spongier
+item1.X-ABLabel:Telegram
+item2.URL:https://www.linkedin.com/in/emmrod19
+item2.X-ABLabel:LinkedIn
+item3.URL:emmr.me
+item3.X-ABLabel:_$!<HomePage>!$_
+END:VCARD

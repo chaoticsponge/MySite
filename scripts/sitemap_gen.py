@@ -1,22 +1,30 @@
 import os
 from datetime import datetime
+from pathlib import Path
 
 BASE_URL = "https://emmr.me"
 EXCLUDE_DIRS = {"error", "icons"}
-SITEMAP_PATH = "sitemap.xml"
+BASE_DIR = Path(__file__).resolve().parent.parent
+SITEMAP_PATH = BASE_DIR / "sitemap.xml"
 
 def generate_sitemap():
     urls = []
 
-    for root, _, files in os.walk("."):
+    for root, _, files in os.walk(BASE_DIR):
+        root_path = Path(root)
+        rel_root = root_path.relative_to(BASE_DIR)
+        rel_parts = [part for part in rel_root.parts if part not in (".", "")]
+
         # Skip hidden folders and excluded directories
-        if any(excl in root for excl in EXCLUDE_DIRS) or root.startswith("./."):
+        if any(part.startswith(".") for part in rel_parts):
+            continue
+        if any(part in EXCLUDE_DIRS for part in rel_parts):
             continue
 
         for file in files:
             if file.endswith(".html"):
-                path = os.path.join(root, file).replace("./", "")
-                clean_url = path.replace(".html", "")
+                rel_path = (rel_root / file).as_posix()
+                clean_url = rel_path.replace(".html", "")
                 # Make sure URLs work with your .htaccess setup
                 urls.append(f"{BASE_URL}/{clean_url}")
 
