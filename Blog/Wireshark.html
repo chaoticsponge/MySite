@@ -78,9 +78,8 @@
         <h1>Wireshark Beginner’s Guide</h1>
         <p>
           Wireshark is a free, open-source network protocol analyzer used to capture and inspect network traffic in real
-          time.
-          It helps visualize how computers communicate over a network — essential for learning, troubleshooting, and
-          security testing.
+          time. It helps you visualize how computers communicate over a network—an essential skill for learning,
+          troubleshooting, and security testing.
         </p>
 
         <h2>1. Installation</h2>
@@ -120,12 +119,13 @@ brew install wireshark
           They can be typed in the top filter bar.
         </p>
         <pre class="mac-terminal"><code># Common filters
+
 # Show packets to/from this IP
 ip.addr == 192.168.1.5
 
 # Show HTTP (port 80) traffic
-tcp.port == 80                  
-           
+tcp.port == 80
+
 # Show DNS traffic
 udp.port == 53
 
@@ -162,7 +162,7 @@ port 80
 # Capture traffic between two IPs
 host 192.168.1.5 and host 192.168.1.10
 
-# Capture traffic for specific subnet
+# Capture traffic for a specific subnet
 net 192.168.1.0/24
 </code></pre>
 
@@ -210,7 +210,7 @@ File → Export Specified Packets
       </article>
 
       <br>
-      <p>Also read: How to use <a href="git4dummies.html">Git</a> guide</p>
+      <p>Also read: <a href="git4dummies.html">How to use Git</a></p>
 
     </main>
   </div>
