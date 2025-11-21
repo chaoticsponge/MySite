@@ -17,12 +17,6 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
-#make all pages lowercase
-RewriteMap lc int:tolower
-RewriteCond %{REQUEST_URI} [A-Z]
-RewriteRule ^(.*)$ ${lc:$1} [L,R=301]
-
-
 # ------------------------------------------
 # Disable directory listing
 Options -Indexes
