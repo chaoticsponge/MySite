@@ -43,6 +43,11 @@ RUN echo 'ServerName localhost' >> /usr/local/apache2/conf/httpd.conf && \
 
 # Allow .htaccess to override settings (needed for clean URLs)
 RUN sed -i '/<Directory "\/usr\/local\/apache2\/htdocs">/,/<\/Directory>/s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf
+    
+# Add lowercase redirect config
+COPY /scripts/apache_rewrite.conf /usr/local/apache2/conf/extra/apache-rewrite.conf
+RUN echo "Include conf/extra/apache-rewrite.conf" >> /usr/local/apache2/conf/httpd.conf
+
 
 EXPOSE 80
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
