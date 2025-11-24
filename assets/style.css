@@ -301,7 +301,8 @@ body {
   top: -12vh;
   width: 26px;
   height: 26px;
-  background: url("icons/leaf.svg") no-repeat center / contain;
+  /* CSS file lives in /assets, so use absolute path to the shared icon */
+  background: url("/icons/leaf.svg") no-repeat center / contain;
   transform-origin: center;
   will-change: transform, opacity;
   animation: leafMotion var(--dur, 16s) linear var(--delay, 0s) infinite;
