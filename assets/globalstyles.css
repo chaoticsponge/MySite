@@ -79,6 +79,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.article-container {
+  max-width: var(--max-content-width);
+  margin-left: var(--sidebar-width);
+  padding: 1rem var(--side-padding);
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+  text-align: left;
+  transition: margin-left 0.3s ease;
+}
+
+.article-container a {
+  text-decoration: underline;
+}
+
 a {
   color: var(--color-link);
   text-decoration: none;
@@ -200,13 +214,20 @@ h1 {
 .social-links a[href*="/index.html"],
 .social-links a[href*="/aboutme.html"],
 .social-links a[href*="/blogpage.html"],
-.social-links a[href*="/photos.html"] {
+.social-links a[href*="/photos.html"],
+.social-links a[href*="/projects.html"] {
   display: none;
 }
 
 @media (max-width: 900px) {
   .sidebar {
     width: 170px;
+  }
+
+  .article-container {
+    margin-left: 170px;
+    padding: 1rem 1.5rem;
+    padding-bottom: 1rem;
   }
 }
 
@@ -221,6 +242,12 @@ h1 {
 
   .nav-links a {
     font-size: var(--font-size-nav-mobile);
+  }
+
+  .article-container {
+    margin-left: 160px;
+    padding: 1rem 1.2rem;
+    padding-bottom: 1rem;
   }
 
   h1.large {
@@ -239,6 +266,9 @@ h1 {
 @media (max-width: 600px) {
   body {
     padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .sidebar {
@@ -266,6 +296,13 @@ h1 {
     display: none;
   }
 
+  .article-container {
+    margin: 0 auto;
+    padding: 1rem 1rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 1rem;
+    max-width: 90%;
+  }
+
   .social-links {
     flex-direction: row;
     justify-content: center;
@@ -277,7 +314,8 @@ h1 {
   .social-links a[href*="/index.html"],
   .social-links a[href*="/aboutme.html"],
   .social-links a[href*="/blogpage.html"],
-  .social-links a[href*="/photos.html"] {
+  .social-links a[href*="/photos.html"],
+  .social-links a[href*="/projects.html"] {
     display: inline-flex;
   }
 

@@ -32,20 +32,6 @@
   .article-container{margin-left:160px;padding:1rem 1.2rem;padding-bottom:1rem}
 }
 
-/* Mobile (≤600px) fixed top bar and auto offset */
-@media (max-width:600px){
-  body{
-    padding-bottom:calc(4.5rem + env(safe-area-inset-bottom,0px))
-  }
-  /* content */
-  .article-container{
-    margin:0 auto;
-    padding:1rem 1rem calc(4.5rem + env(safe-area-inset-bottom,0px));
-    padding-bottom:1rem;
-    max-width:90%;
-  }
-}
-
 :not(.mac-terminal) code {
   background-color: rgba(0, 0, 0, 0.08); /* light neutral grey */
   color: inherit;
@@ -151,8 +137,16 @@
   border-radius: 4px;
 }
 
-/* Mobile fix (≤600px) */
-@media (max-width: 600px) {
+@media (max-width:600px){
+  body{
+    padding-bottom:calc(4.5rem + env(safe-area-inset-bottom,0px))
+  }
+  .article-container{
+    margin:0 auto;
+    padding:1rem 1rem calc(4.5rem + env(safe-area-inset-bottom,0px));
+    padding-bottom:1rem;
+    max-width:90%;
+  }
   .mac-terminal {
     font-size: var(--font-size-meta);
     padding: 1.8rem clamp(0.75rem, 4vw, 1.15rem) 1rem;
@@ -164,7 +158,6 @@
     overflow: visible;
     z-index: 0;
   }
-
   .mac-terminal::before {
     top: 0.6rem;
     left: 0.8rem;

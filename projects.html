@@ -4,28 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emmanuel Rodriguez</title>
-  <link rel="stylesheet" href="assets/globalstyles.css" />
-  <link rel="stylesheet" href="assets/style.css" />
-  <meta name="description" content="Personal blog of Emmanuel Rodriguez." />
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HomePage",
-  "headline": "Personal Blog of Emmanuel Rodriguez",
-  "description": "Welcome to my personal blog where I share my journey, insights, and what I learn.",
-  "author": {
-    "@type": "Person",
-    "name": "Emmanuel Rodriguez"
-  },
-  "datePublished": "2025-01-01",
-  "publisher": {
-    "@type": "Organization",
-    "name": "emmr.me"
-  }
-}
-</script>
+  <title>Projects</title>
 
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="assets/globalstyles.css" />
+  <link rel="stylesheet" href="assets/projects.css" />
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
@@ -46,6 +29,7 @@
 </head>
 
 <body class="home-page">
+  <!-- Sidebar Navigation -->
   <nav class="sidebar">
     <ul class="nav-links">
       <li><a href="/index.html">Home</a></li>
@@ -57,14 +41,16 @@
 
     <!-- Icon Navigation (Mobile + Social Links) -->
     <div class="social-links">
+      <!-- Local Home icon -->
       <a href="/index.html" title="Home">
         <img src="https://api.iconify.design/material-symbols:home-rounded.svg" alt="Home icon" />
       </a>
       <a href="/aboutme.html">
-        <img src="https://api.iconify.design/material-symbols:account-box.svg
-" alt="About Me icon" />
+        <img src="https://api.iconify.design/material-symbols:account-box.svg" alt="About Me icon" />
         <span>About Me</span>
       </a>
+
+      <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
         <img src="https://api.iconify.design/material-symbols:edit-square-rounded.svg" alt="Blog icon" />
       </a>
@@ -89,51 +75,59 @@
     </div>
   </nav>
 
+  <!-- Main Wrapper (animation + scrollable content) -->
   <div class="page-wrapper">
     <main class="article-container">
-      <h1 class="large"><span id="typed-name" class="typed-name" data-text="Emmanuel&#10;Rodriguez"></span></h1>
-      <p>
-        Hey, I'm Emmanuel and welcome to my blog where I share my life journey, insights and what I learn.
-        I work on all sorts of stuff related to cybersecurity, AI, Blockchain and tech in general,
-        which prompted me to start this website. Read more about that journey <a href="/aboutme.html">here</a>.
-      </p>
-      <p>
-        When I'm not tinkering with Pis' or doomscrolling
-        <a href="https://www.theregister.com" target="_blank" rel="noopener noreferrer">The Register</a>,
-        I like to spend my time bouldering, playing badminton, or occasionally diving.
-        I love travelling and exploring new cultures. I post <a href="photos.html">photos on this page</a>. I
-        also try and keep track of movies I watch <a href="/movies/movies.html">here</a>.
-      </p>
-      <p>
-        Feel free to reach out on <a href="https://t.me/spongier" title="Telegram">Telegram</a>, <a
-          href="https://linkedin.com/in/emmrod19" title="LinkedIn">LinkedIn</a>, or mail me at <a
-          href="mailto:contact@emmr.me" title="Email">contact@emmr.me</a>.
-      </p>
-
-      </details>
-
+      <article>
+        <h1 class="large">Projects</h1>
+      </article>
     </main>
   </div>
-  <script src="scripts/analytics.js" defer></script>
-  <script src="scripts/typed-name.js" defer></script>
+  <main class="projects-content">
+    <section class="projects-grid">
+      <article class="project-card">
+        <div class="project-card-top">
+          <h2 class="project-title">BLIP Image Description Generator</h2>
+          <a class="project-title-link" href="https://github.com/chaoticsponge/BLIP-image-description-generator"
+            target="_blank" rel="noopener noreferrer" aria-label="View project on GitHub">
+            <img src="https://api.iconify.design/material-symbols:arrow-outward.svg" alt="" />
+          </a>
+        </div>
+        <p class="project-description">Python script that generates image descriptions using the BLIP model for accurate
+          bulk description generation</p>
+      </article>
+      <article class="project-card">
+        <div class="project-card-top">
+          <h2 class="project-title">Cloudflare Analytics Worker</h2>
+          <a class="project-title-link" href="https://github.com/chaoticsponge/analytics_worker" target="_blank"
+            rel="noopener noreferrer" aria-label="View project on GitHub">
+            <img src="https://api.iconify.design/material-symbols:arrow-outward.svg" alt="" />
+          </a>
+        </div>
+        <p class="project-description">Cloudflare Worker that processes analytics events and sends them to a D1 database
+          for low-cost, privacy-focused site analytics.</p>
+      </article>
 
+      <article class="project-card">
+        <div class="project-card-top">
+          <h2 class="project-title">Mastermind boardgame CLI</h2>
+          <a class="project-title-link" href="https://github.com/chaoticsponge/mastermind" target="_blank"
+            rel="noopener noreferrer" aria-label="View project on GitHub">
+            <img src="https://api.iconify.design/material-symbols:arrow-outward.svg" alt="" />
+          </a>
+        </div>
+        <p class="project-description">Command line version of the classic board game Mastermind, implemented in
+          Python.</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="scripts/analytics.js" defer></script>
   <script>
     document.fonts.ready.then(() => {
       document.documentElement.style.visibility = '';
     });
   </script>
-
-  <!-- Falling leaves (using /icons/leaf.svg) -->
-
-  <div class="leaf-fall" aria-hidden="true">
-    <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
-    <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
-    <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
-    <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
-  </div>
-
-
-
 </body>
 
 </html>

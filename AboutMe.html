@@ -35,6 +35,7 @@
       <li><a href="/index.html">Home</a></li>
       <li><a href="/aboutme.html">About Me</a></li>
       <li><a href="/blogpage.html">Blog</a></li>
+      <li><a href="/projects.html">Projects</a></li>
       <li><a href="/photos.html">Photos</a></li>
     </ul>
 
@@ -49,12 +50,14 @@
 " alt="About Me icon" />
         <span>About Me</span>
       </a>
-
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
         <img src="https://api.iconify.design/material-symbols:edit-square-rounded.svg" alt="Blog icon" />
       </a>
-
+      <a href="/projects.html" title="Projects">
+        <img src="https://api.iconify.design/mdi:github-box.svg" alt="Projects icon" />
+        <span>Projects</span>
+      </a>
       <a href="/photos.html" title="Photos">
         <img src="https://api.iconify.design/material-symbols:android-camera.svg" alt="Photos icon" />
       </a>
@@ -74,36 +77,84 @@
 
   <!-- Main Content -->
   <div class="article-container">
+    <h1>About me</h1>
+    <p>
+      I'm a freshgrad with experience in vulnerability assessments, penetration testing, IT
+      support(windows/macos/linux), and Audio-Visual systems. I enjoy learning new things and taking on challenges that
+      push me out of my comfort zone. Jump to my experience <a href="#experience">here</a>.
+    </p>
+    <section class="services-section">
+      <div class="services-grid">
+
+        <div class="service-card">
+          <img src="./icons/vapt.svg" class="service-icon" alt="security icon" width="30">
+          <div class="service-content">
+            <h3>VA/PT</h3>
+            <p>Vulnerability assessments and penetration testing.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="./icons/soc.svg" class="service-icon" alt="SOC icon">
+          <div class="service-content">
+            <h3>SOC Analyst</h3>
+            <p>Monitoring and analyzing security events and incidents.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="./icons/network.svg" class="service-icon" alt="networking icon" width="30">
+          <div class="service-content">
+            <h3>Network Analyst</h3>
+            <p>Setup and Monitoring of network systems.</p>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <img src="./icons/support.svg" class="service-icon" alt="Tech Support icon">
+          <div class="service-content">
+            <h3>Tech Support</h3>
+            <p>Providing technical assistance and support.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <h1>My Journey</h1>
-    <p>The main reason I really got into cybersecurity was because of Covid! All the news popping up about cyberattacks
+    <p>The main reason I really got into cybersecurity was because of Covid! All the news popping up about
+      cyberattacks
       everywhere made me realize how vulnerable our digital lives are. It made me a lot more privacy concious as a
       person in a digital sense. Channels like <a href="https://youtube.com/@rossmanngroup">Louis Rossman</a>, <a
         href="https://youtube.com/c/techlore">Techlore</a> and many others got me started in degoogling my life,
       learning to self-host my services, and taking control of my online presence.</p>
-    <p>It was also around the same time I met Mena, a minecraft server owner who made custom servers and needed a hand.
-      He really inspired me to dive deeper into the technical aspects of server management and programming. We continued
+    <p>It was also around the same time I met Mena, a minecraft server owner who made custom servers and needed a
+      hand.
+      He really inspired me to dive deeper into the technical aspects of server management and programming. We
+      continued
       doing custom servers and websites together as a side-hustle which helped me further my IT skills.</p>
     <p>It's more the combination of being more privacy concious <strong>and</strong> learning to program which got my
-      hands dirty with software. It made me want to pursue a career in cybersecurity. At the time I was doing my degree
+      hands dirty with software. It made me want to pursue a career in cybersecurity. At the time I was doing my
+      degree
       in Genomics at Monash University. Jumping from Genomics to IT is quite the reach but one I'm glad I took.</p>
     <br>
-    <h2>My Experience</h2>
+
+    <h1 id="experience">Experience</h1>
     <section class="timeline">
       <div class="timeline-entry" data-year="2025">
         <div class="timeline-content">
           <h3>Paramount Assure (Dubai) - VA/PT Consulting Services</h3>
-          <p>Gave me a strong solid foundation in cybersecurity basics such as network security, threat modeling, and
-            incident response and more outside of just university learning. It really reinforced that I've made the
-            right choice in my career and my passion aligned.</p>
+          <p>Allowed me to apply VA/PT knowledge in
+            real-world scenarios and write official documentation and reports.</p>
         </div>
       </div>
 
       <div class="timeline-entry" data-year="2024">
         <div class="timeline-content">
           <h3>Vega Global (Malaysia) - AV/IT Engineer</h3>
-          <p> I was incharge of AI and Copliot demos for clients and in research and implementation of digital signage
-            solutions. The day-to-day AV/IT tasks however were quite menial, but I appreciated the opportunity to work
-            on more innovative projects.</p>
+          <p> Led AI and Copliot demos for clients and in research and implementation of digital signage
+            solutions. The day-to-day AV/IT tasks included troubleshooting technical issues, setting up equipment for
+            events, and providing user support.</p>
         </div>
       </div>
 
@@ -111,8 +162,9 @@
         <div class="timeline-content">
           <h3>Sunway Blockchain Club - Design Lead</h3>
           <p>I got to learn a lot of everything like mentoring, public speaking, networking, coding on the blockchain,
-            how cryptocurrencies work and so much more. It also took me to Malaysia Blockchain week, Token2049 SG, met a
-            <strong>TON</strong> of amazing people and honestly too much to mention.
+            how cryptocurrencies work and so much more. It also took me to Token2049 SG, met
+            a
+            <strong>TON</strong> of amazing people and a lot more.
           </p>
         </div>
       </div>
@@ -121,7 +173,8 @@
         <div class="timeline-content">
           <h3>TedXSunwayUniversity - IT Director</h3>
           <p>Took care of the website, hosting, email domains etc. and A/V setup for events. Allowed me to use my
-            project skills in a real-world setting and gain valuable experience in managing technical aspects of events.
+            project skills in a real-world setting and gain valuable experience in managing technical aspects of
+            events.
           </p>
         </div>
       </div>
@@ -224,7 +277,7 @@
       <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
     </div>
 
-  <script src="scripts/analytics.js" defer></script>
+    <script src="scripts/analytics.js" defer></script>
 
 </body>
 
