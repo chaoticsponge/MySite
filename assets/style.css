@@ -84,6 +84,15 @@ body {
   .skill-tag {
     font-size: 0.9rem;
   }
+  .typed-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: currentColor;
+    margin-left: 6px;
+    animation: caretBlink 0.9s steps(1) infinite;
+    vertical-align: baseline;
+  }
 }
 
 /* Blog Posts List */
@@ -181,6 +190,36 @@ body {
   line-height: 1.6;
   margin: 0;
   color: var(--color-text);
+}
+
+/* Mobile timeline scaling */
+@media (max-width: 700px) {
+  .timeline-entry {
+    margin: 3rem 0;
+  }
+
+  .timeline-entry::before {
+    font-size: var(--font-size-timeline-year-mobile);
+    color: rgba(0, 0, 0, 0.05);
+  }
+
+  .timeline-content h3 {
+    font-size: var(--font-size-timeline-heading-mobile);
+  }
+
+  .timeline-content p {
+    font-size: var(--font-size-timeline-text-mobile);
+  }
+}
+
+.typed-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: currentColor;
+  margin-left: 8px;
+  animation: caretBlink 0.9s steps(1) infinite;
+  vertical-align: baseline;
 }
 
 @media (min-width: 1600px) {
@@ -483,9 +522,9 @@ body {
 .typed-caret {
   display: inline-block;
   width: 2px;
-  height: 0.9em;
+  height: 1em;
   background: currentColor;
-  margin-left: 4px;
+  margin-left: 22px;
   animation: caretBlink 0.9s steps(1) infinite;
   vertical-align: baseline;
 }
@@ -504,23 +543,6 @@ body {
 
 /* Mobile */
 @media (max-width: 700px) {
-  .timeline-entry {
-    margin: 3rem 0;
-  }
-
-  .timeline-entry::before {
-    font-size: var(--font-size-timeline-year-mobile);
-    color: rgba(0, 0, 0, 0.05);
-  }
-
-  .timeline-content h3 {
-    font-size: var(--font-size-timeline-heading-mobile);
-  }
-
-  .timeline-content p {
-    font-size: var(--font-size-timeline-text-mobile);
-  }
-
   .services-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px 18px;
@@ -543,5 +565,14 @@ body {
 
   .service-card p {
     font-size: 0.9rem;
+  }
+  .typed-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: currentColor;
+    margin-left: 10px;
+    animation: caretBlink 0.9s steps(1) infinite;
+    vertical-align: baseline;
   }
 }
