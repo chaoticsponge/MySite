@@ -38,8 +38,8 @@ RUN echo 'ServerName localhost' >> /usr/local/apache2/conf/httpd.conf && \
     echo 'Header set X-XSS-Protection "1; mode=block"' >> /usr/local/apache2/conf/httpd.conf && \
     echo 'Header set Referrer-Policy "strict-origin-when-cross-origin"' >> /usr/local/apache2/conf/httpd.conf && \
     echo 'Header set Permissions-Policy "geolocation=(), camera=(), microphone=()"' >> /usr/local/apache2/conf/httpd.conf && \
-    echo 'ErrorDocument 403 /error/403.html' >> /usr/local/apache2/conf/httpd.conf && \
-    echo 'ErrorDocument 404 /error/404.html' >> /usr/local/apache2/conf/httpd.conf
+    echo 'ErrorDocument 403 assets/error/403.html' >> /usr/local/apache2/conf/httpd.conf && \
+    echo 'ErrorDocument 404 assets/error/404.html' >> /usr/local/apache2/conf/httpd.conf
 
 # Allow .htaccess to override settings (needed for clean URLs)
 RUN sed -i '/<Directory "\/usr\/local\/apache2\/htdocs">/,/<\/Directory>/s/AllowOverride None/AllowOverride All/' /usr/local/apache2/conf/httpd.conf

@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Serve favicon from its folder when browsers request /favicon.ico directly
+RewriteRule ^favicon\.ico$ /favicon/favicon.ico [L]
+
 # Redirect .html requests to the clean URL
 # Redirect index.html → /
 RewriteRule ^index\.html$ / [R=301,L]
@@ -26,9 +29,9 @@ DirectoryIndex index.html
 
 # ------------------------------------------
 # Error Pages
-ErrorDocument 403 /error/403.html
-ErrorDocument 404 /error/404.html
-ErrorDocument 301 /error/301.html
+ErrorDocument 403 assets/error/403.html
+ErrorDocument 404 assets/error/404.html
+ErrorDocument 301 assets/error/301.html
 
 # ------------------------------------------
 # Security Headers

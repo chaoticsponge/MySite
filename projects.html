@@ -5,6 +5,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects</title>
+  <meta name="description"
+    content="Explore Emmanuel Rodriguez's featured projects including BLIP image descriptions, Cloudflare analytics worker, and Mastermind CLI." />
+  <meta property="og:title" content="Projects | Emmanuel Rodriguez" />
+  <meta property="og:description"
+    content="Explore Emmanuel Rodriguez's featured projects including BLIP image descriptions, Cloudflare analytics worker, and Mastermind CLI." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://emmr.me/projects" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Projects | Emmanuel Rodriguez",
+  "description": "Explore Emmanuel Rodriguez's featured projects.",
+  "url": "https://emmr.me/projects",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez"
+  },
+  "hasPart": [
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "BLIP Image Description Generator",
+      "url": "https://github.com/chaoticsponge/BLIP-image-description-generator",
+      "programmingLanguage": "Python",
+      "about": "Generates accurate bulk image descriptions using the BLIP model."
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Cloudflare Analytics Worker",
+      "url": "https://github.com/chaoticsponge/analytics_worker",
+      "programmingLanguage": "JavaScript",
+      "about": "Processes analytics events in a Cloudflare Worker and ships them to D1."
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Mastermind boardgame CLI",
+      "url": "https://github.com/chaoticsponge/mastermind",
+      "programmingLanguage": "Python",
+      "about": "Command line version of the classic Mastermind board game."
+    }
+  ]
+}
+</script>
 
   <!-- Link to external stylesheet -->
   <link rel="stylesheet" href="assets/globalstyles.css" />
@@ -104,8 +148,8 @@
             <img src="https://api.iconify.design/material-symbols:arrow-outward.svg" alt="" />
           </a>
         </div>
-        <p class="project-description">Cloudflare Worker that processes analytics events and sends them to a D1 database
-          for low-cost, privacy-focused site analytics.</p>
+        <p class="project-description">Cloudflare Worker that processes analytics events and sends them to a D1
+          database. Includes python script for analytics viewing.</p>
       </article>
 
       <article class="project-card">
