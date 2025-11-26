@@ -226,6 +226,7 @@ body {
   position: relative;
   display: inline-block;
   white-space: pre;
+  min-height: 1.05em; /* reserve space to prevent layout shift during typing */
 }
 
 .typed-name .typed-fallback {
