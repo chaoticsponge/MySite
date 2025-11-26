@@ -5,7 +5,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blogs</title>
-  <meta name="description" content="Browse blog posts by Emmanuel Rodriguez on security, tech, and personal projects." />
+  <meta name="description"
+    content="Browse blog posts by Emmanuel Rodriguez on security, tech, and personal projects." />
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) { }
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
 
   <script type="application/ld+json">
 {
@@ -19,15 +34,13 @@
 
   <!-- Link to external stylesheet -->
 
-    <link rel="preload" href="assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/globalstyles.css" as="style">
+  <link rel="preload" href="assets/style.css" as="style">
   <link rel="stylesheet" href="assets/fonts.css" />
-  <link rel="preload" href="assets/globalstyles.css" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="assets/style.css" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="assets/globalstyles.css" />
-    <link rel="stylesheet" href="assets/style.css" />
-  </noscript>
+  <link rel="stylesheet" href="assets/globalstyles.css" />
+  <link rel="stylesheet" href="assets/style.css" />
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -62,39 +75,44 @@
     <div class="social-links">
       <!-- Local Home icon -->
       <a href="/index.html" title="Home">
-        <img src="assets/icons/home-rounded.svg" alt="Home icon"  width="24" height="24" />
+        <img src="assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
       </a>
       <a href="/aboutme.html">
-        <img src="assets/icons/account-box.svg" alt="About Me icon"  width="24" height="24" />
+        <img src="assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
         <span>About Me</span>
       </a>
 
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
-        <img src="assets/icons/edit-square-rounded.svg" alt="Blog icon"  width="24" height="24" />
+        <img src="assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
       </a>
 
       <a href="/projects.html" title="Projects">
-        <img src="assets/icons/github-box.svg" alt="Projects icon"  width="24" height="24" />
+        <img src="assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
         <span>Projects</span>
       </a>
 
       <a href="/photos.html" title="Photos">
-        <img src="assets/icons/android-camera.svg" alt="Photos icon"  width="24" height="24" />
+        <img src="assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
       </a>
       <a href="https://t.me/spongier" target="_blank" title="Telegram">
-        <img src="assets/icons/telegram.svg" alt="Telegram icon"  width="24" height="24" />
+        <img src="assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
         <span>Telegram</span>
       </a>
 
       <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
-        <img src="assets/icons/linkedin.svg" alt="LinkedIn icon"  width="24" height="24" />
+        <img src="assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
         <span>LinkedIn</span>
       </a>
 
       <!-- Social Icons -->
     </div>
   </nav>
+
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
   <!-- Main Content -->
   <div class="article-container">
     <h1>Blog</h1>
@@ -103,8 +121,7 @@
         <li>
           <a href="blog/git4dummies.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon pinned-icon" width="22" height="22"
-                src="assets/icons/pin.svg" alt="Pinned icon" />
+              <img class="post-icon pinned-icon" width="22" height="22" src="assets/icons/pin.svg" alt="Pinned icon" />
               <span class="post-title">Git for Dummies - A TLDR</span>
             </span>
             <span class="post-meta">Nov 4, 2025 · 4 min read</span>
@@ -116,8 +133,7 @@
         <li>
           <a href="travel/cebu-philippines.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon" width="22" height="22"
-                src="assets/icons/airplane.svg" alt="Post icon" />
+              <img class="post-icon" width="22" height="22" src="assets/icons/airplane.svg" alt="Post icon" />
               <span class="post-title">Cebu - Philippines</span>
             </span>
             <span class="post-meta">Nov 24, 2025 · 14 min read</span>
@@ -127,8 +143,7 @@
         <li>
           <a href="travel/perhentian-malaysia.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon" width="22" height="22"
-                src="assets/icons/airplane.svg" alt="Post icon" />
+              <img class="post-icon" width="22" height="22" src="assets/icons/airplane.svg" alt="Post icon" />
               <span class="post-title">Perhentian - Malaysia</span>
             </span>
             <span class="post-meta">Nov 19, 2025 · 10 min read</span>
@@ -138,9 +153,8 @@
         <li>
           <a href="blog/learning-cybersecurity.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon" width="22" height="22"
-                src="assets/icons/laptop.svg" alt="Post icon" />
-              <span class="post-title">Top Free Resources to Learn Cybersecurity in 2025</span>
+              <img class="post-icon" width="22" height="22" src="assets/icons/laptop.svg" alt="Post icon" />
+              <span class="post-title">Free Resources to Learn Cybersecurity</span>
             </span>
             <span class="post-meta">Nov 11, 2025 · 14 min read</span>
           </a>
@@ -149,8 +163,7 @@
         <li>
           <a href="blog/gitea-setup.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon" width="22" height="22"
-                src="assets/icons/laptop.svg" alt="Post icon" />
+              <img class="post-icon" width="22" height="22" src="assets/icons/laptop.svg" alt="Post icon" />
               <span class="post-title">Self-hosting Git using Gitea on Raspberry Pi</span>
             </span>
             <span class="post-meta">Nov 11, 2025 · 10 min read</span>
@@ -160,8 +173,7 @@
         <li>
           <a href="blog/tryhackme-guide.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon" width="22" height="22"
-                src="assets/icons/laptop.svg" alt="Post icon" />
+              <img class="post-icon" width="22" height="22" src="assets/icons/laptop.svg" alt="Post icon" />
               <span class="post-title">How I Used TryHackMe to Learn Cybersecurity</span>
             </span>
             <span class="post-meta">Nov 11, 2025 · 15 min read</span>
@@ -171,8 +183,7 @@
         <li>
           <a href="blog/dvwa.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon" width="22" height="22"
-                src="assets/icons/laptop.svg" alt="Post icon" />
+              <img class="post-icon" width="22" height="22" src="assets/icons/laptop.svg" alt="Post icon" />
               <span class="post-title">DVWA - What I learned from it</span>
             </span>
             <span class="post-meta">Nov 11, 2025 · 10 min read</span>
@@ -182,8 +193,7 @@
         <li>
           <a href="blog/wireshark.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon" width="22" height="22"
-                src="assets/icons/laptop.svg" alt="Post icon" />
+              <img class="post-icon" width="22" height="22" src="assets/icons/laptop.svg" alt="Post icon" />
               <span class="post-title">Wireshark Guide</span>
             </span>
             <span class="post-meta">Nov 11, 2025 · 8 min read</span>
@@ -193,8 +203,7 @@
         <li>
           <a href="travel/singapore.html" class="post-link">
             <span class="post-heading">
-              <img class="post-icon" width="22" height="22"
-                src="assets/icons/airplane.svg" alt="Post icon" />
+              <img class="post-icon" width="22" height="22" src="assets/icons/airplane.svg" alt="Post icon" />
               <span class="post-title">Why I like Singapore</span>
             </span>
             <span class="post-meta">Nov 11, 2025 · 7 min read</span>
@@ -224,7 +233,8 @@
     <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
   </div>
 
-    <script data-analytics-src="scripts/analytics.js">
+  <script src="scripts/theme-toggle.js" defer></script>
+  <script data-analytics-src="scripts/analytics.js">
     window.addEventListener("load", function () {
       var script = document.createElement("script");
       var current = document.currentScript;

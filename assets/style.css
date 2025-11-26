@@ -84,15 +84,6 @@ body {
   .skill-tag {
     font-size: 0.9rem;
   }
-  .typed-caret {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    background: currentColor;
-    margin-left: 6px;
-    animation: caretBlink 0.9s steps(1) infinite;
-    vertical-align: baseline;
-  }
 }
 
 /* Blog Posts List */
@@ -212,31 +203,53 @@ body {
   }
 }
 
-.typed-caret {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: currentColor;
-  margin-left: 8px;
-  animation: caretBlink 0.9s steps(1) infinite;
-  vertical-align: baseline;
-}
-
 .typed-name {
   position: relative;
   display: inline-block;
-  white-space: pre;
-  min-height: 1.05em; /* reserve space to prevent layout shift during typing */
+  padding-right: 0.4rem;
+  min-width: 10ch;
+  max-width: 100%;
+  white-space: pre-line;
+  word-break: normal;
+  min-height: calc(var(--font-size-hero) * 2.1); /* reserve space for two-line name */
 }
 
 .typed-name .typed-fallback {
-  opacity: 0;
+  visibility: hidden;
+  display: block;
+  white-space: inherit;
 }
 
 .typed-name .typed-live {
   position: absolute;
   inset: 0;
-  white-space: pre;
+  white-space: inherit;
+}
+
+.typed-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: currentColor;
+  margin-left: 16px;
+  animation: caretBlink 0.9s steps(1) infinite;
+  vertical-align: baseline;
+}
+
+@media (max-width: 900px) {
+  .typed-name {
+    min-height: calc(var(--font-size-hero-tablet) * 2.1);
+  }
+}
+
+@media (max-width: 600px) {
+  .typed-name {
+    min-height: calc(var(--font-size-hero-mobile) * 2.1);
+  }
+
+  .typed-caret {
+    margin-left: 10px;
+  }
 }
 
 @media (min-width: 1600px) {
@@ -323,6 +336,7 @@ body {
   transform-origin: center;
   will-change: transform, opacity;
   animation: leafMotion var(--dur, 16s) linear var(--delay, 0s) infinite;
+  filter: var(--leaf-filter);
 }
 
 /* Single animation that handles fall, drift, rotation, and fade */
@@ -502,6 +516,7 @@ body {
   padding-top: 3px;
   vertical-align: top;
   flex-shrink: 0;
+  filter: var(--service-icon-filter);
 }
 
 /* Text content */
@@ -524,27 +539,6 @@ body {
   line-height: 1.45;
   margin: 0;
   color: var(--text-color);
-}
-
-/* Hero typed name */
-.typed-name {
-  display: inline-block;
-  position: relative;
-  padding-right: 0.4rem;
-  min-width: 1ch;
-  max-width: 100%;
-  white-space: pre-line;
-  word-break: normal;
-}
-
-.typed-caret {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: currentColor;
-  margin-left: 22px;
-  animation: caretBlink 0.9s steps(1) infinite;
-  vertical-align: baseline;
 }
 
 @keyframes caretBlink {
@@ -583,14 +577,5 @@ body {
 
   .service-card p {
     font-size: 0.9rem;
-  }
-  .typed-caret {
-    display: inline-block;
-    width: 2px;
-    height: 1em;
-    background: currentColor;
-    margin-left: 10px;
-    animation: caretBlink 0.9s steps(1) infinite;
-    vertical-align: baseline;
   }
 }

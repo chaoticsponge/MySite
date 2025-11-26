@@ -6,15 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emmanuel Rodriguez</title>
 
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) {}
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
   <link rel="preload" href="assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/globalstyles.css" as="style">
+  <link rel="preload" href="assets/style.css" as="style">
   <link rel="stylesheet" href="assets/fonts.css" />
-  <link rel="preload" href="assets/globalstyles.css" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="assets/style.css" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="assets/globalstyles.css" />
-    <link rel="stylesheet" href="assets/style.css" />
-  </noscript>
+  <link rel="stylesheet" href="assets/globalstyles.css" />
+  <link rel="stylesheet" href="assets/style.css" />
 
   <meta name="description" content="Personal blog of Emmanuel Rodriguez." />
   <script type="application/ld+json">
@@ -97,9 +109,15 @@
     </div>
   </nav>
 
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
+
   <div class="page-wrapper">
     <main class="article-container">
-      <h1 class="large"><span id="typed-name" class="typed-name" data-text="Emmanuel&#10;Rodriguez"></span></h1>
+      <h1 class="large"><span id="typed-name" class="typed-name" data-text="Emmanuel&#10;Rodriguez">Emmanuel
+Rodriguez</span></h1>
       <p>
         Hey, I'm Emmanuel and welcome to my blog where I share my life journey, insights and what I learn.
         I work on all sorts of stuff related to cybersecurity, AI, Blockchain and tech in general,
@@ -107,7 +125,7 @@
       </p>
       <p>
         When I'm not tinkering with Pis' or doomscrolling
-        <a href="https://www.theregister.com" target="_blank" rel="noopener noreferrer">The Register</a>,
+        <a href="https://www.theregister.com" target="_blank" rel="noopener">The Register</a>,
         I like to spend my time bouldering, playing badminton, or occasionally diving.
         I love travelling and exploring new cultures. I post <a href="photos.html">photos on this page</a>. I
         also try and keep track of movies I watch <a href="/movies/movies.html">here</a>.
@@ -122,6 +140,7 @@
 
     </main>
   </div>
+    <script src="scripts/theme-toggle.js" defer></script>
     <script data-analytics-src="scripts/analytics.js">
     window.addEventListener("load", function () {
       var script = document.createElement("script");

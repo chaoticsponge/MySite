@@ -5,16 +5,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DVWA - What I learned from it</title>
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) {}
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
 
     <link rel="preload" href="../assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/globalstyles.css" as="style">
+  <link rel="preload" href="../assets/articlestyle.css" as="style">
   <link rel="stylesheet" href="../assets/fonts.css" />
-  <link rel="preload" href="../assets/globalstyles.css" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="../assets/articlestyle.css" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="../assets/globalstyles.css" />
-    <link rel="stylesheet" href="../assets/articlestyle.css" />
-  </noscript>
+  <link rel="stylesheet" href="../assets/globalstyles.css" />
+  <link rel="stylesheet" href="../assets/articlestyle.css" />
 
   <meta name="description"
     content="Hands-on guide to DVWA (Damn Vulnerable Web App): safe setup, practical learning path, and tips to turn vulnerable-app practice into portfolio-ready writeups for beginners." />
@@ -105,6 +117,11 @@
     </div>
   </nav>
 
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
+
 
   <div class="page-wrapper">
     <main class="article-container">
@@ -116,7 +133,7 @@
           I think about web security. DVWA is a deliberately insecure PHP/MySQL app that you run locally (I ran mine in
           a Kali VM). It’s intentionally small and noisy, perfect for learning the mechanics behind real-world bugs
           without touching anyone else’s systems. The official repo is here: <a href="https://github.com/digininja/DVWA"
-            target="_blank" rel="noopener noreferrer">DVWA on GitHub</a>.
+            target="_blank" rel="noopener">DVWA on GitHub</a>.
         </p>
 
         <p>
@@ -185,9 +202,9 @@
 
         <h2>Further resources I used</h2>
         <ul>
-          <li><a href="https://github.com/digininja/DVWA" target="_blank" rel="noopener noreferrer">DVWA: official
+          <li><a href="https://github.com/digininja/DVWA" target="_blank" rel="noopener">DVWA: official
               GitHub</a></li>
-          <li><a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">OWASP Foundation / Top Ten</a></li>
+          <li><a href="https://owasp.org/" target="_blank" rel="noopener">OWASP Foundation / Top Ten</a></li>
         </ul>
       </article>
 
@@ -202,6 +219,7 @@
       document.documentElement.style.visibility = '';
     });
   </script>
+    <script src="../scripts/theme-toggle.js" defer></script>
     <script data-analytics-src="../scripts/analytics.js">
     window.addEventListener("load", function () {
       var script = document.createElement("script");

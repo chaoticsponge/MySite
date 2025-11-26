@@ -5,16 +5,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wireshark Guide</title>
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) {}
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
 
     <link rel="preload" href="../assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/globalstyles.css" as="style">
+  <link rel="preload" href="../assets/articlestyle.css" as="style">
   <link rel="stylesheet" href="../assets/fonts.css" />
-  <link rel="preload" href="../assets/globalstyles.css" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="../assets/articlestyle.css" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="../assets/globalstyles.css" />
-    <link rel="stylesheet" href="../assets/articlestyle.css" />
-  </noscript>
+  <link rel="stylesheet" href="../assets/globalstyles.css" />
+  <link rel="stylesheet" href="../assets/articlestyle.css" />
 
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
@@ -84,6 +96,11 @@
       <!-- Social Icons -->
     </div>
   </nav>
+
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
 
   <!-- Main Wrapper (animation + scrollable content) -->
   <div class="page-wrapper">
@@ -234,6 +251,7 @@ File → Export Specified Packets
       document.documentElement.style.visibility = '';
     });
   </script>
+    <script src="../scripts/theme-toggle.js" defer></script>
     <script data-analytics-src="../scripts/analytics.js">
     window.addEventListener("load", function () {
       var script = document.createElement("script");

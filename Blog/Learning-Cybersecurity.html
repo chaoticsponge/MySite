@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Top Free Resources to Learn Cybersecurity in 2025</title>
+  <title>Free Resources to Learn Cybersecurity</title>
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) { }
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
 
-    <link rel="preload" href="../assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/globalstyles.css" as="style">
+  <link rel="preload" href="../assets/articlestyle.css" as="style">
   <link rel="stylesheet" href="../assets/fonts.css" />
-  <link rel="preload" href="../assets/globalstyles.css" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="../assets/articlestyle.css" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="../assets/globalstyles.css" />
-    <link rel="stylesheet" href="../assets/articlestyle.css" />
-  </noscript>
+  <link rel="stylesheet" href="../assets/globalstyles.css" />
+  <link rel="stylesheet" href="../assets/articlestyle.css" />
 
-  <meta name="description" content="Discover the best free cybersecurity learning resources in 2025, from hands-on labs like TryHackMe and Hack The Box to courses from MIT, SANS, and more." />
+  <meta name="description"
+    content="Discover the best free cybersecurity learning resources in 2025, from hands-on labs like TryHackMe and Hack The Box to courses from MIT, SANS, and more." />
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -57,50 +71,44 @@
   <!-- Sidebar Navigation -->
   <nav class="sidebar">
     <ul class="nav-links">
-<li><a href="/index.html">Home</a></li>
-<li><a href="/aboutme.html">About Me</a></li>
-<li><a href="/blogpage.html">Blog</a></li>
-<li><a href="/projects.html">Projects</a></li>
-<li><a href="/photos.html">Photos</a></li>
-</ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/aboutme.html">About Me</a></li>
+      <li><a href="/blogpage.html">Blog</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/photos.html">Photos</a></li>
+    </ul>
 
     <!-- Icon Navigation (Mobile + Social Links) -->
     <div class="social-links">
       <!-- Local Home icon -->
       <a href="/index.html" title="Home">
-        <img src="../assets/icons/home-rounded.svg" alt="Home icon"  width="24" height="24" />
+        <img src="../assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
       </a>
-            <a href="/aboutme.html">
-  <img src="../assets/icons/account-box.svg" alt="About Me icon"  width="24" height="24" />
-  <span>About Me</span>
-</a>
+      <a href="/aboutme.html">
+        <img src="../assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
+        <span>About Me</span>
+      </a>
 
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
-        <img src="../assets/icons/edit-square-rounded.svg" alt="Blog icon"  width="24" height="24" />
+        <img src="../assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
       </a>
 
       <a href="/projects.html" title="Projects">
-        <img src="../assets/icons/github-box.svg" alt="Projects icon"  width="24" height="24" />
+        <img src="../assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
         <span>Projects</span>
       </a>
 
       <a href="/photos.html" title="Photos">
-        <img src="../assets/icons/android-camera.svg" alt="Photos icon"  width="24" height="24" />
+        <img src="../assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
       </a>
       <a href="https://t.me/spongier" target="_blank" title="Telegram">
-        <img
-          src="../assets/icons/telegram.svg"
-          alt="Telegram icon"
-         width="24" height="24" />
+        <img src="../assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
         <span>Telegram</span>
       </a>
 
       <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
-        <img
-          src="../assets/icons/linkedin.svg"
-          alt="LinkedIn icon"
-         width="24" height="24" />
+        <img src="../assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
         <span>LinkedIn</span>
       </a>
 
@@ -108,133 +116,152 @@
     </div>
   </nav>
 
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
+
   <!-- Main Wrapper (animation + scrollable content) -->
   <div class="page-wrapper">
     <main class="article-container">
       <article>
         <h1>Top Free Resources to Learn Cybersecurity in 2025</h1>
-      <p>
-        Breaking into cybersecurity as a fresh grad can feel overwhelming; there are thousands of
-        courses, labs, and videos out there. The good news is that, in 2025, there are high-quality,
-        free resources that cover theory, hands-on practice, frameworks, and career prep. Below is a
-        practical, up-to-date list of the best free places to learn, plus a simple study plan you can
-        start today.
-      </p>
+        <p>
+          Breaking into cybersecurity as a fresh grad can feel overwhelming; there are thousands of
+          courses, labs, and videos out there. The good news is that, in 2025, there are high-quality,
+          free resources that cover theory, hands-on practice, frameworks, and career prep. Below is a
+          practical, up-to-date list of the best free places to learn, plus a simple study plan you can
+          start today.
+        </p>
 
-      <h2>Top free cybersecurity resources (what to use and why)</h2>
+        <h2>Top free cybersecurity resources (what to use and why)</h2>
 
-<h3>1. <a href="https://tryhackme.com/" target="_blank" rel="noopener noreferrer">TryHackMe</a>: hands-on, guided labs for beginners to intermediate</h3>
-<p>
-  TryHackMe offers a huge collection of guided rooms that teach Linux basics, web hacking, and
-  full learning paths for roles like penetration testing and SOC analyst. Their free tier
-  includes hundreds of rooms and enough guided content to build a strong portfolio.
-</p>
+        <h3>1. <a href="https://tryhackme.com/" target="_blank" rel="noopener">TryHackMe</a>: hands-on, guided labs for
+          beginners to intermediate</h3>
+        <p>
+          TryHackMe offers a huge collection of guided rooms that teach Linux basics, web hacking, and
+          full learning paths for roles like penetration testing and SOC analyst. Their free tier
+          includes hundreds of rooms and enough guided content to build a strong portfolio.
+        </p>
 
-<h3>2. <a href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer">Hack The Box (HTB)</a>: realistic machines and CTF practice</h3>
-<p>
-  HTB provides real-world virtual machines and challenges. While some premium content is paid,
-  HTB still offers many free machines and community challenges that help you practice offensive
-  skills and methodology. Use HTB to step up from guided labs to real CTF-style problem-solving.
-</p>
+        <h3>2. <a href="https://www.hackthebox.com/" target="_blank" rel="noopener">Hack The Box (HTB)</a>: realistic
+          machines and CTF practice</h3>
+        <p>
+          HTB provides real-world virtual machines and challenges. While some premium content is paid,
+          HTB still offers many free machines and community challenges that help you practice offensive
+          skills and methodology. Use HTB to step up from guided labs to real CTF-style problem-solving.
+        </p>
 
-<h3>3. <a href="https://overthewire.org/wargames/" target="_blank" rel="noopener noreferrer">OverTheWire</a>: classic wargames for command-line & web basics</h3>
-<p>
-  OverTheWire’s wargames (Bandit, Natas, etc.) are perfect for absolute beginners who need to
-  build shell, networking, and web exploitation fundamentals. Bandit is an especially good
-  starter to learn SSH, file permissions, and basic scripting.
-</p>
+        <h3>3. <a href="https://overthewire.org/wargames/" target="_blank" rel="noopener">OverTheWire</a>: classic
+          wargames for command-line & web basics</h3>
+        <p>
+          OverTheWire’s wargames (Bandit, Natas, etc.) are perfect for absolute beginners who need to
+          build shell, networking, and web exploitation fundamentals. Bandit is an especially good
+          starter to learn SSH, file permissions, and basic scripting.
+        </p>
 
-<h3>4. <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer">OWASP</a>: learn web-app security (Top 10, projects, guides)</h3>
-<p>
-  If you want to understand web vulnerabilities and secure coding, the OWASP Top Ten plus OWASP
-  project documentation are essential, freely available resources used industry-wide. Use OWASP
-  as the canonical checklist when learning web app security and reporting vulnerabilities.
-</p>
+        <h3>4. <a href="https://owasp.org/" target="_blank" rel="noopener">OWASP</a>: learn web-app security (Top 10,
+          projects, guides)</h3>
+        <p>
+          If you want to understand web vulnerabilities and secure coding, the OWASP Top Ten plus OWASP
+          project documentation are essential, freely available resources used industry-wide. Use OWASP
+          as the canonical checklist when learning web app security and reporting vulnerabilities.
+        </p>
 
-<h3>5. <a href="https://www.sans.org/cyber-aces/" target="_blank" rel="noopener noreferrer">SANS Cyber Aces</a> &
-<a href="https://www.sans.org/blog/free-cybersecurity-resources/" target="_blank" rel="noopener noreferrer">SANS free resources</a>: foundational security topics</h3>
-<p>
-  SANS publishes free learning materials and the Cyber Aces program provides foundational
-  coursework (networking, OS, basics of security). SANS webcasts and community resources are a
-  good way to learn practical defensive concepts without cost.
-</p>
+        <h3>5. <a href="https://www.sans.org/cyber-aces/" target="_blank" rel="noopener">SANS Cyber Aces</a> &
+          <a href="https://www.sans.org/blog/free-cybersecurity-resources/" target="_blank" rel="noopener">SANS free
+            resources</a>: foundational security topics
+        </h3>
+        <p>
+          SANS publishes free learning materials and the Cyber Aces program provides foundational
+          coursework (networking, OS, basics of security). SANS webcasts and community resources are a
+          good way to learn practical defensive concepts without cost.
+        </p>
 
-<h3>6. <a href="https://www.cybrary.it/" target="_blank" rel="noopener noreferrer">Cybrary</a>: free introductory courses and labs</h3>
-<p>
-  Cybrary’s free tier offers entry-level courses, introductory labs, and the first modules of
-  career paths (ethical hacking, cloud security, SOC). It’s a good structured place to find
-  short, role-aligned tracks you can sample for free.
-</p>
+        <h3>6. <a href="https://www.cybrary.it/" target="_blank" rel="noopener">Cybrary</a>: free introductory courses
+          and labs</h3>
+        <p>
+          Cybrary’s free tier offers entry-level courses, introductory labs, and the first modules of
+          career paths (ethical hacking, cloud security, SOC). It’s a good structured place to find
+          short, role-aligned tracks you can sample for free.
+        </p>
 
-<h3>7. <a href="https://ocw.mit.edu/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare</a>: deep academic courses (e.g., Computer Systems Security)</h3>
-<p>
-  MIT OCW hosts full course materials (lectures, slides, reading lists) for security courses
-  like Computer Systems Security (6.858). Use these when you want a rigorous, theory-driven
-  understanding of systems, crypto, and OS security.
-</p>
+        <h3>7. <a href="https://ocw.mit.edu/" target="_blank" rel="noopener">MIT OpenCourseWare</a>: deep academic
+          courses (e.g., Computer Systems Security)</h3>
+        <p>
+          MIT OCW hosts full course materials (lectures, slides, reading lists) for security courses
+          like Computer Systems Security (6.858). Use these when you want a rigorous, theory-driven
+          understanding of systems, crypto, and OS security.
+        </p>
 
-<h3>8. <a href="https://www.coursera.org/" target="_blank" rel="noopener noreferrer">Coursera</a> (audit mode): free access to many university courses</h3>
-<p>
-  Coursera allows you to audit many cybersecurity courses for free (video lectures and
-  readings). Use the audit option for structured university content without paying for
-  certificates. It’s useful for study plans or prepping for interviews.
-</p>
+        <h3>8. <a href="https://www.coursera.org/" target="_blank" rel="noopener">Coursera</a> (audit mode): free access
+          to many university courses</h3>
+        <p>
+          Coursera allows you to audit many cybersecurity courses for free (video lectures and
+          readings). Use the audit option for structured university content without paying for
+          certificates. It’s useful for study plans or prepping for interviews.
+        </p>
 
-<h3>9. <a href="https://learn.microsoft.com/en-us/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn</a>: practical security modules & Azure security paths</h3>
-<p>
-  Microsoft Learn has free, role-based learning paths covering security fundamentals, identity,
-  cloud security, and Microsoft Sentinel. These modular lessons are great for learning cloud
-  security concepts and tooling.
-</p>
+        <h3>9. <a href="https://learn.microsoft.com/en-us/training/" target="_blank" rel="noopener">Microsoft Learn</a>:
+          practical security modules & Azure security paths</h3>
+        <p>
+          Microsoft Learn has free, role-based learning paths covering security fundamentals, identity,
+          cloud security, and Microsoft Sentinel. These modular lessons are great for learning cloud
+          security concepts and tooling.
+        </p>
 
-<h3>10. <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener noreferrer">NIST</a>: frameworks, guides, and free standards (CSF 2.0 & guides)</h3>
-<p>
-  NIST publishes the Cybersecurity Framework, guides, and technical reports that are industry
-  references for risk management and security controls. Learn NIST frameworks to understand how
-  organizations structure security programs and to discuss risk in interviews.
-</p>
+        <h3>10. <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener">NIST</a>: frameworks,
+          guides, and free standards (CSF 2.0 & guides)</h3>
+        <p>
+          NIST publishes the Cybersecurity Framework, guides, and technical reports that are industry
+          references for risk management and security controls. Learn NIST frameworks to understand how
+          organizations structure security programs and to discuss risk in interviews.
+        </p>
 
-<h3>11. YouTube channels & free video series</h3>
-<p>
-  High-quality free video creators offer practical walkthroughs and “zero to hero” series:
-  <a href="https://www.youtube.com/c/LiveOverflow/" target="_blank" rel="noopener noreferrer">LiveOverflow</a> for exploitation and CTF explainers;
-  <a href="https://www.youtube.com/c/thecybermentor" target="_blank" rel="noopener noreferrer">The Cyber Mentor</a> for practical pentest walkthroughs and courses;
-  <a href="https://www.youtube.com/@NetworkChuck" target="_blank" rel="noopener noreferrer">NetworkChuck</a> for Linux, networking, and beginner-friendly
-  guides. Pair videos with hands-on labs.
-</p>
+        <h3>11. YouTube channels & free video series</h3>
+        <p>
+          High-quality free video creators offer practical walkthroughs and “zero to hero” series:
+          <a href="https://www.youtube.com/c/LiveOverflow/" target="_blank" rel="noopener">LiveOverflow</a> for
+          exploitation and CTF explainers;
+          <a href="https://www.youtube.com/c/thecybermentor" target="_blank" rel="noopener">The Cyber Mentor</a> for
+          practical pentest walkthroughs and courses;
+          <a href="https://www.youtube.com/@NetworkChuck" target="_blank" rel="noopener">NetworkChuck</a> for Linux,
+          networking, and beginner-friendly
+          guides. Pair videos with hands-on labs.
+        </p>
 
-<h2>Quick study habits that actually work</h2>
-<ul>
-  <li>
-    <strong>Do, then read:</strong> Try a lab before you watch a full lecture about it, because hands-on
-    work makes learning much faster.
-  </li>
-  <li>
-    <strong>Write short reports:</strong> After each lab, write a 300–500 word “what I did and what
-    I learned” post or journal your progress.
-  </li>
-  <li>
-    <strong>Join community channels:</strong> Discord servers for 
-    <a href="https://discord.com/invite/tryhackme" target="_blank" rel="noopener noreferrer">TryHackMe</a>, 
-    <a href="https://discord.com/invite/hackthebox" target="_blank" rel="noopener noreferrer">Hack The Box</a>, 
-    and <a href="https://discord.com/invite/owasp" target="_blank" rel="noopener noreferrer">OWASP</a> chapters;
-    they help when you’re stuck.
-  </li>
-</ul>
+        <h2>Quick study habits that actually work</h2>
+        <ul>
+          <li>
+            <strong>Do, then read:</strong> Try a lab before you watch a full lecture about it, because hands-on
+            work makes learning much faster.
+          </li>
+          <li>
+            <strong>Write short reports:</strong> After each lab, write a 300–500 word “what I did and what
+            I learned” post or journal your progress.
+          </li>
+          <li>
+            <strong>Join community channels:</strong> Discord servers for
+            <a href="https://discord.com/invite/tryhackme" target="_blank" rel="noopener">TryHackMe</a>,
+            <a href="https://discord.com/invite/hackthebox" target="_blank" rel="noopener">Hack The Box</a>,
+            and <a href="https://discord.com/invite/owasp" target="_blank" rel="noopener">OWASP</a> chapters;
+            they help when you’re stuck.
+          </li>
+        </ul>
 
-<h2>Free certification prep & next steps</h2>
-<p>
-  If you want to aim at entry-level certs: use Cybrary and Coursera audit materials for study,
-  combine with hands-on practice from TryHackMe/HTB, and reference NIST/SANS guides for defensive
-  concepts. Many employers value demonstrable lab work and a clear learning path over a single
-  cert, so show your projects.
-</p>
-</article>
-<br>
-<p>Also read: <a href="tryhackme-guide.html">How to learn cybersecurity with TryHackMe</a></p>
+        <h2>Free certification prep & next steps</h2>
+        <p>
+          If you want to aim at entry-level certs: use Cybrary and Coursera audit materials for study,
+          combine with hands-on practice from TryHackMe/HTB, and reference NIST/SANS guides for defensive
+          concepts. Many employers value demonstrable lab work and a clear learning path over a single
+          cert, so show your projects.
+        </p>
+      </article>
+      <br>
+      <p>Also read: <a href="tryhackme-guide.html">How to learn cybersecurity with TryHackMe</a></p>
 
     </main>
-    
+
   </div>
 
   <script>
@@ -242,7 +269,8 @@
       document.documentElement.style.visibility = '';
     });
   </script>
-    <script data-analytics-src="../scripts/analytics.js">
+  <script src="../scripts/theme-toggle.js" defer></script>
+  <script data-analytics-src="../scripts/analytics.js">
     window.addEventListener("load", function () {
       var script = document.createElement("script");
       var current = document.currentScript;
@@ -256,4 +284,5 @@
   </script>
 
 </body>
+
 </html>

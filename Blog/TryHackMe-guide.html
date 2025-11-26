@@ -5,18 +5,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How I Used TryHackMe to Learn Cybersecurity</title>
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) {}
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
 
   <!-- External stylesheet -->
 
     <link rel="preload" href="../assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/globalstyles.css" as="style">
+  <link rel="preload" href="../assets/articlestyle.css" as="style">
   <link rel="stylesheet" href="../assets/fonts.css" />
-  <link rel="preload" href="../assets/globalstyles.css" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="../assets/articlestyle.css" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="../assets/globalstyles.css" />
-    <link rel="stylesheet" href="../assets/articlestyle.css" />
-  </noscript>
+  <link rel="stylesheet" href="../assets/globalstyles.css" />
+  <link rel="stylesheet" href="../assets/articlestyle.css" />
 
   <meta name="description"
     content="Learn cybersecurity hands-on with TryHackMe! A beginner-friendly 8-week roadmap for fresh grads, from guided labs to building a real portfolio recruiters notice." />
@@ -106,6 +118,11 @@
       <!-- Social Icons -->
     </div>
   </nav>
+
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
 
   <!-- Main Article Content -->
   <main class="article-container">
@@ -223,6 +240,7 @@ TL;DR: [1–2 sentence summary of the vulnerability and how you exploited it]
       document.documentElement.style.visibility = '';
     });
   </script>
+    <script src="../scripts/theme-toggle.js" defer></script>
     <script data-analytics-src="../scripts/analytics.js">
     window.addEventListener("load", function () {
       var script = document.createElement("script");

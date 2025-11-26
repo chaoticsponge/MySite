@@ -6,6 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photos</title>
   <meta name="description" content="A curated gallery of travel and daily life photos by Emmanuel Rodriguez." />
+  <link rel="preload" href="assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) {}
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
 
   <script type="application/ld+json">
 {
@@ -16,12 +33,10 @@
   "url": "https://emmr.me/photos"
 }
 </script>
-    <link rel="preload" href="assets/globalstyles.css" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="assets/photostyle.css" as="style" onload="this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="assets/globalstyles.css" />
-    <link rel="stylesheet" href="assets/photostyle.css" />
-  </noscript>
+  <link rel="preload" href="assets/globalstyles.css" as="style">
+  <link rel="preload" href="assets/photostyle.css" as="style">
+  <link rel="stylesheet" href="assets/globalstyles.css" />
+  <link rel="stylesheet" href="assets/photostyle.css" />
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -89,6 +104,11 @@
       <!-- Social Icons -->
     </div>
   </nav>
+
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
   <main class="photo-gallery">
     <div class="photo-grid">
 
@@ -234,6 +254,7 @@
       document.documentElement.style.visibility = '';
     });
   </script>
+    <script src="scripts/theme-toggle.js" defer></script>
     <script data-analytics-src="scripts/analytics.js">
     window.addEventListener("load", function () {
       var script = document.createElement("script");
