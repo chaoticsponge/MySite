@@ -19,7 +19,7 @@
       var stored = "";
       try {
         stored = localStorage.getItem(key);
-      } catch (e) {}
+      } catch (e) { }
       var prefersDark =
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -164,57 +164,70 @@
   <main class="projects-content">
     <section class="projects-grid">
       <article class="project-card">
-        <div class="project-card-top">
-          <h2 class="project-title">Cloudflare Analytics Worker</h2>
-          <a class="project-title-link" href="https://github.com/chaoticsponge/analytics_worker" target="_blank"
-            rel="noopener" aria-label="View project on GitHub">
+        <div class="project-card-content">
+          <figure class="project-thumb">
+            <img src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1764186518/analytics_cdt16h.webp"
+              alt="Cloudflare Analytics Worker thumbnail" loading="lazy" />
+            <p class="project-description">Cloudflare Worker that processes analytics events and sends them to a D1
+              database. Includes python script for analytics viewing.</p>
+          </figure>
+          <a class="project-card-top project-card-link" href="https://github.com/chaoticsponge/analytics_worker" target="_blank" rel="noopener" aria-label="View project on GitHub">
+            <h2 class="project-title">Cloudflare Analytics Worker</h2>
             <img src="assets/icons/arrow-outward.svg" alt="" width="24" height="24" />
           </a>
+          <p class="project-category">JavaScript • Cloudflare Worker</p>
         </div>
-        <p class="project-description">Cloudflare Worker that processes analytics events and sends them to a D1
-          database. Includes python script for analytics viewing.</p>
       </article>
 
       <article class="project-card">
-        <div class="project-card-top">
-          <h2 class="project-title">Weather App</h2>
-          <a class="project-title-link" href="https://github.com/chaoticsponge/weatherapp" target="_blank"
-            rel="noopener" aria-label="View project on GitHub">
+        <div class="project-card-content">
+          <figure class="project-thumb">
+            <img src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1764186518/weather_ciecc8.webp"
+              alt="Weather App thumbnail" loading="lazy" />
+            <p class="project-description">Lightweight python weather app that lets you search a location and fetch
+              current
+              conditions.</p>
+          </figure>
+          <a class="project-card-top project-card-link" href="https://github.com/chaoticsponge/weatherapp" target="_blank" rel="noopener" aria-label="View project on GitHub">
+            <h2 class="project-title">Weather App</h2>
             <img src="assets/icons/arrow-outward.svg" alt="" width="24" height="24" />
           </a>
+          <p class="project-category">Python • Weather API</p>
         </div>
-        <p class="project-description">Lightweight python weather app that lets you search a location and fetch current
-          conditions.</p>
-      </article>
-    
-      
-      <article class="project-card">
-        <div class="project-card-top">
-          <h2 class="project-title">BLIP Image Description Generator</h2>
-          <a class="project-title-link" href="https://github.com/chaoticsponge/BLIP-image-description-generator"
-            target="_blank" rel="noopener" aria-label="View project on GitHub">
-            <img src="assets/icons/arrow-outward.svg" alt="" width="24" height="24" />
-          </a>
-        </div>
-        <p class="project-description">Python script that generates image descriptions using the BLIP model for accurate
-          bulk description generation</p>
-      </article>
-      <article class="project-card">
-        <div class="project-card-top">
-          <h2 class="project-title">Mastermind boardgame CLI</h2>
-          <a class="project-title-link" href="https://github.com/chaoticsponge/mastermind" target="_blank"
-            rel="noopener" aria-label="View project on GitHub">
-            <img src="assets/icons/arrow-outward.svg" alt="" width="24" height="24" />
-          </a>
-        </div>
-        <p class="project-description">Command line version of the classic board game Mastermind, implemented in
-          Python.</p>
       </article>
 
-      
-    
+      <article class="project-card">
+        <div class="project-card-content">
+          <figure class="project-thumb">
+            <img src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1764186518/blip_akwuup.webp"
+              alt="BLIP Image Description Generator thumbnail" loading="lazy" />
+            <p class="project-description">Python script that generates image descriptions using the BLIP model for
+              accurate
+              bulk description generation.</p>
+          </figure>
+          <a class="project-card-top project-card-link" href="https://github.com/chaoticsponge/BLIP-image-description-generator" target="_blank" rel="noopener" aria-label="View project on GitHub">
+            <h2 class="project-title">BLIP Description Generator</h2>
+            <img src="assets/icons/arrow-outward.svg" alt="" width="24" height="24" />
+          </a>
+          <p class="project-category">Python • Computer Vision</p>
+        </div>
+      </article>
 
-      
+      <article class="project-card">
+        <div class="project-card-content">
+          <figure class="project-thumb">
+            <img src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1764186518/Mastermind_kajd43.webp"
+              alt="Mastermind boardgame CLI thumbnail" loading="lazy" />
+            <p class="project-description">Command line version of the classic board game Mastermind, implemented in
+              Python.</p>
+          </figure>
+          <a class="project-card-top project-card-link" href="https://github.com/chaoticsponge/mastermind" target="_blank" rel="noopener" aria-label="View project on GitHub">
+            <h2 class="project-title">Mastermind boardgame CLI</h2>
+            <img src="assets/icons/arrow-outward.svg" alt="" width="24" height="24" />
+          </a>
+          <p class="project-category">Python • Game</p>
+        </div>
+      </article>
     </section>
   </main>
 

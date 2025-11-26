@@ -10,6 +10,9 @@
   --link-color: var(--color-link);
   --color-text-inverse: #ffffff;
   --color-grid-line: rgba(0, 0, 0, 0.04);
+  /* Shadows */
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 14px 36px rgba(0, 0, 0, 0.1);
 
   /* Icon filters */
   --icon-filter-light: grayscale(100%);
