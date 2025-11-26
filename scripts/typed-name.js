@@ -1,5 +1,10 @@
 (function () {
+  let started = false;
+
   const run = () => {
+    if (started) return;
+    started = true;
+
     const el = document.getElementById("typed-name");
     if (!el) return;
 
@@ -65,12 +70,20 @@
     window.setTimeout(step, speed);
   };
 
+  const schedule = () => {
+    if (window.requestIdleCallback) {
+      requestIdleCallback(run, { timeout: 500 });
+    } else {
+      setTimeout(run, 0);
+    }
+  };
+
   if (
     document.readyState === "complete" ||
     document.readyState === "interactive"
   ) {
-    run();
+    schedule();
   } else {
-    document.addEventListener("DOMContentLoaded", run);
+    document.addEventListener("DOMContentLoaded", schedule);
   }
 })();

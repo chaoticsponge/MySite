@@ -114,7 +114,7 @@
           left. Sorry Cebu.</p>
         <div class="large-photo">
           <img class="large_image"
-            src="http://res.cloudinary.com/dxyqbu0em/image/upload/v1763989588/mttyoj9x8rtntawkn9fe.webp"
+            src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763989588/mttyoj9x8rtntawkn9fe.webp"
             alt="A whale swimming in the ocean." loading="lazy" />
         </div>
         <h2>Staying at Cebu Capitol Central Hotel
@@ -135,43 +135,43 @@
     <div class="photo-carousel">
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="http://res.cloudinary.com/dxyqbu0em/image/upload/v1763986924/xf2ru5uytl5yi66f07sh.webp"
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986924/xf2ru5uytl5yi66f07sh.webp"
           alt="A man standing next to a sign with a chef." loading="lazy" />
       </div>
 
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="http://res.cloudinary.com/dxyqbu0em/image/upload/v1763986909/athvgkapjpsqrp0hey61.webp"
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986909/athvgkapjpsqrp0hey61.webp"
           alt="People are walking on the beach near the water." loading="lazy" />
       </div>
 
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="http://res.cloudinary.com/dxyqbu0em/image/upload/v1763986920/ywgqva5g0cs9qa4vwzr4.webp"
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986920/ywgqva5g0cs9qa4vwzr4.webp"
           alt="A man and a woman are standing in front of a waterfall." loading="lazy" />
       </div>
 
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="http://res.cloudinary.com/dxyqbu0em/image/upload/v1763986917/nfou3dzjmxj1536akvxr.webp"
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986917/nfou3dzjmxj1536akvxr.webp"
           alt="A waterfall in the jungle with people standing around it." loading="lazy" />
       </div>
 
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="http://res.cloudinary.com/dxyqbu0em/image/upload/v1763986913/h3tbzu7k0ekc64lrr3vi.webp"
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986913/h3tbzu7k0ekc64lrr3vi.webp"
           alt="A waterfall in the middle of a forest." loading="lazy" />
       </div>
 
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="http://res.cloudinary.com/dxyqbu0em/image/upload/v1763986927/r48talomm3yzajetoqpl.webp"
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986927/r48talomm3yzajetoqpl.webp"
           alt="A teddy bear sitting at a table with a plate of food." loading="lazy" />
       </div>
 
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="http://res.cloudinary.com/dxyqbu0em/image/upload/v1763986929/hiuum0rvpbvgclm5dkef.webp"
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986929/hiuum0rvpbvgclm5dkef.webp"
           alt="A table with plates of food and drinks." loading="lazy" />
       </div>
 
@@ -253,7 +253,18 @@
       document.documentElement.style.visibility = '';
     });
   </script>
-  <script src="../scripts/analytics.js" defer></script>
+    <script data-analytics-src="../scripts/analytics.js">
+    window.addEventListener("load", function () {
+      var script = document.createElement("script");
+      var current = document.currentScript;
+      var src = current && current.dataset.analyticsSrc;
+      if (!src) return;
+      script.src = src;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    });
+  </script>
 </body>
 
 </html>

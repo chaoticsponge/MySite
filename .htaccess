@@ -3,6 +3,11 @@ RewriteEngine On
 # Serve favicon from its folder when browsers request /favicon.ico directly
 RewriteRule ^favicon\.ico$ /favicon/favicon.ico [L]
 
+# Enforce HTTPS
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 # Redirect .html requests to the clean URL
 # Redirect index.html → /
 RewriteRule ^index\.html$ / [R=301,L]

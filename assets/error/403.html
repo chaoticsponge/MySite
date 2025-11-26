@@ -69,7 +69,18 @@
   <h1>403</h1>
   <p>Access to this page is forbidden.</p>
   <a href="/index.html">Return to Home</a>
-  <script src="../scripts/analytics.js" defer></script>
+    <script data-analytics-src="../scripts/analytics.js">
+    window.addEventListener("load", function () {
+      var script = document.createElement("script");
+      var current = document.currentScript;
+      var src = current && current.dataset.analyticsSrc;
+      if (!src) return;
+      script.src = src;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    });
+  </script>
 
 </body>
 </html>

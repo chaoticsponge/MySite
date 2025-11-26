@@ -220,7 +220,18 @@
       document.documentElement.style.visibility = '';
     });
   </script>
-  <script src="../scripts/analytics.js" defer></script>
+    <script data-analytics-src="../scripts/analytics.js">
+    window.addEventListener("load", function () {
+      var script = document.createElement("script");
+      var current = document.currentScript;
+      var src = current && current.dataset.analyticsSrc;
+      if (!src) return;
+      script.src = src;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    });
+  </script>
 
 </body>
 
