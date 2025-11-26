@@ -76,6 +76,12 @@
   color: inherit;
 }
 
+.project-card-link img {
+  width: 18px;
+  height: 18px;
+  filter: var(--link-icon-filter);
+}
+
 .project-card-link:hover,
 .project-card-link:focus-visible {
   text-decoration: none;
