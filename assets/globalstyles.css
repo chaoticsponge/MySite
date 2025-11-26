@@ -69,13 +69,13 @@
 }
 
 :root[data-theme="dark"] {
-  --color-bg: #0f1115;
-  --color-text: #e8e9ec;
-  --color-link: #f6f7fb;
-  --color-meta: #9ca3af;
-  --color-hover-bg: #1a1f28;
-  --color-border: #1f2632;
-  --color-text-inverse: #0f1115;
+  --color-bg: #0a0a0d;
+  --color-text: #e6e7ea;
+  --color-link: #f3f4f6;
+  --color-meta: #9aa0aa;
+  --color-hover-bg: #131316;
+  --color-border: #1a1b1f;
+  --color-text-inverse: #0a0a0d;
   --color-grid-line: rgba(255, 255, 255, 0.05);
   --icon-filter: var(--icon-filter-dark);
   --service-icon-filter: var(--icon-filter);
@@ -88,13 +88,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-bg: #0f1115;
-    --color-text: #e8e9ec;
-    --color-link: #f6f7fb;
-    --color-meta: #9ca3af;
-    --color-hover-bg: #1a1f28;
-    --color-border: #1f2632;
-    --color-text-inverse: #0f1115;
+    --color-bg: #0a0a0d;
+    --color-text: #e6e7ea;
+    --color-link: #f3f4f6;
+    --color-meta: #9aa0aa;
+    --color-hover-bg: #131316;
+    --color-border: #1a1b1f;
+    --color-text-inverse: #0a0a0d;
     --color-grid-line: rgba(255, 255, 255, 0.05);
     --icon-filter: var(--icon-filter-dark);
     --service-icon-filter: var(--icon-filter);
