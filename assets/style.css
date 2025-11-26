@@ -222,6 +222,22 @@ body {
   vertical-align: baseline;
 }
 
+.typed-name {
+  position: relative;
+  display: inline-block;
+  white-space: pre;
+}
+
+.typed-name .typed-fallback {
+  opacity: 0;
+}
+
+.typed-name .typed-live {
+  position: absolute;
+  inset: 0;
+  white-space: pre;
+}
+
 @media (min-width: 1600px) {
   .article-container {
     max-width: 800px;

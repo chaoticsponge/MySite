@@ -51,8 +51,17 @@
 </script>
 
   <!-- Link to external stylesheet -->
-  <link rel="stylesheet" href="assets/globalstyles.css" />
-  <link rel="stylesheet" href="assets/projects.css" />
+
+    <link rel="preload" href="assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="preload" href="assets/globalstyles.css" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="assets/projects.css" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="assets/globalstyles.css" />
+    <link rel="stylesheet" href="assets/projects.css" />
+  </noscript>
+
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
@@ -87,33 +96,33 @@
     <div class="social-links">
       <!-- Local Home icon -->
       <a href="/index.html" title="Home">
-        <img src="https://api.iconify.design/material-symbols:home-rounded.svg" alt="Home icon" />
+        <img src="assets/icons/home-rounded.svg" alt="Home icon"  width="24" height="24" />
       </a>
       <a href="/aboutme.html">
-        <img src="https://api.iconify.design/material-symbols:account-box.svg" alt="About Me icon" />
+        <img src="assets/icons/account-box.svg" alt="About Me icon"  width="24" height="24" />
         <span>About Me</span>
       </a>
 
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
-        <img src="https://api.iconify.design/material-symbols:edit-square-rounded.svg" alt="Blog icon" />
+        <img src="assets/icons/edit-square-rounded.svg" alt="Blog icon"  width="24" height="24" />
       </a>
 
       <a href="/projects.html" title="Projects">
-        <img src="https://api.iconify.design/mdi:github-box.svg" alt="Projects icon" />
+        <img src="assets/icons/github-box.svg" alt="Projects icon"  width="24" height="24" />
         <span>Projects</span>
       </a>
 
       <a href="/photos.html" title="Photos">
-        <img src="https://api.iconify.design/material-symbols:android-camera.svg" alt="Photos icon" />
+        <img src="assets/icons/android-camera.svg" alt="Photos icon"  width="24" height="24" />
       </a>
       <a href="https://t.me/spongier" target="_blank" title="Telegram">
-        <img src="https://api.iconify.design/bi:telegram.svg" alt="Telegram icon" />
+        <img src="assets/icons/telegram.svg" alt="Telegram icon"  width="24" height="24" />
         <span>Telegram</span>
       </a>
 
       <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
-        <img src="https://api.iconify.design/pajamas:linkedin.svg" alt="LinkedIn icon" />
+        <img src="assets/icons/linkedin.svg" alt="LinkedIn icon"  width="24" height="24" />
         <span>LinkedIn</span>
       </a>
     </div>
@@ -134,7 +143,7 @@
           <h2 class="project-title">BLIP Image Description Generator</h2>
           <a class="project-title-link" href="https://github.com/chaoticsponge/BLIP-image-description-generator"
             target="_blank" rel="noopener noreferrer" aria-label="View project on GitHub">
-            <img src="https://api.iconify.design/material-symbols:arrow-outward.svg" alt="" />
+            <img src="assets/icons/arrow-outward.svg" alt=""  width="24" height="24" />
           </a>
         </div>
         <p class="project-description">Python script that generates image descriptions using the BLIP model for accurate
@@ -145,7 +154,7 @@
           <h2 class="project-title">Cloudflare Analytics Worker</h2>
           <a class="project-title-link" href="https://github.com/chaoticsponge/analytics_worker" target="_blank"
             rel="noopener noreferrer" aria-label="View project on GitHub">
-            <img src="https://api.iconify.design/material-symbols:arrow-outward.svg" alt="" />
+            <img src="assets/icons/arrow-outward.svg" alt=""  width="24" height="24" />
           </a>
         </div>
         <p class="project-description">Cloudflare Worker that processes analytics events and sends them to a D1
@@ -157,7 +166,7 @@
           <h2 class="project-title">Mastermind boardgame CLI</h2>
           <a class="project-title-link" href="https://github.com/chaoticsponge/mastermind" target="_blank"
             rel="noopener noreferrer" aria-label="View project on GitHub">
-            <img src="https://api.iconify.design/material-symbols:arrow-outward.svg" alt="" />
+            <img src="assets/icons/arrow-outward.svg" alt=""  width="24" height="24" />
           </a>
         </div>
         <p class="project-description">Command line version of the classic board game Mastermind, implemented in

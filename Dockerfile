@@ -17,6 +17,9 @@ RUN curl -fsSL -o /usr/local/bin/supercronic "${SUPERCRONIC_URL}" && \
 # Copy your static site content
 COPY . /usr/local/apache2/htdocs/
 
+# Ensure Apache can read all site files even if the checkout used a restrictive umask
+RUN chmod -R a+rX /usr/local/apache2/htdocs
+
 RUN install -Dm755 /usr/local/apache2/htdocs/scripts/update_letterboxd.sh /usr/local/bin/update_letterboxd.sh && \
     install -Dm644 /usr/local/apache2/htdocs/cron/letterboxd.cron /etc/supercronic/letterboxd.cron && \
     install -Dm755 /usr/local/apache2/htdocs/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
