@@ -100,6 +100,22 @@ main.photo-section {
   background: rgba(0, 0, 0, 0.45);
 }
 
+[data-theme="dark"] .photo-carousel {
+  scrollbar-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .photo-carousel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .photo-carousel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="dark"] .photo-carousel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
 /* EACH PHOTO ITEM */
 .photo-carousel .photo-item {
   scroll-snap-align: start;
@@ -141,6 +157,46 @@ main.photo-section {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.lightbox-content:hover {
+  transform: scale(1.02);
+}
+
+.close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: #ffffff;
+  font-size: var(--font-size-icon-lg);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  opacity: 0.8;
+}
+
+.close:hover,
+.close:focus-visible {
+  opacity: 1;
 }
 
 /* FADE-IN ANIMATION */

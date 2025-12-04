@@ -79,18 +79,19 @@
   <p>
     <a href="/index.html">Return to Home</a> or <a href="/blogpage.html">View other blogs</a>
   </p>
-    <script data-analytics-src="../scripts/analytics.js">
-    window.addEventListener("load", function () {
-      var script = document.createElement("script");
-      var current = document.currentScript;
-      var src = current && current.dataset.analyticsSrc;
-      if (!src) return;
-      script.src = src;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    });
-  </script>
+        <script data-analytics-src="/scripts/analytics.js">
+      (function () {
+        var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+        if (!analyticsSrc) return;
+        window.addEventListener("load", function () {
+          var script = document.createElement("script");
+          script.src = analyticsSrc;
+          script.async = true;
+          script.defer = true;
+          document.head.appendChild(script);
+        });
+      })();
+    </script>
 
 </body>
 

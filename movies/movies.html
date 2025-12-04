@@ -30,13 +30,13 @@
 }
 </script>
 
-    <link rel="preload" href="../assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/globalstyles.css" as="style">
-  <link rel="preload" href="../assets/moviestyle.css" as="style">
-  <link rel="stylesheet" href="../assets/fonts.css" />
-  <link rel="stylesheet" href="../assets/globalstyles.css" />
-  <link rel="stylesheet" href="../assets/moviestyle.css" />
+    <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/globalstyles.css" as="style">
+  <link rel="preload" href="/assets/moviestyle.css" as="style">
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/assets/globalstyles.css" />
+  <link rel="stylesheet" href="/assets/moviestyle.css" />
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -71,28 +71,28 @@
     <div class="social-links">
       <!-- Local Home icon -->
       <a href="/index.html" title="Home">
-        <img src="../assets/icons/home-rounded.svg" alt="Home icon"  width="24" height="24" />
+        <img src="/assets/icons/home-rounded.svg" alt="Home icon"  width="24" height="24" />
       </a>
       <a href="/aboutme.html" title="About Me">
-        <img src="../assets/icons/account-box.svg" alt="About Me icon"  width="24" height="24" />
+        <img src="/assets/icons/account-box.svg" alt="About Me icon"  width="24" height="24" />
         <span>About Me</span>
       </a>
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
-        <img src="../assets/icons/edit-square-rounded.svg" alt="Blog icon"  width="24" height="24" />
+        <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon"  width="24" height="24" />
       </a>
 
       <a href="/projects.html" title="Projects">
-        <img src="../assets/icons/github-box.svg" alt="Projects icon"  width="24" height="24" />
+        <img src="/assets/icons/github-box.svg" alt="Projects icon"  width="24" height="24" />
         <span>Projects</span>
       </a>
 
       <a href="/photos.html" title="Photos">
-        <img src="../assets/icons/android-camera.svg" alt="Photos icon"  width="24" height="24" />
+        <img src="/assets/icons/android-camera.svg" alt="Photos icon"  width="24" height="24" />
       </a>
       <a href="https://t.me/spongier" target="_blank" title="Telegram">
         <img
-          src="../assets/icons/telegram.svg"
+          src="/assets/icons/telegram.svg"
           alt="Telegram icon"
          width="24" height="24" />
         <span>Telegram</span>
@@ -100,7 +100,7 @@
 
       <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
         <img
-          src="../assets/icons/linkedin.svg"
+          src="/assets/icons/linkedin.svg"
           alt="LinkedIn icon"
          width="24" height="24" />
         <span>LinkedIn</span>
@@ -125,19 +125,20 @@
   </div>
 
   <script src="movie.js"></script>
-    <script src="../scripts/theme-toggle.js" defer></script>
-    <script data-analytics-src="../scripts/analytics.js">
-    window.addEventListener("load", function () {
-      var script = document.createElement("script");
-      var current = document.currentScript;
-      var src = current && current.dataset.analyticsSrc;
-      if (!src) return;
-      script.src = src;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    });
-  </script>
+    <script src="/scripts/theme-toggle.js" defer></script>
+        <script data-analytics-src="/scripts/analytics.js">
+      (function () {
+        var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+        if (!analyticsSrc) return;
+        window.addEventListener("load", function () {
+          var script = document.createElement("script");
+          script.src = analyticsSrc;
+          script.async = true;
+          script.defer = true;
+          document.head.appendChild(script);
+        });
+      })();
+    </script>
 
 </body>
 </html>

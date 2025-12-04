@@ -13,7 +13,7 @@
       var stored = "";
       try {
         stored = localStorage.getItem(key);
-      } catch (e) {}
+      } catch (e) { }
       var prefersDark =
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -22,13 +22,13 @@
     })();
   </script>
 
-    <link rel="preload" href="../assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/globalstyles.css" as="style">
-  <link rel="preload" href="../assets/travelstyle.css" as="style">
-  <link rel="stylesheet" href="../assets/fonts.css" />
-  <link rel="stylesheet" href="../assets/globalstyles.css" />
-  <link rel="stylesheet" href="../assets/travelstyle.css" />
+  <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/globalstyles.css" as="style">
+  <link rel="preload" href="/assets/travelstyle.css" as="style">
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/assets/globalstyles.css" />
+  <link rel="stylesheet" href="/assets/travelstyle.css" />
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -81,33 +81,33 @@
     <div class="social-links">
       <!-- Local Home icon -->
       <a href="/index.html" title="Home">
-        <img src="../assets/icons/home-rounded.svg" alt="Home icon"  width="24" height="24" />
+        <img src="/assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
       </a>
       <a href="/aboutme.html">
-        <img src="../assets/icons/account-box.svg" alt="About Me icon"  width="24" height="24" />
+        <img src="/assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
         <span>About Me</span>
       </a>
 
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
-        <img src="../assets/icons/edit-square-rounded.svg" alt="Blog icon"  width="24" height="24" />
+        <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
       </a>
 
       <a href="/projects.html" title="Projects">
-        <img src="../assets/icons/github-box.svg" alt="Projects icon"  width="24" height="24" />
+        <img src="/assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
         <span>Projects</span>
       </a>
 
       <a href="/photos.html" title="Photos">
-        <img src="../assets/icons/android-camera.svg" alt="Photos icon"  width="24" height="24" />
+        <img src="/assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
       </a>
       <a href="https://t.me/spongier" target="_blank" title="Telegram">
-        <img src="../assets/icons/telegram.svg" alt="Telegram icon"  width="24" height="24" />
+        <img src="/assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
         <span>Telegram</span>
       </a>
 
       <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
-        <img src="../assets/icons/linkedin.svg" alt="LinkedIn icon"  width="24" height="24" />
+        <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
         <span>LinkedIn</span>
       </a>
 
@@ -164,15 +164,17 @@
 
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986920/ywgqva5g0cs9qa4vwzr4.webp"
-          alt="A man and a woman are standing in front of a waterfall." loading="lazy" />
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986917/nfou3dzjmxj1536akvxr.webp"
+          alt="A waterfall in the jungle with people standing around it." loading="lazy" />
       </div>
 
       <div class="photo-item">
         <img class="travel-carousel__image"
-          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986917/nfou3dzjmxj1536akvxr.webp"
-          alt="A waterfall in the jungle with people standing around it." loading="lazy" />
+          src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1763986920/ywgqva5g0cs9qa4vwzr4.webp"
+          alt="A man and a woman are standing in front of a waterfall." loading="lazy" />
       </div>
+
+
 
       <div class="photo-item">
         <img class="travel-carousel__image"
@@ -264,24 +266,65 @@
       <p>Also read: My trip to <a href="singapore.html">Singapore</a>.</p>
     </main>
   </div>
+  <!-- Lightbox container -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" alt="Expanded view">
+  </div>
+
+  <script>
+    // Lightbox behavior
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector(".close");
+
+    document.querySelectorAll(".photo-carousel img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+      lightboxImg.src = "";
+    });
+
+    // Close on background click
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+        lightboxImg.src = "";
+      }
+    });
+
+    // Close on ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        lightbox.style.display = "none";
+        lightboxImg.src = "";
+      }
+    });
+  </script>
 
   <script>
     document.fonts.ready.then(() => {
       document.documentElement.style.visibility = '';
     });
   </script>
-    <script src="../scripts/theme-toggle.js" defer></script>
-    <script data-analytics-src="../scripts/analytics.js">
-    window.addEventListener("load", function () {
-      var script = document.createElement("script");
-      var current = document.currentScript;
-      var src = current && current.dataset.analyticsSrc;
-      if (!src) return;
-      script.src = src;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-    });
+  <script src="/scripts/theme-toggle.js" defer></script>
+  <script data-analytics-src="/scripts/analytics.js">
+    (function () {
+      var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+      if (!analyticsSrc) return;
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.src = analyticsSrc;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      });
+    })();
   </script>
 </body>
 
