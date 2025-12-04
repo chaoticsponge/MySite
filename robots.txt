@@ -21,12 +21,5 @@ Disallow: /notes.txt
 Disallow: /cgi-bin/
 Allow: /
 
-# Crawl-delay is optional; uncomment if you're rate-limited or on a small VM
-Crawl-delay: 5
-
-# Explicitly allow these important sections (if you have them)
-Allow: /Posts/
-Allow: /images/
-
 # Sitemap (important for search engine indexing)
 Sitemap: https://emmr.me/sitemap.xml
