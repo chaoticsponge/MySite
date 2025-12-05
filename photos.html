@@ -196,6 +196,23 @@
     </div>
   </main>
 
+  <script>
+    // Prioritize above-the-fold photos and lazy load the rest to speed up page render
+    document.addEventListener("DOMContentLoaded", () => {
+      const photos = Array.from(document.querySelectorAll(".photo-grid img"));
+      photos.forEach((img, index) => {
+        img.decoding = "async";
+        if (index < 6) {
+          img.loading = "eager";
+          img.setAttribute("fetchpriority", "high");
+        } else {
+          img.loading = "lazy";
+          img.setAttribute("fetchpriority", "low");
+        }
+      });
+    });
+  </script>
+
   <!-- Lightbox container -->
   <div id="lightbox" class="lightbox">
     <span class="close">&times;</span>
