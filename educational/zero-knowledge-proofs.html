@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, noai, noimageai" />
+
+    <title>Zero-Knowledge Proofs Explained</title>
+    <meta name="description"
+        content="A clear beginner-friendly guide to zero-knowledge proofs: what they are, how they work, why they matter, and where zkSNARKs, zkSTARKs, and ZK rollups fit in." />
+    <link rel="canonical" href="https://emmr.me/zero-knowledge-proofs-explained.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Zero-Knowledge Proofs Explained" />
+    <meta property="og:description"
+        content="A clear beginner-friendly guide to zero-knowledge proofs: what they are, how they work, why they matter, and where zkSNARKs, zkSTARKs, and ZK rollups fit in." />
+    <meta property="og:url" content="https://emmr.me/zero-knowledge-proofs.html" />
+    <meta property="og:site_name" content="emmr.me" />
+
+    <meta name="twitter:title" content="Zero-Knowledge Proofs Explained" />
+    <meta name="twitter:description"
+        content="A clear beginner-friendly guide to zero-knowledge proofs: what they are, how they work, why they matter, and where zkSNARKs, zkSTARKs, and ZK rollups fit in." />
+    <meta name="twitter:image" content="https://emmr.me/assets/og/zkp-cover.webp" />
+
+    <script>
+        (function () {
+            var key = "theme";
+            var stored = "";
+            try {
+                stored = localStorage.getItem(key);
+            } catch (e) { }
+            var prefersDark =
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches;
+            var theme = stored || (prefersDark ? "dark" : "light");
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+
+    <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/globalstyles.css" as="style">
+    <link rel="preload" href="/assets/articlestyle.css" as="style">
+
+    <link rel="stylesheet" href="/assets/fonts.css" />
+    <link rel="stylesheet" href="/assets/globalstyles.css" />
+    <link rel="stylesheet" href="/assets/articlestyle.css" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-196x196.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Zero-Knowledge Proofs Explained",
+  "description": "A clear beginner-friendly guide to zero-knowledge proofs: what they are, how they work, why they matter, and where zkSNARKs, zkSTARKs, and ZK rollups fit in.",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez"
+  },
+  "datePublished": "2026-03-27",
+  "dateModified": "2026-03-27",
+  "publisher": {
+    "@type": "Organization",
+    "name": "emmr.me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://emmr.me/zero-knowledge-proofs-explained.html"
+  },
+  "image": [
+    "https://emmr.me/assets/og/zkp-cover.webp"
+  ]
+}
+</script>
+</head>
+
+<body class="home-page">
+    <nav class="sidebar">
+        <ul class="nav-links">
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/aboutme.html">About Me</a></li>
+            <li><a href="/blogpage.html">Blog</a></li>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="/photos.html">Photos</a></li>
+        </ul>
+
+        <div class="social-links">
+            <a href="/index.html" title="Home">
+                <img src="/assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
+            </a>
+
+            <a href="/aboutme.html" title="About Me">
+                <img src="/assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
+                <span>About Me</span>
+            </a>
+
+            <a href="/blogpage.html" title="Blog">
+                <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
+            </a>
+
+            <a href="/projects.html" title="Projects">
+                <img src="/assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
+                <span>Projects</span>
+            </a>
+
+            <a href="/photos.html" title="Photos">
+                <img src="/assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
+            </a>
+
+            <a href="https://t.me/spongier" target="_blank" title="Telegram">
+                <img src="/assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
+                <span>Telegram</span>
+            </a>
+
+            <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
+                <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
+                <span>LinkedIn</span>
+            </a>
+        </div>
+    </nav>
+
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+        <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+    </button>
+
+    <div class="page-wrapper">
+        <main class="article-container">
+            <article>
+                <h1>Zero-Knowledge Proofs Explained</h1>
+                <p>
+                    How you can prove something is true without revealing the secret underneath it.
+                </p>
+
+                <h2>Why this matters</h2>
+                <p>
+                    A lot of systems ask for more information than they actually need. You may need to prove you are
+                    over 18,
+                    prove you own an account, or prove a transaction is valid. In many cases, the verifier only needs
+                    confidence
+                    that the claim is true, not the raw data behind it.
+                </p>
+                <p>
+                    Zero-knowledge proofs solve that exact problem. They let someone prove a statement is true without
+                    exposing
+                    the private data that makes it true. That is what makes them useful for privacy, security,
+                    compliance, and
+                    trust-minimized systems.
+                </p>
+
+                <h2>What a zero-knowledge proof is</h2>
+                <p>
+                    A zero-knowledge proof, or ZKP, is a cryptographic method that allows one party to prove a statement
+                    is true
+                    while revealing nothing beyond that fact.
+                </p>
+                <p>
+                    In plain language:
+                </p>
+                <ul>
+                    <li>You have some secret data.</li>
+                    <li>You want to prove a claim about that data.</li>
+                    <li>The other party can verify the claim without seeing the secret itself.</li>
+                </ul>
+
+                <h2>The three core properties</h2>
+
+                <h3>Completeness</h3>
+                <p>
+                    If the statement is true, an honest prover should be able to convince the verifier.
+                </p>
+
+                <h3>Soundness</h3>
+                <p>
+                    If the statement is false, a dishonest prover should not be able to trick the verifier except with
+                    negligible
+                    probability.
+                </p>
+
+                <h3>Zero-knowledge</h3>
+                <p>
+                    The verifier learns nothing except that the statement is valid.
+                </p>
+
+                <h2>How zero-knowledge proofs work</h2>
+                <p>
+                    There are two roles in a ZKP:
+                </p>
+                <ul>
+                    <li><strong>Prover:</strong> the person or system holding the secret data.</li>
+                    <li><strong>Verifier:</strong> the person or system checking the claim.</li>
+                </ul>
+
+                <p>
+                    A typical flow looks like this:
+                </p>
+                <ol>
+                    <li>The prover and verifier agree on a statement to check.</li>
+                    <li>The prover runs a proof-generation algorithm using secret input and public parameters.</li>
+                    <li>The verifier runs a verification algorithm using the proof and the public inputs.</li>
+                    <li>The verifier accepts or rejects the result.</li>
+                </ol>
+
+                <p>
+                    If the proof verifies, the verifier gains confidence that the claim is true without learning the
+                    underlying
+                    secret.
+                </p>
+
+                <h2>A simple example</h2>
+                <p>
+                    Imagine you want to prove you know a password, but you do not want to reveal the password itself.
+                </p>
+                <p>
+                    Instead of sending the password, you generate a proof that shows you know a secret matching a known
+                    public
+                    condition, such as a stored hash. The verifier checks the proof and confirms your claim without ever
+                    seeing
+                    the password.
+                </p>
+
+                <h2>The cave analogy</h2>
+                <p>
+                    The classic intuition for zero-knowledge proofs is the cave example.
+                </p>
+                <p>
+                    Picture a circular cave with two paths and a locked door inside. You know the secret word that opens
+                    the
+                    door. I want proof that you know it, but I do not want you to say it out loud.
+                </p>
+                <p>
+                    You enter the cave through either path A or path B. I stay outside and randomly ask you to come out
+                    from one
+                    side. If you know the secret word, you can open the inner door and exit from whichever side I ask
+                    for. If you
+                    do not know the word, you can only guess.
+                </p>
+                <p>
+                    Repeat that enough times and I become highly confident you really know the secret. At no point do I
+                    learn the
+                    secret word itself.
+                </p>
+
+                <h2>Terms you will keep seeing</h2>
+                <ul>
+                    <li><strong>Interactive ZKPs:</strong> require back-and-forth communication between prover and
+                        verifier.</li>
+                    <li><strong>Non-interactive ZKPs (NIZKs):</strong> produce a single proof that can be checked later.
+                    </li>
+                    <li><strong>zkSNARKs:</strong> usually small proofs and fast verification, but some versions require
+                        a trusted setup.</li>
+                    <li><strong>zkSTARKs:</strong> avoid trusted setup, but proofs are often larger.</li>
+                    <li><strong>Bulletproofs:</strong> another family of proofs with different trade-offs in size and
+                        performance.</li>
+                </ul>
+
+                <h2>Where you see ZK in the wild</h2>
+
+                <h3>Authentication and selective disclosure</h3>
+                <p>
+                    ZK can prove someone has a valid credential or attribute without revealing the full credential. For
+                    example,
+                    proving age eligibility without showing an exact birthdate.
+                </p>
+
+                <h3>Blockchains</h3>
+                <p>
+                    ZK is heavily used in blockchain systems. It can hide transaction details while still letting the
+                    network
+                    verify that the transaction is valid.
+                </p>
+                <p>
+                    It is also used in ZK rollups, where many transactions are compressed into a single proof that gets
+                    verified
+                    on-chain.
+                </p>
+
+                <h3>Privacy-preserving analytics</h3>
+                <p>
+                    ZK can support aggregate computations or checks over sensitive datasets without exposing individual
+                    records.
+                </p>
+
+                <h3>Identity and credentials</h3>
+                <p>
+                    Digital identity systems can use zero-knowledge proofs to let users prove claims about themselves
+                    selectively, instead of handing over full documents or raw identity data.
+                </p>
+
+                <h2>Why people care about it</h2>
+                <ul>
+                    <li><strong>Privacy:</strong> less sensitive data gets exposed.</li>
+                    <li><strong>Security:</strong> fewer secrets are shared, which reduces attack surface.</li>
+                    <li><strong>Compliance:</strong> better fit for need-to-know access models and data minimization.
+                    </li>
+                    <li><strong>Trust minimization:</strong> verifiers do not need blind trust to confirm correctness.
+                    </li>
+                    <li><strong>New workflows:</strong> enables things like selective disclosure and private smart
+                        contract designs.</li>
+                </ul>
+
+                <h2>Trade-offs and limitations</h2>
+                <p>
+                    ZK is powerful, but it is not free.
+                </p>
+
+                <h3>Performance cost</h3>
+                <p>
+                    Proof generation can be computationally heavy, especially for complex statements.
+                </p>
+
+                <h3>Engineering complexity</h3>
+                <p>
+                    Building ZK systems is harder than writing normal application logic. You often need to model logic
+                    as
+                    circuits or constraint systems instead of plain code.
+                </p>
+
+                <h3>Trusted setup concerns</h3>
+                <p>
+                    Some proof systems require a one-time setup ceremony. If that setup is compromised, the soundness
+                    guarantees
+                    can be weakened.
+                </p>
+
+                <h3>Trade-offs between proof size and verification cost</h3>
+                <p>
+                    Different ZK systems optimize for different things. Small proofs, fast verification, simple
+                    assumptions, and
+                    no trusted setup usually do not all come together at once.
+                </p>
+
+                <h2>When ZK makes sense</h2>
+                <p>
+                    You should consider zero-knowledge proofs when:
+                </p>
+                <ul>
+                    <li>You need to prove correctness without exposing private inputs.</li>
+                    <li>Privacy is a hard requirement, not just a nice extra.</li>
+                    <li>You want verifiable off-chain or off-system computation.</li>
+                </ul>
+
+                <p>
+                    You probably do not need ZK when:
+                </p>
+                <ul>
+                    <li>Normal encryption and access control already solve the problem cleanly.</li>
+                    <li>Latency, hardware, or cost constraints are tight.</li>
+                    <li>The engineering overhead is not justified by the actual privacy benefit.</li>
+                </ul>
+
+                <h2>Quick checklist before adopting it</h2>
+                <ul>
+                    <li>Do you really need to hide the inputs?</li>
+                    <li>Have you measured proof generation and verification cost?</li>
+                    <li>Do you understand the trust assumptions of the scheme?</li>
+                    <li>Is there a mature framework or library for your use case?</li>
+                </ul>
+
+                <h2>Final takeaway</h2>
+                <p>
+                    Zero-knowledge proofs let you prove something is true without revealing the secret underneath it.
+                    That makes
+                    them one of the most useful ideas in modern cryptography for privacy-sensitive systems.
+                </p>
+                <p>
+                    They are already being used in authentication, blockchains, privacy-preserving analytics, and
+                    digital
+                    identity. But they come with real costs in performance, implementation complexity, and system
+                    design.
+                </p>
+
+                <br>
+                <p>Also read: <a href="tryhackme-guide.html">How to learn cybersecurity with TryHackMe</a></p>
+        </main>
+    </div>
+
+    <script>
+        document.fonts.ready.then(() => {
+            document.documentElement.style.visibility = '';
+        });
+    </script>
+    <script src="/scripts/theme-toggle.js" defer></script>
+    <script data-analytics-src="/scripts/analytics.js">
+        (function () {
+            var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+            if (!analyticsSrc) return;
+            window.addEventListener("load", function () {
+                var script = document.createElement("script");
+                script.src = analyticsSrc;
+                script.async = true;
+                script.defer = true;
+                document.head.appendChild(script);
+            });
+        })();
+    </script>
+</body>
+
+</html>
