@@ -36,6 +36,49 @@ def normalize_href(href):
     return href.strip().lstrip("./").replace("\\", "/").lower()
 
 
+def to_public_href(path_str):
+    """Convert a repo-relative html path into the clean public URL path."""
+    normalized = path_str.strip().replace("\\", "/")
+    if normalized.endswith("/index.html"):
+        normalized = normalized[:-10]
+    elif normalized.endswith(".html"):
+        normalized = normalized[:-5]
+    if not normalized.startswith("/"):
+        normalized = "/" + normalized
+    return normalized or "/"
+
+
+def to_absolute_url(path_or_href):
+    """Convert a repo-relative path or public href into the full site URL."""
+    public_href = to_public_href(path_or_href) if not str(path_or_href).startswith("/") else str(path_or_href)
+    return f"https://emmr.me{public_href}"
+
+
+def resolve_href_to_file(href):
+    """Resolve a public href or repo-relative html path to a file in the repo."""
+    normalized = href.strip()
+    if normalized.startswith("/"):
+        normalized = normalized[1:]
+    normalized = normalized.lstrip("./").replace("\\", "/")
+    if not normalized:
+        normalized = "index.html"
+
+    direct = BASE_DIR / normalized
+    if direct.exists():
+        return direct
+
+    if not normalized.endswith(".html"):
+        html_candidate = BASE_DIR / f"{normalized}.html"
+        if html_candidate.exists():
+            return html_candidate
+
+        index_candidate = BASE_DIR / normalized / "index.html"
+        if index_candidate.exists():
+            return index_candidate
+
+    return None
+
+
 def extract_title(file_path):
     """Extract <title> or <h1> from HTML file."""
     try:
@@ -110,9 +153,9 @@ def build_breadcrumb_html(path):
     section_label = SECTION_LABELS.get(section_key, section_key.title())
     return (
         '        <nav class="article-breadcrumbs" aria-label="Breadcrumb">\n'
-        '          <a href="/index.html">Home</a>\n'
+        '          <a href="/">Home</a>\n'
         '          <span aria-hidden="true">/</span>\n'
-        '          <a href="/blogpage.html">Blog</a>\n'
+        '          <a href="/blogpage">Blog</a>\n'
         '          <span aria-hidden="true">/</span>\n'
         f'          <span>{section_label}</span>\n'
         '        </nav>'
@@ -145,6 +188,65 @@ def sync_schema_modified_date(html, modified_iso):
     )
 
 
+def sync_schema_main_entity(html, absolute_url):
+    """Write mainEntityOfPage @id back into JSON-LD when present."""
+    if not re.search(r'"mainEntityOfPage"\s*:\s*\{.*?"@id"\s*:\s*"[^"]+"', html, re.DOTALL):
+        return html
+    return re.sub(
+        r'("@id"\s*:\s*")[^"]+(")',
+        lambda match: f'{match.group(1)}{absolute_url}{match.group(2)}',
+        html,
+        count=1,
+    )
+
+
+def ensure_article_url_meta(html, path):
+    """Ensure article pages expose canonical and og:url for the clean public URL."""
+    absolute_url = to_absolute_url(path.relative_to(BASE_DIR).as_posix())
+    canonical_html = f'  <link rel="canonical" href="{absolute_url}" />'
+    og_url_html = f'  <meta property="og:url" content="{absolute_url}" />'
+
+    if re.search(r'<link rel="canonical" href="[^"]+" ?/?>', html):
+        html = re.sub(
+            r'<link rel="canonical" href="[^"]+" ?/?>',
+            canonical_html,
+            html,
+            count=1,
+        )
+    else:
+        html = re.sub(
+            r'(<meta name="description"[^>]*>)',
+            r"\1\n" + canonical_html,
+            html,
+            count=1,
+        )
+
+    if re.search(r'<meta property="og:url" content="[^"]+" ?/?>', html):
+        html = re.sub(
+            r'<meta property="og:url" content="[^"]+" ?/?>',
+            og_url_html,
+            html,
+            count=1,
+        )
+    elif re.search(r'<meta property="og:description"[^>]*>', html):
+        html = re.sub(
+            r'(<meta property="og:description"[^>]*>)',
+            r"\1\n" + og_url_html,
+            html,
+            count=1,
+        )
+    else:
+        html = re.sub(
+            r'(<link rel="canonical" href="[^"]+" ?/?>)',
+            r"\1\n" + og_url_html,
+            html,
+            count=1,
+        )
+
+    html = sync_schema_main_entity(html, absolute_url)
+    return html
+
+
 def extract_article_dates(path):
     """Read schema dates from an article file, with filesystem fallback for publish date."""
     html = path.read_text(encoding="utf-8")
@@ -159,6 +261,7 @@ def update_article_page(path):
     """Ensure article pages include breadcrumb and visible author/date metadata."""
     html = path.read_text(encoding="utf-8")
     original = html
+    html = ensure_article_url_meta(html, path)
 
     breadcrumb_html = build_breadcrumb_html(path)
 
@@ -247,9 +350,10 @@ def parse_display_date(date_str, fallback_path):
 def generate_post_entry(post_path, title, date_str, reading_time, icon):
     """Generate HTML list item for a post with the provided icon."""
     meta = f"{date_str} · {reading_time}" if reading_time else date_str
+    public_href = to_public_href(post_path)
     return f"""
   <li>
-    <a href="{post_path}" class="post-link">
+    <a href="{public_href}" class="post-link">
       <img class="post-icon" src="{icon}" alt="Post icon" />
       <span class="post-copy">
         <span class="post-title">{title}</span>
@@ -288,7 +392,7 @@ def update_blogpage():
         link_match = re.search(r'href="([^"]+)"', block)
         if link_match:
             link = link_match.group(1)
-            if (BASE_DIR / link).exists():
+            if resolve_href_to_file(link):
                 valid_pinned.append(block)
                 print(f"[{link}] - pinned (kept)")
             else:
@@ -311,7 +415,8 @@ def update_blogpage():
 
             path = folder / file
             rel_path = path.relative_to(BASE_DIR).as_posix()
-            normalized_rel_path = normalize_href(rel_path)
+            public_href = to_public_href(rel_path)
+            normalized_rel_path = normalize_href(public_href)
 
             if normalized_rel_path in pinned_links:
                 continue
@@ -323,8 +428,10 @@ def update_blogpage():
 
             display_dt = parse_display_date(date_str, path)
             posts.append(
-                (display_dt,
-                 generate_post_entry(rel_path, title, date_str, reading_time, icon))
+                (
+                    display_dt,
+                    generate_post_entry(rel_path, title, date_str, reading_time, icon),
+                )
             )
 
             if normalized_rel_path in all_current_posts:
@@ -338,7 +445,7 @@ def update_blogpage():
     posts.sort(key=lambda x: x[0], reverse=True)
 
     # Detect removed (deleted) posts
-    removed_posts = [href for href in all_current_posts_raw if not (BASE_DIR / href).exists()]
+    removed_posts = [href for href in all_current_posts_raw if not resolve_href_to_file(href)]
     for r in removed_posts:
         print(f"[{r}] - deleted")
 
