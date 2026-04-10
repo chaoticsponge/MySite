@@ -2,6 +2,10 @@ body {
   animation: fadeInOpacity 0.8s ease-out forwards;
 }
 
+.landing-page {
+  animation: none;
+}
+
 .article-container h1,
 .article-container h2,
 .article-container h3 {
@@ -191,32 +195,36 @@ body {
 .typed-name {
   position: relative;
   display: inline-block;
-  padding-right: 0.4rem;
-  min-width: 10ch;
   max-width: 100%;
   white-space: pre-line;
   word-break: normal;
   min-height: calc(var(--font-size-hero) * 2.1); /* reserve space for two-line name */
 }
 
-.typed-name .typed-fallback {
-  visibility: hidden;
+.typed-base {
   display: block;
   white-space: inherit;
+  transition: opacity 0.15s ease;
 }
 
-.typed-name .typed-live {
+.typed-live {
   position: absolute;
   inset: 0;
   white-space: inherit;
+  pointer-events: none;
+}
+
+.typed-name.is-typing .typed-base,
+.typed-name.is-done .typed-base {
+  opacity: 0;
 }
 
 .typed-caret {
   display: inline-block;
   width: 2px;
-  height: 1em;
+  height: 0.9em;
   background: currentColor;
-  margin-left: 16px;
+  margin-left: 0.08em;
   animation: caretBlink 0.9s steps(1) infinite;
   vertical-align: baseline;
 }

@@ -9,29 +9,24 @@
     if (!el) return;
 
     const text = el.dataset.text || el.textContent || "";
+    const base = el.querySelector(".typed-base");
+    const live = el.querySelector(".typed-live");
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
     if (prefersReduced || !text.trim()) {
-      el.textContent = text;
+      if (base) base.textContent = text;
+      if (live) live.textContent = "";
       return;
     }
 
-    el.textContent = "";
-    const fallback = document.createElement("span");
-    fallback.className = "typed-fallback";
-    fallback.textContent = text;
-
-    const live = document.createElement("span");
-    live.className = "typed-live";
+    if (!base || !live) return;
 
     const textNode = document.createTextNode("");
     const caret = document.createElement("span");
     caret.className = "typed-caret";
-    live.append(textNode, caret);
-
-    el.append(fallback, live);
+    live.replaceChildren(textNode, caret);
     const speed = 85;
     const pauseBetweenLines = 250;
 
@@ -63,18 +58,23 @@
       charIndex = 0;
       if (lineIndex < lines.length) {
         window.setTimeout(step, pauseBetweenLines);
+        return;
       }
+
+      el.classList.remove("is-typing");
+      el.classList.add("is-done");
     };
 
+    el.classList.add("is-typing");
     render();
     window.setTimeout(step, speed);
   };
 
   const schedule = () => {
     if (window.requestIdleCallback) {
-      requestIdleCallback(run, { timeout: 500 });
+      requestIdleCallback(() => window.setTimeout(run, 700), { timeout: 1500 });
     } else {
-      setTimeout(run, 0);
+      window.setTimeout(run, 700);
     }
   };
 
