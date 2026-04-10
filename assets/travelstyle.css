@@ -246,7 +246,7 @@ main.photo-section {
 }
 
 /* Mobile (≤600px) fixed top bar and auto offset */
-@media (max-width: 600px) {
+@media (max-width: 860px), (hover: none) and (pointer: coarse) and (orientation: landscape) and (max-height: 500px) {
   .article-container {
     margin: 0 auto;
     padding: 1rem 1rem calc(4.5rem + env(safe-area-inset-bottom, 0px));

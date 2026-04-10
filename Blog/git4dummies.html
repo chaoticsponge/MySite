@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +12,7 @@
       var stored = "";
       try {
         stored = localStorage.getItem(key);
-      } catch (e) {}
+      } catch (e) { }
       var prefersDark =
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -20,7 +21,7 @@
     })();
   </script>
 
-    <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/globalstyles.css" as="style">
   <link rel="preload" href="/assets/articlestyle.css" as="style">
@@ -28,9 +29,10 @@
   <link rel="stylesheet" href="/assets/globalstyles.css" />
   <link rel="stylesheet" href="/assets/articlestyle.css" />
 
-  <meta name="description" content="Git commands cheat sheet for beginners that helps you push stable versions, undo mistakes, manage branches, and connect to GitHub or GitLab quickly." />
+  <meta name="description"
+    content="Git commands cheat sheet for beginners that helps you push stable versions, undo mistakes, manage branches, and connect to GitHub or GitLab quickly." />
 
-<script type="application/ld+json">
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -40,7 +42,7 @@
     "@type": "Person",
     "name": "Emmanuel Rodriguez"
   },
-  "datePublished": "2025-01-01",
+  "datePublished": "2025-11-04",
   "publisher": {
     "@type": "Organization",
     "name": "emmr.me"
@@ -72,50 +74,44 @@
   <!-- Sidebar Navigation -->
   <nav class="sidebar">
     <ul class="nav-links">
-<li><a href="/index.html">Home</a></li>
-<li><a href="/aboutme.html">About Me</a></li>
-<li><a href="/blogpage.html">Blog</a></li>
-<li><a href="/projects.html">Projects</a></li>
-<li><a href="/photos.html">Photos</a></li>
-</ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/aboutme.html">About Me</a></li>
+      <li><a href="/blogpage.html">Blog</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/photos.html">Photos</a></li>
+    </ul>
 
     <!-- Icon Navigation (Mobile + Social Links) -->
     <div class="social-links">
       <!-- Local Home icon -->
       <a href="/index.html" title="Home">
-        <img src="/assets/icons/home-rounded.svg" alt="Home icon"  width="24" height="24" />
+        <img src="/assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
       </a>
-            <a href="/aboutme.html">
-  <img src="/assets/icons/account-box.svg" alt="About Me icon"  width="24" height="24" />
-  <span>About Me</span>
-</a>
+      <a href="/aboutme.html">
+        <img src="/assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
+        <span>About Me</span>
+      </a>
 
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
-        <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon"  width="24" height="24" />
+        <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
       </a>
 
       <a href="/projects.html" title="Projects">
-        <img src="/assets/icons/github-box.svg" alt="Projects icon"  width="24" height="24" />
+        <img src="/assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
         <span>Projects</span>
       </a>
 
       <a href="/photos.html" title="Photos">
-        <img src="/assets/icons/android-camera.svg" alt="Photos icon"  width="24" height="24" />
+        <img src="/assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
       </a>
       <a href="https://t.me/spongier" target="_blank" title="Telegram">
-        <img
-          src="/assets/icons/telegram.svg"
-          alt="Telegram icon"
-         width="24" height="24" />
+        <img src="/assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
         <span>Telegram</span>
       </a>
 
       <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
-        <img
-          src="/assets/icons/linkedin.svg"
-          alt="LinkedIn icon"
-         width="24" height="24" />
+        <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
         <span>LinkedIn</span>
       </a>
 
@@ -129,16 +125,26 @@
   </button>
 
   <!-- Main Wrapper (animation + scrollable content) -->
-<div class="page-wrapper">
-<main class="article-container">
-<article>
-  <h1>Git: main commands to push a stable version</h1>
-  <p>
-    Quick, copy-pasteable commands for beginners to save a stable file (e.g. index.html), connect to a remote, push, and recover from common mistakes. Mainly for me to refer to until it becomes muscle memory. Install Git <a href="#install">here</a>.
-  </p>
+  <div class="page-wrapper">
+    <main class="article-container">
+      <article>
+                                                                                                <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/blogpage.html">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>Tech</span>
+        </nav>
+        <h1>Git: main commands to push a stable version</h1>
+                                                                                                <p class="article-meta">By Emmanuel Rodriguez • Published November 4, 2025</p>
+        <p>
+          Quick, copy-pasteable commands for beginners to save a stable file (e.g. index.html), connect to a remote,
+          push, and recover from common mistakes. Mainly for me to refer to until it becomes muscle memory. Install Git
+          <a href="#install">here</a>.
+        </p>
 
-    <h2>Quick TL;DR</h2>
-    <pre class="mac-terminal"><code>
+        <h2>Quick TL;DR</h2>
+        <pre class="mac-terminal"><code>
     1) Save a stable version:
     git add .
     git commit -m "Stable version before changes"
@@ -148,8 +154,8 @@
     git restore "file name"
   </code></pre>
 
-  <h2>All commands at a glance</h2>
-    <pre class="mac-terminal"><code># --- Setup & Configuration ---
+        <h2>All commands at a glance</h2>
+        <pre class="mac-terminal"><code># --- Setup & Configuration ---
 git init
 git clone https://github.com/username/repo.git
 
@@ -193,14 +199,15 @@ git tag -a v1.0 -m "Version 1.0"
 git push origin v1.0
 </code></pre>
 
-  <h2>Push a stable version</h2>
+        <h2>Push a stable version</h2>
 
-  <h3>Initialize, check, stage, commit, and push</h3>
-  <p>
-    Initialize a repo, stage the file, create a descriptive commit (a commit is a recorded snapshot of staged changes), connect to a remote repository, and push the branch to the remote.
-  </p>
+        <h3>Initialize, check, stage, commit, and push</h3>
+        <p>
+          Initialize a repo, stage the file, create a descriptive commit (a commit is a recorded snapshot of staged
+          changes), connect to a remote repository, and push the branch to the remote.
+        </p>
 
-  <pre class="mac-terminal"><code>
+        <pre class="mac-terminal"><code>
 Environment:
 - Local repo: new or existing folder
 - Remote: GitHub/GitLab URL (replace with your repo URL)
@@ -230,63 +237,66 @@ Steps:
    git log --oneline
 </code></pre>
 
-  <h2>If something goes wrong</h2>
+        <h2>If something goes wrong</h2>
 
-  <h3>Undo last commit but keep changes (edit and recommit)</h3>
-  <p>
-    Removes the last commit but leaves your working files and staged changes intact so you can fix and commit again.
-  </p>
+        <h3>Undo last commit but keep changes (edit and recommit)</h3>
+        <p>
+          Removes the last commit but leaves your working files and staged changes intact so you can fix and commit
+          again.
+        </p>
 
-  <pre class="mac-terminal"><code>git reset --soft HEAD~1
+        <pre class="mac-terminal"><code>git reset --soft HEAD~1
 # After fixing files (if needed):
 git add index.html
 git commit -m "Fixed: corrected commit message / changes"
 git push origin main
 </code></pre>
 
-  <h3>Undo last commit and discard changes</h3>
-  <p>
-    Removes the last commit and any changes in the working directory (use only if you want to throw away edits).
-  </p>
+        <h3>Undo last commit and discard changes</h3>
+        <p>
+          Removes the last commit and any changes in the working directory (use only if you want to throw away edits).
+        </p>
 
-  <pre class="mac-terminal"><code>git reset --hard HEAD~1
+        <pre class="mac-terminal"><code>git reset --hard HEAD~1
 # If already pushed and you need remote to match local (dangerous):
 git push origin main --force
 </code></pre>
 
-  <h3>Restore a single file to last committed state</h3>
-  <p>
-    Use this to discard local edits to a file and return it to how it was in the last commit.
-  </p>
+        <h3>Restore a single file to last committed state</h3>
+        <p>
+          Use this to discard local edits to a file and return it to how it was in the last commit.
+        </p>
 
-  <pre class="mac-terminal"><code>git checkout -- index.html
+        <pre class="mac-terminal"><code>git checkout -- index.html
 </code></pre>
 
-  <h3>Undo a specific commit that was already pushed (safe)</h3>
-  <p>
-    `git revert` creates a new commit that reverses the changes introduced by a previous commit. This is safe for shared repos because it preserves history.
-  </p>
+        <h3>Undo a specific commit that was already pushed (safe)</h3>
+        <p>
+          `git revert` creates a new commit that reverses the changes introduced by a previous commit. This is safe for
+          shared repos because it preserves history.
+        </p>
 
-  <pre class="mac-terminal"><code>git log --oneline
+        <pre class="mac-terminal"><code>git log --oneline
 # Find the commit you want to undo; copy its short ID (e.g., a1b2c3d)
 git revert a1b2c3d
 # Resolve any merge/revert message, then:
 git push origin main
 </code></pre>
 
-  <h3>Force-overwrite remote history (last resort)</h3>
-  <p>
-    Replaces the remote branch with your local branch. This rewrites history on the remote and can break collaborators' clones. Use only if you understand consequences.
-  </p>
+        <h3>Force-overwrite remote history (last resort)</h3>
+        <p>
+          Replaces the remote branch with your local branch. This rewrites history on the remote and can break
+          collaborators' clones. Use only if you understand consequences.
+        </p>
 
-  <pre class="mac-terminal"><code># After resetting or rewriting local commits:
+        <pre class="mac-terminal"><code># After resetting or rewriting local commits:
 git push origin main --force
 </code></pre>
 
 
 
-<h2 id="install">Git Setup Commands</h2>
-<pre class="mac-terminal"><code># Install Git
+        <h2 id="install">Git Setup Commands</h2>
+        <pre class="mac-terminal"><code># Install Git
 sudo apt install git             # Linux
 brew install git                 # macOS
 git --version
@@ -307,17 +317,17 @@ git push -u origin main
 # Clone existing repository
 git clone https://github.com/username/repo.git
 </code></pre>
-You can set up Git with GitHub, GitLab, or self-host with my Gitea guide <a href="gitea-setup.html">here</a>.
+        You can set up Git with GitHub, GitLab, or self-host with my Gitea guide <a href="gitea-setup.html">here</a>.
 
-<h2>Key Takeaways</h2>
-<ul>
-  <li>Use <code>git add</code>, <code>commit</code>, and <code>push</code> to save stable versions.</li>
-  <li><code>git reset</code> and <code>git revert</code> safely undo mistakes.</li>
-  <li>Always push descriptive commits because they form your project history.</li>
-</ul>
+        <h2>Key Takeaways</h2>
+        <ul>
+          <li>Use <code>git add</code>, <code>commit</code>, and <code>push</code> to save stable versions.</li>
+          <li><code>git reset</code> and <code>git revert</code> safely undo mistakes.</li>
+          <li>Always push descriptive commits because they form your project history.</li>
+        </ul>
 
 
-</article>
+      </article>
 
       <br>
       <p>Also read: <a href="tryhackme-guide.html">How to learn cybersecurity with TryHackMe</a></p>
@@ -330,20 +340,21 @@ You can set up Git with GitHub, GitLab, or self-host with my Gitea guide <a href
       document.documentElement.style.visibility = '';
     });
   </script>
-    <script src="/scripts/theme-toggle.js" defer></script>
-        <script data-analytics-src="/scripts/analytics.js">
-      (function () {
-        var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
-        if (!analyticsSrc) return;
-        window.addEventListener("load", function () {
-          var script = document.createElement("script");
-          script.src = analyticsSrc;
-          script.async = true;
-          script.defer = true;
-          document.head.appendChild(script);
-        });
-      })();
-    </script>
+  <script src="/scripts/theme-toggle.js" defer></script>
+  <script data-analytics-src="/scripts/analytics.js">
+    (function () {
+      var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+      if (!analyticsSrc) return;
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.src = analyticsSrc;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      });
+    })();
+  </script>
 
 </body>
+
 </html>

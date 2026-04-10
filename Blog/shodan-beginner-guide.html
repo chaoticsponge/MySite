@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow, noai, noimageai" />
+  <title>Shodan Beginner Guide: Auditing Exposed Services in Your Own Lab</title>
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) { }
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+
+  <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/globalstyles.css" as="style">
+  <link rel="preload" href="/assets/articlestyle.css" as="style">
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/assets/globalstyles.css" />
+  <link rel="stylesheet" href="/assets/articlestyle.css" />
+
+  <meta name="description"
+    content="A practical introduction to Shodan for defensive learning. Learn how to search for exposed services, inspect your own public IP, identify IP cameras, and verify whether authentication is enabled." />
+  <link rel="canonical" href="https://emmr.me/blog/shodan-beginner-guide" />
+  <meta property="og:title" content="Shodan Beginner Guide: Auditing Exposed Services in Your Own Lab" />
+  <meta property="og:description"
+    content="A practical introduction to Shodan for defensive learning. Learn how to search for exposed services, inspect your own public IP, identify IP cameras, and verify whether authentication is enabled." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://emmr.me/blog/shodan-beginner-guide" />
+  <meta property="og:image"
+    content="https://res.cloudinary.com/dxyqbu0em/image/upload/v1775853960/OIP-4272080884_mqbjx6.jpg" />
+  <meta property="og:image:alt" content="Shodan-themed featured image for the beginner guide article." />
+  <meta property="article:published_time" content="2026-04-10" />
+  <meta property="article:modified_time" content="2026-04-11" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shodan Beginner Guide: Auditing Exposed Services in Your Own Lab" />
+  <meta name="twitter:description"
+    content="A practical introduction to Shodan for defensive learning. Learn how to search for exposed services, inspect your own public IP, identify IP cameras, and verify whether authentication is enabled." />
+  <meta name="twitter:image"
+    content="https://res.cloudinary.com/dxyqbu0em/image/upload/v1775853960/OIP-4272080884_mqbjx6.jpg" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Learning Shodan: Auditing Exposed Services in Your Own Lab",
+      "description": "A practical introduction to Shodan for defensive learning. Learn how to search for exposed services, inspect your own public IP, identify IP cameras, and verify whether authentication is enabled.",
+      "image": "https://res.cloudinary.com/dxyqbu0em/image/upload/v1775853960/OIP-4272080884_mqbjx6.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Emmanuel Rodriguez"
+      },
+      "datePublished": "2026-04-11",
+      "dateModified": "2026-04-11",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://emmr.me/blog/shodan-beginner-guide"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "emmr.me",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://emmr.me/favicon/favicon-196x196.png"
+        }
+      },
+      "url": "https://emmr.me/blog/shodan-beginner-guide"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://emmr.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://emmr.me/blogpage"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Learning Shodan: Auditing Exposed Services in Your Own Lab",
+          "item": "https://emmr.me/blog/shodan-beginner-guide"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-196x196.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="home-page">
+  <nav class="sidebar">
+    <ul class="nav-links">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/aboutme.html">About Me</a></li>
+      <li><a href="/blogpage.html">Blog</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/photos.html">Photos</a></li>
+    </ul>
+
+    <div class="social-links">
+      <a href="/index.html" title="Home">
+        <img src="/assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
+      </a>
+      <a href="/aboutme.html">
+        <img src="/assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
+        <span>About Me</span>
+      </a>
+      <a href="/blogpage.html" title="Blog">
+        <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
+      </a>
+      <a href="/projects.html" title="Projects">
+        <img src="/assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
+        <span>Projects</span>
+      </a>
+      <a href="/photos.html" title="Photos">
+        <img src="/assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
+      </a>
+      <a href="https://t.me/spongier" target="_blank" title="Telegram">
+        <img src="/assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
+        <span>Telegram</span>
+      </a>
+      <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
+        <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </nav>
+
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
+
+  <div class="page-wrapper">
+    <main class="article-container">
+      <article>
+                        <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/blogpage.html">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>Tech</span>
+        </nav>
+
+        <h1>Learning Shodan: Auditing Exposed Services in Your Own Lab</h1>
+
+
+                        <p class="article-meta">By Emmanuel Rodriguez • Published April 11, 2026 • Updated April 11, 2026</p>
+
+        <figure class="article-hero">
+          <img src="https://res.cloudinary.com/dxyqbu0em/image/upload/v1775853960/OIP-4272080884_mqbjx6.jpg"
+            alt="Shodan-themed featured image for this beginner guide." fetchpriority="high" />
+          <figcaption>A defensive beginner guide to reviewing your own internet-facing services with Shodan.
+          </figcaption>
+        </figure>
+
+        <p>
+          Shodan is a search engine for internet-facing devices and services. Unlike a traditional search engine,
+          it does not index page content in the usual sense. Instead, it indexes banners, metadata, open ports,
+          and service fingerprints. That makes it useful for defenders who want to understand what their own systems
+          look like from the public internet.
+        </p>
+
+        <p>
+          This post is a practical introduction to Shodan from a defensive perspective. The goal here is simple:
+          learn how to inspect your own public-facing lab, identify exposed services, and verify whether those services
+          are protected by authentication. If you are building your baseline first, start with
+          <a href="learning-cybersecurity.html">how to learn cybersecurity</a> and
+          <a href="tryhackme-guide.html">structured lab practice with TryHackMe</a>. This is not a guide for attacking
+          systems you do not own.
+        </p>
+
+        <h2>1. Install the Shodan CLI</h2>
+        <p>
+          The Shodan CLI makes it easier to run quick searches and inspect hosts from the terminal.
+        </p>
+        <pre class="mac-terminal"><code>python3 -m pip install shodan
+shodan init YOUR_API_KEY
+</code></pre>
+
+        <p>
+          If your environment throws Python packaging errors, fix those first before assuming the Shodan CLI itself is
+          broken.
+          This is especially common when Python was installed by Homebrew or another system package manager.
+        </p>
+
+        <h2>2. Start with Basic Searches</h2>
+        <p>
+          The fastest way to learn Shodan is to start broad and then narrow things down using filters.
+        </p>
+        <pre class="mac-terminal"><code>shodan search apache
+shodan search nginx
+shodan search 'port:22 country:US'
+shodan search 'city:"Dubai" webcam'
+</code></pre>
+
+        <p>
+          These are only examples to help you understand Shodan query structure. A result appearing in Shodan does not
+          automatically mean it is vulnerable, misconfigured, or accessible without authentication.
+        </p>
+
+        <h2>3. Useful Filters to Learn Early</h2>
+        <p>
+          Most Shodan queries become useful only after you start combining filters. These are some of the ones worth
+          learning first.
+        </p>
+        <pre class="mac-terminal"><code>shodan search 'apache port:443'
+shodan search 'nginx country:AE'
+shodan search 'city:"Dubai" port:554'
+shodan search 'http.title:"IP Camera"'
+shodan search 'org:"Amazon.com" port:443'
+</code></pre>
+
+        <ul>
+          <li><strong>port:</strong> limit results to a service port</li>
+          <li><strong>country:</strong> filter by country code</li>
+          <li><strong>city:</strong> filter by city name</li>
+          <li><strong>http.title:</strong> match the web page title</li>
+          <li><strong>org:</strong> filter by organization or provider</li>
+        </ul>
+        <h2>Quick Example: Inspecting a Web Server</h2>
+        <p>
+          Here’s a simple case. You can use Shodan to identify web servers and
+          their versions.
+        </p>
+        <pre class="mac-terminal"><code>shodan search 'apache country:AE'
+</code></pre>
+        <p>
+          This returns hosts running Apache. From there, you can inspect version numbers and determine whether they are
+          outdated or misconfigured.
+        </p>
+        <h2>4. Find Your Own Public IP</h2>
+        <p>
+          If your goal is to audit your own lab, the first thing you need is your public IP.
+        </p>
+        <pre class="mac-terminal"><code>curl ifconfig.me
+</code></pre>
+
+        <p>
+          Once you have it, inspect what Shodan knows about that address.
+        </p>
+        <pre class="mac-terminal"><code>shodan host YOUR_PUBLIC_IP
+</code></pre>
+
+        <p>
+          This is usually much more useful than doing generic searches. It shows what Shodan has seen on your public IP,
+          including open ports and the service banners associated with them.
+        </p>
+
+        <h2>5. Understanding Host Output</h2>
+        <p>
+          A host result can look noisy at first. The important thing is to break it down as:
+        </p>
+        <ul>
+          <li><strong>IP address</strong></li>
+          <li><strong>Open port</strong></li>
+          <li><strong>Service</strong></li>
+          <li><strong>Banner or fingerprint</strong></li>
+        </ul>
+
+        <p>
+          If you see a long list of technologies such as Apache, Nginx, Jetty, Flask, Tomcat, GoAhead, or OpenSSL
+          versions,
+          do not assume they all belong to one clean application stack. Some scans aggregate multiple banners, reverse
+          proxies,
+          or backend services into one messy profile.
+        </p>
+
+        <h2>6. Identifying IP Cameras in Shodan</h2>
+        <p>
+          Searching the word <code>camera</code> alone returns a lot of junk. A better approach is to look for ports,
+          titles,
+          and embedded web servers commonly associated with cameras.
+        </p>
+        <pre class="mac-terminal"><code>shodan search 'port:554'
+shodan search 'http.title:"IP Camera"'
+shodan search 'http.title:"Network Camera"'
+shodan search 'GoAhead port:80'
+</code></pre>
+
+        <p>
+          Port <code>554</code> is especially important because it is commonly used for RTSP, which many IP cameras use
+          to expose
+          their video stream.
+        </p>
+
+        <h2>7. Verifying Whether RTSP Is Protected</h2>
+        <p>
+          An open RTSP port does not automatically mean your feed is public. You still need to test whether it requires
+          authentication.
+        </p>
+        <p>
+          I used <code>ffmpeg</code> for this because it gives clear output when a stream is reachable, rejected, or
+          simply using the wrong path.
+        </p>
+        <pre class="mac-terminal"><code>ffmpeg -rtsp_transport tcp -i 'rtsp://YOUR_PUBLIC_IP:554/PATH' -f null -
+</code></pre>
+
+        <p>
+          Common outcomes:
+        </p>
+        <ul>
+          <li><strong>401 Unauthorized</strong> - good, authentication is being enforced</li>
+          <li><strong>video/stream info appears</strong> - bad, the stream is accessible without credentials</li>
+          <li><strong>Invalid data found when processing input</strong> - usually the wrong RTSP path or a non-RTSP
+            response</li>
+        </ul>
+
+        <p>
+          One important detail: <code>rtsp://IP:554</code> often is not enough. Many cameras require a specific path.
+        </p>
+
+        <h2>8. Common RTSP Path Examples</h2>
+        <p>
+          Different vendors use different URL formats. These are examples of common patterns:
+        </p>
+        <pre class="mac-terminal"><code>rtsp://YOUR_PUBLIC_IP:554/live
+rtsp://YOUR_PUBLIC_IP:554/h264
+rtsp://YOUR_PUBLIC_IP:554/stream1
+rtsp://YOUR_PUBLIC_IP:554/Streaming/Channels/101
+rtsp://YOUR_PUBLIC_IP:554/cam/realmonitor?channel=1&amp;subtype=0
+</code></pre>
+
+        <p>
+          If one path fails with invalid data, that does not prove the stream is safe. It may just mean the endpoint is
+          wrong.
+        </p>
+
+        <h2>9. Logging In with Valid Credentials</h2>
+        <p>
+          If the stream returns <code>401 Unauthorized</code>, that is exactly what you want to see when testing without
+          credentials.
+          To confirm your own credentials work, include them in the RTSP URL.
+        </p>
+        <pre class="mac-terminal"><code>ffmpeg -rtsp_transport tcp -i 'rtsp://USERNAME:PASSWORD@YOUR_PUBLIC_IP:554/PATH' -f null -
+</code></pre>
+
+        <p>
+          If the login is accepted, <code>ffmpeg</code> will usually display stream details such as codec information,
+          resolution,
+          or frame processing. If credentials are wrong, it should continue rejecting the request.
+        </p>
+
+        <p>
+          If your password contains special characters such as <code>@</code>, <code>:</code>, or <code>/</code>,
+          URL-encode them first.
+        </p>
+
+        <h2>10. Testing from a VPN vs Testing from the Open Internet</h2>
+        <p>
+          In my case, I tested from outside the local subnet over a VPN. That is useful if your normal path to the
+          camera is through the VPN
+          and you want to validate that workflow. It is not the same thing as verifying whether the service is exposed
+          to the public internet.
+        </p>
+
+        <p>
+          If your actual goal is to make sure the stream is <strong>not</strong> publicly reachable, the most important
+          check is not brute force
+          resistance. It is whether the port is exposed to the internet at all.
+        </p>
+
+        <pre class="mac-terminal"><code>nmap -sV -p 554 YOUR_PUBLIC_IP
+</code></pre>
+
+        <p>
+          What you want here is simple: if you do not intend RTSP to be public, the best result is that the port is
+          closed, filtered,
+          or blocked from the WAN entirely.
+        </p>
+        <p>
+          If you need to inspect packet flow while validating exposure, capture the traffic locally with
+          <a href="wireshark.html">Wireshark</a> so you can separate a bad RTSP path from an authentication or network
+          policy issue.
+        </p>
+
+        <h2>11. What Not to Do</h2>
+        <p>
+          There is a big difference between explaining attacker behavior and publishing step-by-step offensive
+          instructions.
+          I am deliberately not including exact brute-force workflows, mass-scanning pipelines, or exploit commands
+          here.
+        </p>
+
+        <p>
+          For an informational blog, that is the right line to draw. It is enough to understand that attackers often:
+        </p>
+        <ul>
+          <li>search for exposed services with Shodan</li>
+          <li>test for weak or default credentials</li>
+          <li>look for web interfaces or RTSP endpoints</li>
+          <li>target old firmware or badly configured admin services</li>
+        </ul>
+        <p>There are many github resources with more in-depth information and search techniques available, such as <a
+            href="https://github.com/random-robbie/My-Shodan-Scripts/blob/master/simplehttp/simple.py"
+            target="_blank">Shodan Scripts</a>, <a href="https://github.com/jakejarvis/awesome-shodan-queries"
+            target="_blank">Awesome Shodan Queries</a>, and
+          <a href="https://github.com/lothos612/shodan" target="_blank">Shodan Dorks</a>.
+        </p>
+
+
+        <h2>12. Common Misconceptions About Shodan</h2>
+        <ul>
+          <li><strong>An open port means the service is broken.</strong> Not necessarily. It may be authenticated and
+            intentionally exposed.</li>
+          <li><strong>If Shodan sees it, anyone can use it.</strong> Not necessarily. It may require credentials or
+            restrict functionality.</li>
+          <li><strong>If RTSP is open, the video feed is public.</strong> Not necessarily. You still have to verify
+            authentication.</li>
+          <li><strong>One banner equals one clean application stack.</strong> Often false. Aggregated results can be
+            messy and misleading.</li>
+        </ul>
+
+        <h2>13. Defensive Checklist for Home Labs</h2>
+        <p>
+          If your goal is to keep a camera or other service private, these are the basics that matter:
+        </p>
+        <ul>
+          <li>Do not port-forward RTSP unless you truly need it</li>
+          <li>Use a VPN for remote access instead of exposing the service directly</li>
+          <li>Set a strong unique password</li>
+          <li>Change default credentials immediately</li>
+          <li>Disable services you do not use</li>
+          <li>Keep firmware updated</li>
+          <li>Audit your public IP periodically with Shodan and Nmap</li>
+        </ul>
+
+        <h2>14. TL;DR</h2>
+        <p>
+          Shodan is best used as a visibility tool. Start with your own public IP, inspect open ports, identify the
+          services you actually expose,
+          and verify whether those services are protected. For cameras, port <code>554</code> is only the beginning. The
+          real question is whether
+          the RTSP stream is reachable, whether the path is correct, and whether it enforces authentication.
+        </p>
+
+        <p>
+          The safest setup is still the simplest one: if you do not intend the stream to be internet reachable, do not
+          expose it to the internet.
+        </p>
+      </article>
+
+      <section class="related-articles" aria-labelledby="related-articles-title">
+        <h2 id="related-articles-title">Related articles</h2>
+        <ul>
+          <li><a href="wireshark.html">Wireshark Guide for Beginners</a></li>
+          <li><a href="tryhackme-guide.html">How to Learn Cybersecurity with TryHackMe</a></li>
+          <li><a href="gitea-setup.html">Self-hosting Git Using Gitea on Raspberry Pi</a></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    document.fonts.ready.then(() => {
+      document.documentElement.style.visibility = '';
+    });
+  </script>
+  <script src="/scripts/theme-toggle.js" defer></script>
+  <script data-analytics-src="/scripts/analytics.js">
+    (function () {
+      var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+      if (!analyticsSrc) return;
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.src = analyticsSrc;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      });
+    })();
+  </script>
+</body>
+
+</html>

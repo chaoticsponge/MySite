@@ -12,7 +12,7 @@
       var stored = "";
       try {
         stored = localStorage.getItem(key);
-      } catch (e) {}
+      } catch (e) { }
       var prefersDark =
         window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -23,7 +23,7 @@
 
   <!-- External stylesheet -->
 
-    <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/globalstyles.css" as="style">
   <link rel="preload" href="/assets/articlestyle.css" as="style">
@@ -43,7 +43,7 @@
     "@type": "Person",
     "name": "Emmanuel Rodriguez"
   },
-  "datePublished": "2025-05-01",
+  "datePublished": "2025-11-11",
   "publisher": {
     "@type": "Organization",
     "name": "emmr.me"
@@ -78,7 +78,7 @@
       <li><a href="/index.html">Home</a></li>
       <li><a href="/aboutme.html">About Me</a></li>
       <li><a href="/blogpage.html">Blog</a></li>
-<li><a href="/projects.html">Projects</a></li>
+      <li><a href="/projects.html">Projects</a></li>
       <li><a href="/photos.html">Photos</a></li>
     </ul>
 
@@ -86,33 +86,33 @@
     <div class="social-links">
       <!-- Local Home icon -->
       <a href="/index.html" title="Home">
-        <img src="/assets/icons/home-rounded.svg" alt="Home icon"  width="24" height="24" />
+        <img src="/assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
       </a>
       <a href="/aboutme.html">
-        <img src="/assets/icons/account-box.svg" alt="About Me icon"  width="24" height="24" />
+        <img src="/assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
         <span>About Me</span>
       </a>
 
       <!-- Local Blog icon -->
       <a href="/blogpage.html" title="Blog">
-        <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon"  width="24" height="24" />
+        <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
       </a>
 
       <a href="/projects.html" title="Projects">
-        <img src="/assets/icons/github-box.svg" alt="Projects icon"  width="24" height="24" />
+        <img src="/assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
         <span>Projects</span>
       </a>
 
       <a href="/photos.html" title="Photos">
-        <img src="/assets/icons/android-camera.svg" alt="Photos icon"  width="24" height="24" />
+        <img src="/assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
       </a>
       <a href="https://t.me/spongier" target="_blank" title="Telegram">
-        <img src="/assets/icons/telegram.svg" alt="Telegram icon"  width="24" height="24" />
+        <img src="/assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
         <span>Telegram</span>
       </a>
 
       <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
-        <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon"  width="24" height="24" />
+        <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
         <span>LinkedIn</span>
       </a>
 
@@ -128,7 +128,16 @@
   <!-- Main Article Content -->
   <main class="article-container">
     <article>
+                                                                                              <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/blogpage.html">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>Tech</span>
+        </nav>
+
       <h1>How I Used TryHackMe to Learn Cybersecurity</h1>
+                                                                                              <p class="article-meta">By Emmanuel Rodriguez • Published November 11, 2025</p>
 
       <p><em>TL;DR:</em> TryHackMe is the single best place I found to turn curiosity into hands-on cybersecurity
         skills. This guide shows a beginner-friendly path, how to get the most from rooms, an example walkthrough
@@ -219,7 +228,8 @@ TL;DR: [1–2 sentence summary of the vulnerability and how you exploited it]
         <li><strong>Take one hint:</strong> Read a single hint and try again rather than skipping to the solution.</li>
         <li><strong>Break the problem down:</strong> If you can’t exploit something, verify each step: can you reach the
           port? Does the service respond? Can you fetch a known file?</li>
-        <li><strong>Ask the community:</strong> TryHackMe Discord and room discussion threads are great, so ask for nudges,
+        <li><strong>Ask the community:</strong> TryHackMe Discord and room discussion threads are great, so ask for
+          nudges,
           not full answers. Worst case you can always refer to a writeup for guidance. Use this very sparingly.</li>
         <li><strong>Document failure:</strong> Write what you tried; future you (and interviewers) will appreciate the
           troubleshooting mindset.</li>
@@ -241,20 +251,20 @@ TL;DR: [1–2 sentence summary of the vulnerability and how you exploited it]
       document.documentElement.style.visibility = '';
     });
   </script>
-    <script src="/scripts/theme-toggle.js" defer></script>
-        <script data-analytics-src="/scripts/analytics.js">
-      (function () {
-        var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
-        if (!analyticsSrc) return;
-        window.addEventListener("load", function () {
-          var script = document.createElement("script");
-          script.src = analyticsSrc;
-          script.async = true;
-          script.defer = true;
-          document.head.appendChild(script);
-        });
-      })();
-    </script>
+  <script src="/scripts/theme-toggle.js" defer></script>
+  <script data-analytics-src="/scripts/analytics.js">
+    (function () {
+      var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+      if (!analyticsSrc) return;
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.src = analyticsSrc;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      });
+    })();
+  </script>
 
 </body>
 

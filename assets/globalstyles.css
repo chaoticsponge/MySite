@@ -169,6 +169,36 @@ body {
   text-decoration: underline;
 }
 
+.article-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 1rem 0 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-meta);
+  color: var(--color-meta);
+}
+
+.article-breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-breadcrumbs a:hover,
+.article-breadcrumbs a:focus-visible {
+  text-decoration: underline;
+}
+
+.article-container .article-meta {
+  display: block;
+  margin-top: -0.4rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-meta);
+  line-height: 1.4;
+  color: var(--color-meta);
+}
+
 a {
   color: var(--color-link);
   text-decoration: none;
@@ -408,7 +438,7 @@ h1 {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 860px), (hover: none) and (pointer: coarse) and (orientation: landscape) and (max-height: 500px) {
   .theme-toggle {
     margin-left: 0;
     right: 12px;
@@ -456,6 +486,10 @@ h1 {
     max-width: 90%;
   }
 
+  .article-breadcrumbs {
+    margin-top: clamp(4.5rem, 12vw, 6.5rem);
+  }
+
   .social-links {
     flex-direction: row;
     justify-content: center;
@@ -467,6 +501,10 @@ h1 {
 
   .social-links a {
     justify-content: center;
+  }
+
+  .social-links a span {
+    display: none;
   }
 
   .social-links a[href*="/index.html"],

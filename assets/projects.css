@@ -159,7 +159,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 860px), (hover: none) and (pointer: coarse) and (orientation: landscape) and (max-height: 500px) {
   .projects-content {
     margin: 0 auto;
     width: 100%;

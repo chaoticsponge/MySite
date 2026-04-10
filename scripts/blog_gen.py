@@ -1,6 +1,7 @@
 import os
 import re
 from datetime import datetime
+from html import unescape
 from pathlib import Path
 
 # -------------------------------
@@ -19,6 +20,13 @@ BLOG_SOURCES = [
     {"path": BASE_DIR / "travel", "icon": ICON_TRAVEL},
     {"path": BASE_DIR / "educational", "icon": ICON_LEARNING},
 ]
+
+DEFAULT_AUTHOR = "Emmanuel Rodriguez"
+SECTION_LABELS = {
+    "blog": "Tech",
+    "travel": "Travel",
+    "educational": "Educational",
+}
 
 # -------------------------------
 # HELPERS
@@ -39,6 +47,171 @@ def extract_title(file_path):
         return match.group(1).strip() if match else os.path.basename(file_path)
     except Exception:
         return os.path.basename(file_path)
+
+
+def strip_html(text):
+    """Remove tags and normalize entities/whitespace."""
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def extract_h1(html):
+    """Extract the first visible h1."""
+    match = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.IGNORECASE | re.DOTALL)
+    return strip_html(match.group(1)) if match else ""
+
+
+def format_long_date(iso_date):
+    """Convert YYYY-MM-DD to 'Month D, YYYY'."""
+    try:
+        return datetime.strptime(iso_date, "%Y-%m-%d").strftime("%B %-d, %Y")
+    except ValueError:
+        return iso_date
+
+
+def format_short_date(iso_date):
+    """Convert YYYY-MM-DD to 'Mon D, YYYY'."""
+    try:
+        return datetime.strptime(iso_date, "%Y-%m-%d").strftime("%b %-d, %Y")
+    except ValueError:
+        return iso_date
+
+
+def parse_iso_date(iso_date):
+    """Parse YYYY-MM-DD safely for comparisons."""
+    try:
+        return datetime.strptime(iso_date, "%Y-%m-%d")
+    except ValueError:
+        return None
+
+
+def extract_schema_value(html, key):
+    """Extract a simple JSON-LD string value like datePublished or author name."""
+    match = re.search(rf'"{re.escape(key)}"\s*:\s*"([^"]+)"', html)
+    return match.group(1).strip() if match else ""
+
+
+def extract_author_name(html):
+    """Extract author name from JSON-LD, falling back to the site default."""
+    author_block = re.search(
+        r'"author"\s*:\s*\{{.*?"name"\s*:\s*"([^"]+)"',
+        html,
+        re.IGNORECASE | re.DOTALL,
+    )
+    if author_block:
+        return author_block.group(1).strip()
+    return DEFAULT_AUTHOR
+
+
+def build_breadcrumb_html(path):
+    """Build a consistent breadcrumb trail based on folder."""
+    section_key = path.parent.name
+    section_label = SECTION_LABELS.get(section_key, section_key.title())
+    return (
+        '        <nav class="article-breadcrumbs" aria-label="Breadcrumb">\n'
+        '          <a href="/index.html">Home</a>\n'
+        '          <span aria-hidden="true">/</span>\n'
+        '          <a href="/blogpage.html">Blog</a>\n'
+        '          <span aria-hidden="true">/</span>\n'
+        f'          <span>{section_label}</span>\n'
+        '        </nav>'
+    )
+
+
+def build_article_meta_html(author, published, modified):
+    """Build the visible byline/date line from schema dates."""
+    published_label = format_long_date(published) if published else ""
+    modified_label = format_long_date(modified) if modified else ""
+
+    parts = [f"By {author}"]
+    if published_label:
+        parts.append(f"Published {published_label}")
+    if modified_label:
+        parts.append(f"Updated {modified_label}")
+
+    return f'        <p class="article-meta">{" • ".join(parts)}</p>'
+
+
+def sync_schema_modified_date(html, modified_iso):
+    """Write dateModified back into JSON-LD when present."""
+    if not modified_iso or not re.search(r'"dateModified"\s*:\s*"[^"]+"', html):
+        return html
+    return re.sub(
+        r'("dateModified"\s*:\s*")[^"]+(")',
+        lambda match: f'{match.group(1)}{modified_iso}{match.group(2)}',
+        html,
+        count=1,
+    )
+
+
+def extract_article_dates(path):
+    """Read schema dates from an article file, with filesystem fallback for publish date."""
+    html = path.read_text(encoding="utf-8")
+    published = extract_schema_value(html, "datePublished")
+    modified = extract_schema_value(html, "dateModified")
+    if not published:
+      published = datetime.fromtimestamp(os.path.getctime(path)).strftime("%Y-%m-%d")
+    return published, modified
+
+
+def update_article_page(path):
+    """Ensure article pages include breadcrumb and visible author/date metadata."""
+    html = path.read_text(encoding="utf-8")
+    original = html
+
+    breadcrumb_html = build_breadcrumb_html(path)
+
+    if re.search(r'<nav class="article-breadcrumbs" aria-label="Breadcrumb">.*?</nav>', html, re.DOTALL):
+        html = re.sub(
+            r'<nav class="article-breadcrumbs" aria-label="Breadcrumb">.*?</nav>',
+            breadcrumb_html,
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+    else:
+        html = re.sub(
+            r"(<article>\s*)",
+            r"\1" + breadcrumb_html + "\n\n",
+            html,
+            count=1,
+        )
+
+    author = extract_author_name(html)
+    published = extract_schema_value(html, "datePublished")
+    modified = extract_schema_value(html, "dateModified")
+    if not published:
+        published = datetime.fromtimestamp(os.path.getctime(path)).strftime("%Y-%m-%d")
+    published_dt = parse_iso_date(published)
+    modified_dt = parse_iso_date(modified)
+    if published_dt and modified_dt and modified_dt < published_dt:
+        modified = published
+        html = sync_schema_modified_date(html, modified)
+    article_meta_html = build_article_meta_html(author, published, modified)
+
+    if re.search(r'<p class="article-meta">.*?</p>', html, re.DOTALL):
+        html = re.sub(
+            r'<p class="article-meta">.*?</p>',
+            article_meta_html,
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+    else:
+        html = re.sub(
+            r"(<h1[^>]*>.*?</h1>\s*)",
+            r"\1" + article_meta_html + "\n\n",
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+
+    if html != original:
+        path.write_text(html, encoding="utf-8")
+        print(f"[{path.relative_to(BASE_DIR).as_posix()}] - article metadata updated")
+    else:
+        print(f"[{path.relative_to(BASE_DIR).as_posix()}] - article metadata unchanged")
 
 def estimate_reading_time(file_path):
     """Estimate reading time based on word count (60 wpm)."""
@@ -77,11 +250,11 @@ def generate_post_entry(post_path, title, date_str, reading_time, icon):
     return f"""
   <li>
     <a href="{post_path}" class="post-link">
-      <span class="post-heading">
-        <img class="post-icon" src="{icon}" alt="Post icon" />
+      <img class="post-icon" src="{icon}" alt="Post icon" />
+      <span class="post-copy">
         <span class="post-title">{title}</span>
+        <span class="post-meta">{meta}</span>
       </span>
-      <span class="post-meta">{meta}</span>
     </a>
   </li>
 """.strip()
@@ -122,18 +295,6 @@ def update_blogpage():
                 removed_pinned.append(link)
                 print(f"[{link}] - deleted (missing pinned post)")
 
-    # -------------------------------
-    # Preserve existing <span class="post-meta"> dates
-    # -------------------------------
-    existing_meta = {
-        normalize_href(href): meta
-        for href, meta in re.findall(
-            r'href="([^"]+)".*?<span class="post-meta">(.*?)</span>',
-            current_list,
-            flags=re.DOTALL,
-        )
-    }
-
     posts, added_posts, unchanged_posts = [], [], []
     all_current_posts_raw = re.findall(r'href="([^"]+)"', current_list)
     all_current_posts = {normalize_href(href) for href in all_current_posts_raw}
@@ -157,17 +318,8 @@ def update_blogpage():
 
             title = extract_title(path)
             reading_time = estimate_reading_time(path)
-
-            # Preserve existing manually set date
-            if normalized_rel_path in existing_meta:
-                old_meta = existing_meta[normalized_rel_path]
-                old_date_match = re.match(r"([A-Za-z]{3} \d{1,2}, \d{4})", old_meta.strip())
-                if old_date_match:
-                    date_str = old_date_match.group(1)
-                else:
-                    date_str = format_date(path)
-            else:
-                date_str = format_date(path)
+            published, _ = extract_article_dates(path)
+            date_str = format_short_date(published) if published else format_date(path)
 
             display_dt = parse_display_date(date_str, path)
             posts.append(
@@ -213,6 +365,19 @@ def update_blogpage():
     print(f"{len(unchanged_posts)} unchanged")
     print(f"{len(removed_posts) + len(removed_pinned)} removed")
 
+
+def update_article_pages():
+    """Normalize breadcrumb and visible article metadata across article folders."""
+    for source in BLOG_SOURCES:
+        folder = source["path"]
+        if not folder.exists():
+            continue
+        for file in sorted(os.listdir(folder)):
+            if not file.endswith(".html") or "template" in file.lower():
+                continue
+            update_article_page(folder / file)
+
 # -------------------------------
 if __name__ == "__main__":
+    update_article_pages()
     update_blogpage()

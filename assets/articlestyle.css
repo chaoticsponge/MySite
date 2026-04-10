@@ -20,6 +20,41 @@
   font-size: var(--font-size-body);
   font-family: var(--font-body);
 }
+.article-hero figcaption,
+.related-articles li {
+  font-family: var(--font-body);
+}
+.article-hero {
+  margin: 0 0 2rem;
+}
+.article-hero img {
+  width: 100%;
+  margin: 0;
+  border-radius: 14px;
+}
+.article-hero figcaption {
+  margin-top: 0.75rem;
+  font-size: var(--font-size-meta);
+  color: var(--color-meta);
+  text-align: center;
+}
+.related-articles {
+  margin: 3rem 0 1rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(127, 127, 127, 0.2);
+  border-radius: 12px;
+  background: rgba(127, 127, 127, 0.06);
+}
+.related-articles h2 {
+  margin-top: 0;
+}
+.related-articles ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.related-articles li + li {
+  margin-top: 0.75rem;
+}
 .article-container img {
   max-width: 100%;
   height: auto;
@@ -161,7 +196,7 @@
   border-radius: 4px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 860px), (hover: none) and (pointer: coarse) and (orientation: landscape) and (max-height: 500px) {
   body {
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
   }
@@ -174,7 +209,7 @@
   .mac-terminal {
     font-size: var(--font-size-meta);
     padding: 1.8rem clamp(0.75rem, 4vw, 1.15rem) 1rem;
-    margin-top: clamp(4.5rem, 12vw, 6.5rem);
+    margin-top: 2rem;
     margin-inline: auto;
     margin-bottom: 1.5rem;
     width: min(480px, calc(100% - 1.6rem));
