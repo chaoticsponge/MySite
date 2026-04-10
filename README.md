@@ -22,3 +22,11 @@
 
 Learning tag:
 <img class="post-icon" src="https://api.iconify.design/tabler:pencil.svg?color=%23fb8c00" alt="Learning icon" />
+
+## Local testing
+
+- Clean URLs like `/blog/shodan-beginner-guide` will not work over `file://`.
+- Run the local dev server instead:
+  `python3 scripts/dev_server.py`
+- Then open:
+  `http://127.0.0.1:8000`
