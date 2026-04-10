@@ -319,11 +319,19 @@ h1 {
   opacity: 1;
 }
 
-.social-links a[href*="/index.html"],
-.social-links a[href*="/aboutme.html"],
-.social-links a[href*="/blogpage.html"],
-.social-links a[href*="/photos.html"],
-.social-links a[href*="/projects.html"] {
+.social-links a:is(
+  [href="/"],
+  [href="/index.html"],
+  [href="/aboutme"],
+  [href="/aboutme.html"],
+  [href="/blogpage"],
+  [href="/blogpage.html"],
+  [href="/photos"],
+  [href="/photos.html"],
+  [href="/photos/photos.html"],
+  [href="/projects"],
+  [href="/projects.html"]
+) {
   display: none;
 }
 
@@ -507,11 +515,19 @@ h1 {
     display: none;
   }
 
-  .social-links a[href*="/index.html"],
-  .social-links a[href*="/aboutme.html"],
-  .social-links a[href*="/blogpage.html"],
-  .social-links a[href*="/photos.html"],
-  .social-links a[href*="/projects.html"] {
+  .social-links a:is(
+    [href="/"],
+    [href="/index.html"],
+    [href="/aboutme"],
+    [href="/aboutme.html"],
+    [href="/blogpage"],
+    [href="/blogpage.html"],
+    [href="/photos"],
+    [href="/photos.html"],
+    [href="/photos/photos.html"],
+    [href="/projects"],
+    [href="/projects.html"]
+  ) {
     display: inline-flex;
   }
 
