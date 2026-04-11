@@ -71,6 +71,51 @@
   text-decoration: underline;
 }
 
+@supports (animation-timeline: scroll()) {
+  body.home-page:has(.article-container > article)::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    height: 4px;
+    background: #000000;
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: article-scroll-progress linear both;
+    animation-timeline: scroll(root block);
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  :root[data-theme="dark"] body.home-page:has(.article-container > article)::before {
+    background: #ffffff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) body.home-page:has(.article-container > article)::before {
+      background: #ffffff;
+    }
+  }
+
+  @keyframes article-scroll-progress {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (max-width: 860px), (hover: none) and (pointer: coarse) and (orientation: landscape) and (max-height: 500px) {
+    body.home-page:has(.article-container > article)::before {
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .article-container {
