@@ -1,5 +1,14 @@
 # MySite
 
+## Upload commands:
+
+```
+python3 /scripts/blog_gen.py
+python3 /scripts/sitemap_gen.py
+git add . etc.
+flyctl deploy --remote-only
+```
+
 ## Assets directory
 
 - All CSS lives under `assets/`

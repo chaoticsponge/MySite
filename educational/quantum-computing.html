@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, noai, noimageai" />
+
+    <title>Why Is Quantum Computing a Threat to Encryption?</title>
+    <meta name="description"
+        content="Learn why quantum computing threatens public-key encryption, what it means for Bitcoin and Signal, and how post-quantum cryptography reduces the risk." />
+    <meta name="author" content="Emmanuel Rodriguez" />
+    <link rel="canonical" href="https://emmr.me/educational/quantum-computing" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Why Is Quantum Computing a Threat to Encryption?" />
+    <meta property="og:description"
+        content="Learn why quantum computing threatens public-key encryption, what it means for Bitcoin and Signal, and how post-quantum cryptography reduces the risk." />
+    <meta property="og:url" content="https://emmr.me/educational/quantum-computing" />
+    <meta property="og:site_name" content="emmr.me" />
+    <meta property="article:published_time" content="2026-06-14" />
+    <meta property="article:modified_time" content="2026-06-15" />
+    <meta property="article:author" content="https://emmr.me/aboutme" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Why Is Quantum Computing a Threat to Encryption?" />
+    <meta name="twitter:description"
+        content="Learn why quantum computing threatens public-key encryption, what it means for Bitcoin and Signal, and how post-quantum cryptography reduces the risk." />
+
+    <script>
+        (function () {
+            var key = "theme";
+            var stored = "";
+            try {
+                stored = localStorage.getItem(key);
+            } catch (e) { }
+            var prefersDark =
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches;
+            var theme = stored || (prefersDark ? "dark" : "light");
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+
+    <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/globalstyles.css" as="style">
+    <link rel="preload" href="/assets/articlestyle.css" as="style">
+
+    <link rel="stylesheet" href="/assets/fonts.css" />
+    <link rel="stylesheet" href="/assets/globalstyles.css" />
+    <link rel="stylesheet" href="/assets/articlestyle.css" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-196x196.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Is Quantum Computing a Threat to Encryption?",
+  "description": "Learn why quantum computing threatens public-key encryption, what it means for Bitcoin and Signal, and how post-quantum cryptography reduces the risk.",
+  "url": "https://emmr.me/educational/quantum-computing",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez",
+    "url": "https://emmr.me/aboutme"
+  },
+  "datePublished": "2026-06-14",
+  "dateModified": "2026-06-15",
+  "publisher": {
+    "@type": "Organization",
+    "name": "emmr.me",
+    "url": "https://emmr.me/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://emmr.me/educational/quantum-computing"
+  }
+}
+</script>
+</head>
+
+<body class="home-page">
+    <nav class="sidebar">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/aboutme">About Me</a></li>
+            <li><a href="/blogpage">Blog</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/photos">Photos</a></li>
+        </ul>
+
+        <div class="social-links">
+            <a href="/" title="Home">
+                <img src="/assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
+            </a>
+
+            <a href="/aboutme" title="About Me">
+                <img src="/assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
+                <span>About Me</span>
+            </a>
+
+            <a href="/blogpage" title="Blog">
+                <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
+            </a>
+
+            <a href="/projects" title="Projects">
+                <img src="/assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
+                <span>Projects</span>
+            </a>
+
+            <a href="/photos" title="Photos">
+                <img src="/assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
+            </a>
+
+            <a href="https://t.me/spongier" target="_blank" rel="noopener noreferrer" title="Telegram">
+                <img src="/assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
+                <span>Telegram</span>
+            </a>
+
+            <a href="https://linkedin.com/in/emmrod19" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
+                <span>LinkedIn</span>
+            </a>
+        </div>
+    </nav>
+
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+        <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+    </button>
+
+    <div class="page-wrapper">
+        <main class="article-container">
+            <article>
+                <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+                    <a href="/">Home</a>
+                    <span aria-hidden="true">/</span>
+                    <a href="/blogpage">Blog</a>
+                    <span aria-hidden="true">/</span>
+                    <span>Educational</span>
+                </nav>
+
+                <h1>Why Is Quantum Computing a Threat to Encryption?</h1>
+                <p class="article-meta">By Emmanuel Rodriguez • Published June 14, 2026 • Updated June 15, 2026</p>
+                <p>
+                    How a different kind of computer could undermine the mathematics protecting your accounts,
+                    messages, and digital assets.
+                </p>
+
+                <h2>Why this matters</h2>
+                <p>
+                    Cryptography protects bank accounts, private messages, cryptocurrency, software updates, and your
+                    connections to websites.
+                </p>
+                <p>
+                    The algorithms behind these systems are usually public. Their security does not depend on hiding
+                    how they work. It depends on mathematical problems that would take classical computers an
+                    impractical amount of time to solve.
+                </p>
+                <p>
+                    A sufficiently powerful quantum computer could change that assumption for some widely used forms
+                    of cryptography. The threat is not immediate, but replacing cryptographic infrastructure takes
+                    years.
+                </p>
+
+                <h2>Why encryption works today</h2>
+                <p>
+                    Public-key cryptography uses a pair of related keys. The public key can be shared, while the private
+                    key must remain secret. Together, they let systems establish secure connections and verify digital
+                    signatures without first sharing a secret key.
+                </p>
+                <p>
+                    The public key can be derived from the private key, but working backward to recover the private key
+                    is considered impractical when the system uses secure algorithms and sufficiently large keys.
+                </p>
+                <p>
+                    Different systems rely on different hard problems. RSA depends on the difficulty of factoring the
+                    product of two large prime numbers. Diffie-Hellman and elliptic curve cryptography depend on
+                    versions of the discrete logarithm problem, which involves recovering a hidden number from the
+                    result of a mathematical operation.
+                </p>
+                <p>
+                    These methods support key exchange, digital signatures, website certificates, cryptocurrency
+                    wallets, and many other systems across the internet.
+                </p>
+
+                <h2>What makes a quantum computer different</h2>
+                <p>
+                    A classical computer stores information in bits. Each bit is either 0 or 1. A quantum computer uses
+                    qubits, which can exist in a combination of states before they are measured.
+                </p>
+                <p>
+                    Quantum algorithms manipulate probability amplitudes, which determine how likely different results
+                    are when the qubits are measured. Through interference, paths leading toward useful answers can
+                    reinforce one another while others cancel out.
+                </p>
+                <p>
+                    This does not make quantum computers faster at everything. Classical computers remain better suited
+                    to most everyday tasks. The quantum advantage appears in specific problems with an effective
+                    quantum algorithm.
+                </p>
+
+                <h2>The problem quantum computers create</h2>
+                <p>
+                    The most important example is Shor's algorithm. It gives a sufficiently capable quantum computer a
+                    much more efficient way to factor integers and solve discrete logarithms.
+                </p>
+                <p>
+                    That directly targets the hard problems behind RSA, Diffie-Hellman, and elliptic curve
+                    cryptography. On a large, error-corrected quantum computer, calculations that are impractical today
+                    could become practical.
+                </p>
+                <p>
+                    This is why public-key cryptography is the main concern. If a quantum computer can solve those
+                    underlying problems efficiently, an attacker may be able to recover private keys, impersonate
+                    users, forge signatures, or derive shared secrets from recorded key exchanges.
+                </p>
+
+                <h2>Why Bitcoin gets mentioned</h2>
+                <p>
+                    Bitcoin uses digital signatures to prove that the person spending coins controls the correct
+                    private key. Its signature system relies on elliptic curve cryptography.
+                </p>
+                <p>
+                    Today, deriving a private key from a public key is impractical with classical computers. A powerful
+                    enough quantum computer running Shor's algorithm could threaten funds whose public keys have been
+                    revealed.
+                </p>
+                <p>
+                    The question is whether Bitcoin and similar systems can move to quantum-resistant signatures before
+                    such attacks become practical.
+                </p>
+
+                <h2>Why messages are at risk</h2>
+                <p>
+                    Secure messaging platforms like Signal use end-to-end encryption, so messages are encrypted on the
+                    sender's device and decrypted
+                    on the receiver's device. Public-key cryptography helps the devices establish the secrets used to
+                    protect that conversation.
+                </p>
+                <p>
+                    This creates a long-term concern known as "harvest now, decrypt later." An attacker can collect
+                    encrypted traffic today, store it, and wait for future technology that may break a vulnerable key
+                    exchange.
+                </p>
+                <p>
+                    The risk matters most when information must remain private for many years. Signal has already
+                    introduced <a href="https://signal.org/blog/pqxdh/">PQXDH</a> to protect the start of a
+                    conversation.
+                    In October 2025, it also announced <a href="https://signal.org/blog/spqr/">SPQR</a>, which regularly
+                    refreshes post-quantum secrets as the conversation continues. These protections are combined with
+                    Signal's existing cryptography.
+                </p>
+
+                <h2>What does not break the same way</h2>
+                <p>
+                    Quantum computers do not affect every kind of cryptography equally. Symmetric encryption and
+                    hashing are less exposed than the public-key systems targeted by Shor's algorithm.
+                </p>
+                <p>
+                    Grover's algorithm can speed up brute-force searches against symmetric keys and hash functions, but
+                    the advantage is less dramatic. In many cases, appropriate key and hash sizes can preserve the
+                    required security margin.
+                </p>
+
+                <h2>Post-quantum cryptography</h2>
+                <p>
+                    Post-quantum cryptography is designed to resist attacks from both classical and quantum computers.
+                    Despite the name, it runs on the normal computers and networks we already use.
+                </p>
+                <p>
+                    The goal is to replace vulnerable public-key algorithms with key exchange and signature schemes
+                    based on problems that are still believed to be difficult for quantum machines.
+                </p>
+                <p>
+                    The transition is difficult because cryptography is embedded everywhere. Browsers, operating
+                    systems, banks, governments, messaging apps, hardware, and blockchains all need time to adopt and
+                    test new standards.
+                </p>
+
+                <h2>Final takeaway</h2>
+                <p>
+                    Quantum computing threatens public-key cryptography because it could make certain hard mathematical
+                    problems practical to solve. That could undermine digital signatures, key exchange, certificates,
+                    cryptocurrency wallets, and secure communication. Symmetric encryption and hashing are affected
+                    less severely.
+                </p>
+                <p>
+                    The machines needed for large-scale attacks do not exist yet. But the systems that depend on today's
+                    cryptography must be upgraded before they do. That is why post-quantum cryptography matters now.
+                </p>
+
+                <br>
+                <p>Also read: <a href="/educational/zero-knowledge-proofs">Zero-Knowledge Proofs Explained</a></p>
+            </article>
+        </main>
+    </div>
+    <script> document.fonts.ready.then(() => { document.documentElement.style.visibility = ''; }); </script>
+    <script src="/scripts/theme-toggle.js" defer></script>
+    <script
+        data-analytics-src="/scripts/analytics.js"> (function () { var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc; if (!analyticsSrc) return; window.addEventListener("load", function () { var script = document.createElement("script"); script.src = analyticsSrc; script.async = true; script.defer = true; document.head.appendChild(script); }); })(); </script>
+</body>
+
+</html>
