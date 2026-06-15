@@ -29,6 +29,7 @@ class PageMetadataParser(HTMLParser):
         super().__init__()
         self.canonical = None
         self.modified_time = None
+        self.noindex = False
         self._in_json_ld = False
         self._json_ld_parts = []
 
@@ -43,6 +44,10 @@ class PageMetadataParser(HTMLParser):
             and attributes.get("property") == "article:modified_time"
         ):
             self.modified_time = attributes.get("content")
+
+        if tag == "meta" and attributes.get("name", "").lower() == "robots":
+            directives = attributes.get("content", "").lower().split(",")
+            self.noindex = any(item.strip() == "noindex" for item in directives)
 
         if tag == "script" and attributes.get("type") == "application/ld+json":
             self._in_json_ld = True
@@ -96,6 +101,9 @@ def page_metadata(file_path):
     parser = PageMetadataParser()
     parser.feed(file_path.read_text(encoding="utf-8"))
 
+    if parser.noindex:
+        return None
+
     url = parser.canonical or fallback_url(file_path)
     parsed_url = urlparse(url)
     if parsed_url.scheme not in {"http", "https"} or parsed_url.netloc != "emmr.me":
@@ -113,7 +121,7 @@ def page_metadata(file_path):
 
 
 def generate_sitemap():
-    pages = []
+    pages = {}
 
     for root, dirs, files in os.walk(BASE_DIR):
         root_path = Path(root)
@@ -138,14 +146,21 @@ def generate_sitemap():
                     continue
 
                 file_path = root_path / file
-                pages.append(page_metadata(file_path))
+                metadata = page_metadata(file_path)
+                if metadata is None:
+                    continue
+
+                url, last_modified = metadata
+                if url in pages:
+                    raise ValueError(f"Duplicate canonical URL: {url}")
+                pages[url] = last_modified
 
     # Write XML
-    with open(SITEMAP_PATH, "w") as f:
+    with open(SITEMAP_PATH, "w", encoding="utf-8", newline="\n") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
 
-        for url, last_modified in sorted(pages):
+        for url, last_modified in sorted(pages.items()):
             f.write("  <url>\n")
             f.write(f"    <loc>{escape(url)}</loc>\n")
             f.write(f"    <lastmod>{last_modified}</lastmod>\n")
