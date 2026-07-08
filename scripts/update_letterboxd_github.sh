@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -uo pipefail
 
 PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 LETTERBOXD_DIR="${PROJECT_ROOT}/letterboxd"
