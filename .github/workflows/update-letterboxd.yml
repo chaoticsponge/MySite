@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Node packages
         working-directory: letterboxd
-        run: npm install
+        run: npm ci
 
       - name: Install Python packages
         run: pip install pyyaml
