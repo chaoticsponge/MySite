@@ -15,7 +15,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 25
+          cache: npm
+          cache-dependency-path: letterboxd/package-lock.json
 
       - uses: actions/setup-python@v5
         with:
