@@ -11,21 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Verify environment
-        run: |
-          node --version
-          npm --version
-          python3 --version
+      - name: Install Node packages
+        working-directory: letterboxd
+        run: npm install
+
+      - name: Install Python packages
+        run: pip install pyyaml
+
+      - name: Make script executable
+        run: chmod +x scripts/update_letterboxd_github.sh
+
+      - name: Run updater
+        run: ./scripts/update_letterboxd_github.sh
