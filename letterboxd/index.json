@@ -1,11 +1,398 @@
 [
   {
+    "filename": "gladiator-ii-20260514/index.md",
+    "title": "Gladiator II",
+    "release_year": "2024",
+    "cover_image": "/letterboxd/movies/gladiator-ii-20260514/gladiator-ii.jpg",
+    "watched_date": "2026-05-14T00:00:00+00:00",
+    "date_added": "2026-05-14T17:25:04+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "jennifers-body-20260512/index.md",
+    "title": "Jennifer's Body",
+    "release_year": "2009",
+    "cover_image": "/letterboxd/movies/jennifers-body-20260512/jennifers-body.jpg",
+    "watched_date": "2026-05-12T00:00:00+00:00",
+    "date_added": "2026-05-12T11:22:51+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-drama-20260511/index.md",
+    "title": "The Drama",
+    "release_year": "2026",
+    "cover_image": "/letterboxd/movies/the-drama-20260511/the-drama.jpg",
+    "watched_date": "2026-05-11T00:00:00+00:00",
+    "date_added": "2026-05-11T05:58:05+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "black-swan-20260417/index.md",
+    "title": "Black Swan",
+    "release_year": "2010",
+    "cover_image": "/letterboxd/movies/black-swan-20260417/black-swan.jpg",
+    "watched_date": "2026-04-17T00:00:00+00:00",
+    "date_added": "2026-04-17T16:12:52+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-hunger-games-the-ballad-of-songbirds-snakes-20260417/index.md",
+    "title": "The Hunger Games: The Ballad of Songbirds & Snakes",
+    "release_year": "2023",
+    "cover_image": "/letterboxd/movies/the-hunger-games-the-ballad-of-songbirds-snakes-20260417/the-hunger-games-the-ballad-of-songbirds-snakes.jpg",
+    "watched_date": "2026-04-17T00:00:00+00:00",
+    "date_added": "2026-04-17T09:36:49+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "abigail-2024-20260416/index.md",
+    "title": "Abigail",
+    "release_year": "2024",
+    "cover_image": "/letterboxd/movies/abigail-2024-20260416/abigail-2024.jpg",
+    "watched_date": "2026-04-16T00:00:00+00:00",
+    "date_added": "2026-04-17T09:35:49+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "thrash-2026-20260416/index.md",
+    "title": "Thrash",
+    "release_year": "2026",
+    "cover_image": "/letterboxd/movies/thrash-2026-20260416/thrash-2026.jpg",
+    "watched_date": "2026-04-16T00:00:00+00:00",
+    "date_added": "2026-04-16T16:27:38+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "chungking-express-20260407/index.md",
+    "title": "Chungking Express",
+    "release_year": "1994",
+    "cover_image": "/letterboxd/movies/chungking-express-20260407/chungking-express.jpg",
+    "watched_date": "2026-04-07T00:00:00+00:00",
+    "date_added": "2026-04-07T19:47:03+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "ready-or-not-2019-20260405/index.md",
+    "title": "Ready or Not",
+    "release_year": "2019",
+    "cover_image": "/letterboxd/movies/ready-or-not-2019-20260405/ready-or-not-2019.jpg",
+    "watched_date": "2026-04-05T00:00:00+00:00",
+    "date_added": "2026-04-07T13:26:43+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "when-life-gives-you-tangerines-2025-20260402/index.md",
+    "title": "When Life Gives You Tangerines",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/when-life-gives-you-tangerines-2025-20260402/when-life-gives-you-tangerines-2025.jpg",
+    "watched_date": "2026-04-02T00:00:00+00:00",
+    "date_added": "2026-04-07T13:25:55+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "kpop-demon-hunters-20260401/index.md",
+    "title": "KPop Demon Hunters",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/kpop-demon-hunters-20260401/kpop-demon-hunters.jpg",
+    "watched_date": "2026-04-01T00:00:00+00:00",
+    "date_added": "2026-04-07T13:25:33+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "project-hail-mary-20260326/index.md",
+    "title": "Project Hail Mary",
+    "release_year": "2026",
+    "cover_image": "/letterboxd/movies/project-hail-mary-20260326/project-hail-mary.jpg",
+    "watched_date": "2026-03-26T00:00:00+00:00",
+    "date_added": "2026-03-27T07:42:43+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "dune-part-two-20260320/index.md",
+    "title": "Dune: Part Two",
+    "release_year": "2024",
+    "cover_image": "/letterboxd/movies/dune-part-two-20260320/dune-part-two.jpg",
+    "watched_date": "2026-03-20T00:00:00+00:00",
+    "date_added": "2026-03-27T07:44:40+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-lord-of-the-rings-the-return-of-the-king-20260310/index.md",
+    "title": "The Lord of the Rings: The Return of the King",
+    "release_year": "2003",
+    "cover_image": "/letterboxd/movies/the-lord-of-the-rings-the-return-of-the-king-20260310/the-lord-of-the-rings-the-return-of-the-king.jpg",
+    "watched_date": "2026-03-10T00:00:00+00:00",
+    "date_added": "2026-03-27T07:56:14+00:00",
+    "rewatch": true
+  },
+  {
+    "filename": "the-lord-of-the-rings-the-fellowship-of-the-ring-20260309/index.md",
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "release_year": "2001",
+    "cover_image": "/letterboxd/movies/the-lord-of-the-rings-the-fellowship-of-the-ring-20260309/the-lord-of-the-rings-the-fellowship-of-the-ring.jpg",
+    "watched_date": "2026-03-09T00:00:00+00:00",
+    "date_added": "2026-03-06T09:14:01+00:00",
+    "rewatch": true
+  },
+  {
+    "filename": "the-lord-of-the-rings-the-two-towers-20260309/index.md",
+    "title": "The Lord of the Rings: The Two Towers",
+    "release_year": "2002",
+    "cover_image": "/letterboxd/movies/the-lord-of-the-rings-the-two-towers-20260309/the-lord-of-the-rings-the-two-towers.jpg",
+    "watched_date": "2026-03-09T00:00:00+00:00",
+    "date_added": "2026-03-27T07:56:04+00:00",
+    "rewatch": true
+  },
+  {
+    "filename": "dune-2021-20260306/index.md",
+    "title": "Dune",
+    "release_year": "2021",
+    "cover_image": "/letterboxd/movies/dune-2021-20260306/dune-2021.jpg",
+    "watched_date": "2026-03-06T00:00:00+00:00",
+    "date_added": "2026-03-06T13:26:43+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "transformers-one-20260306/index.md",
+    "title": "Transformers One",
+    "release_year": "2024",
+    "cover_image": "/letterboxd/movies/transformers-one-20260306/transformers-one.jpg",
+    "watched_date": "2026-03-06T00:00:00+00:00",
+    "date_added": "2026-03-06T09:15:33+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-big-short-20260222/index.md",
+    "title": "The Big Short",
+    "release_year": "2015",
+    "cover_image": "/letterboxd/movies/the-big-short-20260222/the-big-short.jpg",
+    "watched_date": "2026-02-22T00:00:00+00:00",
+    "date_added": "2026-02-24T13:47:13+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "frankenstein-2025-20260219/index.md",
+    "title": "Frankenstein",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/frankenstein-2025-20260219/frankenstein-2025.jpg",
+    "watched_date": "2026-02-19T00:00:00+00:00",
+    "date_added": "2026-02-24T13:42:44+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-grand-budapest-hotel-20260215/index.md",
+    "title": "The Grand Budapest Hotel",
+    "release_year": "2014",
+    "cover_image": "/letterboxd/movies/the-grand-budapest-hotel-20260215/the-grand-budapest-hotel.jpg",
+    "watched_date": "2026-02-15T00:00:00+00:00",
+    "date_added": "2026-02-24T13:41:55+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "sinners-2025-20260130/index.md",
+    "title": "Sinners",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/sinners-2025-20260130/sinners-2025.jpg",
+    "watched_date": "2026-01-30T00:00:00+00:00",
+    "date_added": "2026-02-24T13:40:22+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "superman-2025-20260120/index.md",
+    "title": "Superman",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/superman-2025-20260120/superman-2025.jpg",
+    "watched_date": "2026-01-20T00:00:00+00:00",
+    "date_added": "2026-01-20T15:57:16+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "hamilton-2020-20260104/index.md",
+    "title": "Hamilton",
+    "release_year": "2020",
+    "cover_image": "/letterboxd/movies/hamilton-2020-20260104/hamilton-2020.jpg",
+    "watched_date": "2026-01-04T00:00:00+00:00",
+    "date_added": "2026-01-04T06:44:49+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "good-boy-2025-20251223/index.md",
+    "title": "Good Boy",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/good-boy-2025-20251223/good-boy-2025.jpg",
+    "watched_date": "2025-12-23T00:00:00+00:00",
+    "date_added": "2025-12-23T06:59:53+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "wake-up-dead-man-20251222/index.md",
+    "title": "Wake Up Dead Man",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/wake-up-dead-man-20251222/wake-up-dead-man.jpg",
+    "watched_date": "2025-12-22T00:00:00+00:00",
+    "date_added": "2025-12-23T06:58:47+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "jujutsu-kaisen-execution-20251222/index.md",
+    "title": "JUJUTSU KAISEN: Execution",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/jujutsu-kaisen-execution-20251222/jujutsu-kaisen-execution.jpg",
+    "watched_date": "2025-12-22T00:00:00+00:00",
+    "date_added": "2025-12-23T07:06:59+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "nope-20251220/index.md",
+    "title": "Nope",
+    "release_year": "2022",
+    "cover_image": "/letterboxd/movies/nope-20251220/nope.jpg",
+    "watched_date": "2025-12-20T00:00:00+00:00",
+    "date_added": "2025-12-20T08:23:40+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "conclave-20251220/index.md",
+    "title": "Conclave",
+    "release_year": "2024",
+    "cover_image": "/letterboxd/movies/conclave-20251220/conclave.jpg",
+    "watched_date": "2025-12-20T00:00:00+00:00",
+    "date_added": "2025-12-20T15:58:41+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-iron-claw-2023-20251220/index.md",
+    "title": "The Iron Claw",
+    "release_year": "2023",
+    "cover_image": "/letterboxd/movies/the-iron-claw-2023-20251220/the-iron-claw-2023.jpg",
+    "watched_date": "2025-12-20T00:00:00+00:00",
+    "date_added": "2025-12-20T11:09:16+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "to-all-the-boys-ive-loved-before-20251220/index.md",
+    "title": "To All the Boys I've Loved Before",
+    "release_year": "2018",
+    "cover_image": "/letterboxd/movies/to-all-the-boys-ive-loved-before-20251220/to-all-the-boys-ive-loved-before.jpg",
+    "watched_date": "2025-12-20T00:00:00+00:00",
+    "date_added": "2025-12-20T08:22:39+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-hobbit-an-unexpected-journey-20251218/index.md",
+    "title": "The Hobbit: An Unexpected Journey",
+    "release_year": "2012",
+    "cover_image": "/letterboxd/movies/the-hobbit-an-unexpected-journey-20251218/the-hobbit-an-unexpected-journey.jpg",
+    "watched_date": "2025-12-18T00:00:00+00:00",
+    "date_added": "2025-12-18T16:52:55+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "everything-everywhere-all-at-once-20251217/index.md",
+    "title": "Everything Everywhere All at Once",
+    "release_year": "2022",
+    "cover_image": "/letterboxd/movies/everything-everywhere-all-at-once-20251217/everything-everywhere-all-at-once.jpg",
+    "watched_date": "2025-12-17T00:00:00+00:00",
+    "date_added": "2025-12-17T17:18:27+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "chainsaw-man-the-movie-reze-arc-20251217/index.md",
+    "title": "Chainsaw Man – The Movie: Reze Arc",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/chainsaw-man-the-movie-reze-arc-20251217/chainsaw-man-the-movie-reze-arc.jpg",
+    "watched_date": "2025-12-17T00:00:00+00:00",
+    "date_added": "2025-12-17T05:42:24+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-truman-show-20251216/index.md",
+    "title": "The Truman Show",
+    "release_year": "1998",
+    "cover_image": "/letterboxd/movies/the-truman-show-20251216/the-truman-show.jpg",
+    "watched_date": "2025-12-16T00:00:00+00:00",
+    "date_added": "2025-12-16T15:06:07+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-lord-of-the-rings-the-return-of-the-king-20251215/index.md",
+    "title": "The Lord of the Rings: The Return of the King",
+    "release_year": "2003",
+    "cover_image": "/letterboxd/movies/the-lord-of-the-rings-the-return-of-the-king-20251215/the-lord-of-the-rings-the-return-of-the-king.jpg",
+    "watched_date": "2025-12-15T00:00:00+00:00",
+    "date_added": "2025-12-15T17:11:17+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-lord-of-the-rings-the-two-towers-20251214/index.md",
+    "title": "The Lord of the Rings: The Two Towers",
+    "release_year": "2002",
+    "cover_image": "/letterboxd/movies/the-lord-of-the-rings-the-two-towers-20251214/the-lord-of-the-rings-the-two-towers.jpg",
+    "watched_date": "2025-12-14T00:00:00+00:00",
+    "date_added": "2025-12-14T13:46:04+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-lord-of-the-rings-the-fellowship-of-the-ring-20251213/index.md",
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "release_year": "2001",
+    "cover_image": "/letterboxd/movies/the-lord-of-the-rings-the-fellowship-of-the-ring-20251213/the-lord-of-the-rings-the-fellowship-of-the-ring.jpg",
+    "watched_date": "2025-12-13T00:00:00+00:00",
+    "date_added": "2025-12-13T09:32:09+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "american-psycho-20251210/index.md",
+    "title": "American Psycho",
+    "release_year": "2000",
+    "cover_image": "/letterboxd/movies/american-psycho-20251210/american-psycho.jpg",
+    "watched_date": "2025-12-10T00:00:00+00:00",
+    "date_added": "2025-12-10T17:00:30+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "jujutsu-kaisen-0-20251210/index.md",
+    "title": "Jujutsu Kaisen 0",
+    "release_year": "2021",
+    "cover_image": "/letterboxd/movies/jujutsu-kaisen-0-20251210/jujutsu-kaisen-0.jpg",
+    "watched_date": "2025-12-10T00:00:00+00:00",
+    "date_added": "2025-12-23T07:05:54+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "jujutsu-kaisen-20251210/index.md",
+    "title": "JUJUTSU KAISEN",
+    "release_year": "2020",
+    "cover_image": "/letterboxd/movies/jujutsu-kaisen-20251210/jujutsu-kaisen.jpg",
+    "watched_date": "2025-12-10T00:00:00+00:00",
+    "date_added": "2025-12-10T16:59:48+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "fantastic-mr-fox-20251202/index.md",
+    "title": "Fantastic Mr. Fox",
+    "release_year": "2009",
+    "cover_image": "/letterboxd/movies/fantastic-mr-fox-20251202/fantastic-mr-fox.jpg",
+    "watched_date": "2025-12-02T00:00:00+00:00",
+    "date_added": "2025-12-02T12:45:34+00:00",
+    "rewatch": false
+  },
+  {
     "filename": "bottoms-20251021/index.md",
     "title": "Bottoms",
     "release_year": "2023",
     "cover_image": "/letterboxd/movies/bottoms-20251021/bottoms.jpg",
     "watched_date": "2025-10-21T00:00:00+00:00",
     "date_added": "2025-11-06T04:27:15+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "jujutsu-kaisen-hidden-inventory-premature-20251015/index.md",
+    "title": "JUJUTSU KAISEN: Hidden Inventory / Premature Death - The Movie",
+    "release_year": "2025",
+    "cover_image": "/letterboxd/movies/jujutsu-kaisen-hidden-inventory-premature-20251015/jujutsu-kaisen-hidden-inventory-premature.jpg",
+    "watched_date": "2025-10-15T00:00:00+00:00",
+    "date_added": "2025-12-23T07:06:39+00:00",
     "rewatch": false
   },
   {
@@ -54,12 +441,30 @@
     "rewatch": false
   },
   {
+    "filename": "the-phantom-of-the-opera-2016-20250520/index.md",
+    "title": "The Phantom of the Opera",
+    "release_year": "2016",
+    "cover_image": "/letterboxd/movies/the-phantom-of-the-opera-2016-20250520/the-phantom-of-the-opera-2016.jpg",
+    "watched_date": "2025-05-20T00:00:00+00:00",
+    "date_added": "2026-01-04T17:05:50+00:00",
+    "rewatch": false
+  },
+  {
     "filename": "a-minecraft-movie-20250129/index.md",
     "title": "A Minecraft Movie",
     "release_year": "2025",
     "cover_image": "/letterboxd/movies/a-minecraft-movie-20250129/a-minecraft-movie.jpg",
     "watched_date": "2025-01-29T00:00:00+00:00",
     "date_added": "2025-11-06T04:34:11+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "juror-2-20250124/index.md",
+    "title": "Juror #2",
+    "release_year": "2024",
+    "cover_image": "/letterboxd/movies/juror-2-20250124/juror-2.jpg",
+    "watched_date": "2025-01-24T00:00:00+00:00",
+    "date_added": "2025-12-20T16:05:42+00:00",
     "rewatch": false
   },
   {
@@ -96,6 +501,24 @@
     "cover_image": "/letterboxd/movies/guardians-of-the-galaxy-vol-3-20230518/guardians-of-the-galaxy-vol-3.jpg",
     "watched_date": "2023-05-18T00:00:00+00:00",
     "date_added": "2025-11-06T09:13:16+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "us-2019-20230217/index.md",
+    "title": "Us",
+    "release_year": "2019",
+    "cover_image": "/letterboxd/movies/us-2019-20230217/us-2019.jpg",
+    "watched_date": "2023-02-17T00:00:00+00:00",
+    "date_added": "2025-12-20T16:07:07+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "the-menu-2022-20221119/index.md",
+    "title": "The Menu",
+    "release_year": "2022",
+    "cover_image": "/letterboxd/movies/the-menu-2022-20221119/the-menu-2022.jpg",
+    "watched_date": "2022-11-19T00:00:00+00:00",
+    "date_added": "2025-12-20T16:01:08+00:00",
     "rewatch": false
   },
   {
@@ -306,12 +729,39 @@
     "rewatch": false
   },
   {
+    "filename": "300-20061216/index.md",
+    "title": "300",
+    "release_year": "2006",
+    "cover_image": "/letterboxd/movies/300-20061216/300.jpg",
+    "watched_date": "2006-12-16T00:00:00+00:00",
+    "date_added": "2025-12-15T17:06:47+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "cheaper-by-the-dozen-2-20061013/index.md",
+    "title": "Cheaper by the Dozen 2",
+    "release_year": "2005",
+    "cover_image": "/letterboxd/movies/cheaper-by-the-dozen-2-20061013/cheaper-by-the-dozen-2.jpg",
+    "watched_date": "2006-10-13T00:00:00+00:00",
+    "date_added": "2025-12-21T12:34:46+00:00",
+    "rewatch": false
+  },
+  {
     "filename": "cars-20060624/index.md",
     "title": "Cars",
     "release_year": "2006",
     "cover_image": "/letterboxd/movies/cars-20060624/cars.jpg",
     "watched_date": "2006-06-24T00:00:00+00:00",
     "date_added": "2025-11-06T09:21:41+00:00",
+    "rewatch": false
+  },
+  {
+    "filename": "cheaper-by-the-dozen-2003-20040731/index.md",
+    "title": "Cheaper by the Dozen",
+    "release_year": "2003",
+    "cover_image": "/letterboxd/movies/cheaper-by-the-dozen-2003-20040731/cheaper-by-the-dozen-2003.jpg",
+    "watched_date": "2004-07-31T00:00:00+00:00",
+    "date_added": "2025-12-21T12:34:27+00:00",
     "rewatch": false
   }
 ]
