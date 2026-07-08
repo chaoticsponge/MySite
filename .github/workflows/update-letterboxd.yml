@@ -43,3 +43,22 @@ jobs:
 
       - name: Run updater
         run: ./scripts/update_letterboxd_github.sh
+
+      - name: Verify output
+        working-directory: letterboxd
+        run: |
+          echo "Movies:"
+          find movies -name "*.md" | tail -10
+
+          echo ""
+          echo "Index:"
+          ls -l index.json
+
+          echo ""
+          echo "Newest entries:"
+          python3 -c "
+          import json
+          with open('index.json') as f: data=json.load(f)
+          print(len(data))
+          print(data[:5])
+          "
