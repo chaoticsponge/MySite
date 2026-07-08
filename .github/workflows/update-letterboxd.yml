@@ -33,5 +33,13 @@ jobs:
       - name: Make script executable
         run: chmod +x scripts/update_letterboxd_github.sh
 
+      - name: Create .env
+        working-directory: letterboxd
+        run: |
+          cat > .env <<EOF
+          OUTPUT_DIR=movies
+          IMAGE_PATH_DIR=letterboxd/movies
+          EOF
+
       - name: Run updater
         run: ./scripts/update_letterboxd_github.sh
