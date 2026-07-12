@@ -2,7 +2,9 @@
   const dialog = document.getElementById("photo-lightbox");
   if (!dialog || typeof dialog.showModal !== "function") return;
 
-  const photos = Array.from(document.querySelectorAll(".photo-grid img"));
+  const photos = Array.from(document.querySelectorAll(
+    ".photo-grid img, .article-photo img, .article-photo-grid img"
+  ));
   const viewerImage = dialog.querySelector(".lightbox-content");
   const count = dialog.querySelector(".lightbox-count");
   const closeButton = dialog.querySelector(".lightbox-close");
