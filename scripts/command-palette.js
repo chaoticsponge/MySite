@@ -63,6 +63,7 @@
   let visibleItems = [];
   let activeIndex = 0;
   let searchIndexPromise = null;
+  let lastTintedEasterEgg = "";
 
   function readRecent() {
     try {
@@ -162,6 +163,7 @@
       "switch",
       "set",
       "use",
+      "do",
       "page",
       "turn",
       "enable",
@@ -351,6 +353,68 @@
     linkdin: "linkedin",
   };
 
+  const easterEggs = {
+    test: {
+      title: "test",
+      response: "test ☝️🤓",
+    },
+    sudo: {
+      title: "sudo",
+      response: "fat chance",
+    },
+    "rm -rf /": {
+      title: "rm -rf /",
+      response: "nice try",
+    },
+    "hello world": {
+      title: "hello world",
+      response: "hello, visitor",
+    },
+    whoami: {
+      title: "whoami",
+      response: "curious reader",
+    },
+    pwd: {
+      title: "pwd",
+      response: "/home/portfolio",
+    },
+    ls: {
+      title: "ls",
+      response: "about  blog  projects  photos  movies",
+    },
+    404: {
+      title: "404",
+      response: "not found, but close",
+    },
+    matrix: {
+      title: "matrix",
+      response: "follow the green text",
+      effect: "matrix",
+    },
+  };
+
+  function resolveEasterEgg(value) {
+    const signature = commandSignature(value);
+    const eggName = Object.keys(easterEggs).find(function (name) {
+      return commandSignature(name) === signature;
+    });
+    if (!eggName) return null;
+    return {
+      title: easterEggs[eggName].title,
+      subtitle: easterEggs[eggName].response,
+      type: "Easter egg",
+      easterEgg: eggName,
+    };
+  }
+
+  function flashMatrix() {
+    dialog.classList.add("is-matrix");
+    window.clearTimeout(dialog.matrixTimeout);
+    dialog.matrixTimeout = window.setTimeout(function () {
+      dialog.classList.remove("is-matrix");
+    }, 900);
+  }
+
   function aliasesFor(command) {
     return Object.keys(commandAliases)
       .filter(function (alias) {
@@ -429,6 +493,7 @@
   function render() {
     const query = normalize(input.value);
     if (!query) {
+      lastTintedEasterEgg = "";
       const recent = readRecent()
         .filter(function (item) {
           return item.url !== window.location.pathname + window.location.search;
@@ -458,7 +523,17 @@
           )
         );
       });
-      visibleItems = exactCommand.concat(matches, matchingCommands).slice(0, 9);
+      const easterEgg = resolveEasterEgg(query);
+      if (easterEgg?.easterEgg !== lastTintedEasterEgg) {
+        lastTintedEasterEgg = easterEgg?.easterEgg || "";
+        if (easterEggs[easterEgg?.easterEgg]?.effect === "matrix") {
+          flashMatrix();
+        }
+      }
+      visibleItems = exactCommand
+        .concat(easterEgg ? [easterEgg] : [])
+        .concat(matches, matchingCommands)
+        .slice(0, 9);
     }
 
     results.replaceChildren();
@@ -474,6 +549,12 @@
   }
 
   function runItem(item) {
+    if (item.easterEgg && easterEggs[item.easterEgg]) {
+      const egg = easterEggs[item.easterEgg];
+      if (egg.effect === "matrix") flashMatrix();
+      renderMessage(egg.title, egg.response);
+      return;
+    }
     if (item.command && commands[item.command]) {
       commands[item.command]();
       return;
