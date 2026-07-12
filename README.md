@@ -3,8 +3,7 @@
 ## Upload commands:
 
 ```
-python3 /scripts/blog_gen.py
-python3 /scripts/sitemap_gen.py
+python3 scripts/publish.py
 git add . etc.
 flyctl deploy --remote-only
 ```
@@ -45,9 +44,9 @@ Use this before uploading a new article:
 - [ ] Add or update the Article JSON-LD fields: `headline`, `description`, `url`, `author`, `datePublished`, `dateModified`, and `mainEntityOfPage`.
 - [ ] Give every meaningful image descriptive `alt` text and use an empty `alt=""` only for decorative images.
 - [ ] Check that internal links use clean root-relative URLs, for example `/blog/my-article`.
-- [ ] Run `python3 scripts/blog_gen.py` to add the article to the blog page, calculate reading time, add breadcrumbs/byline information, and infer filter topics.
+- [ ] Run `python3 scripts/publish.py` to add the article to the blog page, calculate reading time, add breadcrumbs/byline information, infer filter topics, regenerate the sitemap, and check the diff for whitespace errors.
 - [ ] Confirm the generated article has the expected filter topics on `blogpage.html`.
-- [ ] Run `python3 scripts/sitemap_gen.py` and confirm the clean article URL appears in `sitemap.xml`.
+- [ ] Confirm the clean article URL appears in `sitemap.xml`.
 - [ ] Preview locally with `python3 scripts/dev_server.py` and check desktop, mobile, light mode, and dark mode.
 
 ### Blog filter topics

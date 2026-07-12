@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, noai, noimageai" />
+
+    <title>What Is Blockchain? A Dummies Guide</title>
+    <meta name="description"
+        content="A beginner-friendly guide to blockchain: what it is, how blocks and transactions work, why decentralization matters, and what blockchains are actually useful for." />
+          <link rel="canonical" href="https://emmr.me/educational/what-is-blockchain" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="What Is Blockchain? A Dummies Guide" />
+    <meta property="og:description"
+        content="A beginner-friendly guide to blockchain: what it is, how blocks and transactions work, why decentralization matters, and what blockchains are actually useful for." />
+          <meta property="og:url" content="https://emmr.me/educational/what-is-blockchain" />
+    <meta property="og:site_name" content="emmr.me" />
+
+    <meta name="twitter:title" content="What Is Blockchain? A Dummies Guide" />
+    <meta name="twitter:description"
+        content="A beginner-friendly guide to blockchain: what it is, how blocks and transactions work, why decentralization matters, and what blockchains are actually useful for." />
+
+    <script>
+        (function () {
+            var key = "theme";
+            var stored = "";
+            try {
+                stored = localStorage.getItem(key);
+            } catch (e) { }
+            var prefersDark =
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches;
+            var theme = stored || (prefersDark ? "dark" : "light");
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+
+    <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/globalstyles.css" as="style">
+    <link rel="preload" href="/assets/articlestyle.css" as="style">
+
+    <link rel="stylesheet" href="/assets/fonts.css" />
+    <link rel="stylesheet" href="/assets/globalstyles.css" />
+    <link rel="stylesheet" href="/assets/articlestyle.css" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-196x196.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is Blockchain? A Dummies Guide",
+  "description": "A beginner-friendly guide to blockchain: what it is, how blocks and transactions work, why decentralization matters, and what blockchains are actually useful for.",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez"
+  },
+  "datePublished": "2026-07-12",
+  "dateModified": "2026-07-12",
+  "publisher": {
+    "@type": "Organization",
+    "name": "emmr.me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://emmr.me/educational/what-is-blockchain"
+  }
+}
+</script>
+</head>
+
+<body class="home-page">
+    <nav class="sidebar">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/aboutme">About Me</a></li>
+            <li><a href="/blogpage">Blog</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/photos">Photos</a></li>
+        </ul>
+
+        <div class="social-links">
+            <a href="/" title="Home">
+                <img src="/assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
+            </a>
+
+            <a href="/aboutme" title="About Me">
+                <img src="/assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
+                <span>About Me</span>
+            </a>
+
+            <a href="/blogpage" title="Blog">
+                <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
+            </a>
+
+            <a href="/projects" title="Projects">
+                <img src="/assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
+                <span>Projects</span>
+            </a>
+
+            <a href="/photos" title="Photos">
+                <img src="/assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
+            </a>
+
+            <a href="https://t.me/spongier" target="_blank" title="Telegram">
+                <img src="/assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
+                <span>Telegram</span>
+            </a>
+
+            <a href="https://linkedin.com/in/emmrod19" target="_blank" title="LinkedIn">
+                <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
+                <span>LinkedIn</span>
+            </a>
+        </div>
+    </nav>
+
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+        <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+    </button>
+
+    <div class="page-wrapper">
+        <main class="article-container">
+            <article>
+                                        <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/blogpage">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>Educational</span>
+        </nav>
+
+                <h1>What is the blockchain?</h1>
+                                        <p class="article-meta">By Emmanuel Rodriguez • Published July 12, 2026 • Updated July 12, 2026</p>
+                <h2>A dummies guide</h2>
+                <p>
+                    At its core, a blockchain is a shared record book.
+                </p>
+
+                <p>
+                    Many computers keep a copy of that record book. The network has rules for agreeing on what gets
+                    written into it. Once something is written properly, changing it later should be extremely difficult
+                    and very obvious.
+                </p>
+
+                <h2>Key terms</h2>
+
+                <dl class="definition-list">
+                    <dt>Ledger</dt>
+                    <dd>A record book that stores transactions and data.</dd>
+
+                    <dt>Distributed</dt>
+                    <dd>Many computers hold the same data. If some go offline, the network can still work.</dd>
+
+                    <dt>Node</dt>
+                    <dd>A computer that runs the blockchain software.</dd>
+
+                    <dt>Transaction</dt>
+                    <dd>A request to do something, like send crypto or use a smart contract.</dd>
+
+                    <dt>Block</dt>
+                    <dd>A chunk of transactions. Once accepted, it gets added to the chain.</dd>
+
+                    <dt>Bitcoin block size</dt>
+                    <dd>A single Bitcoin block is small (~1-2MB). The full Bitcoin blockchain is hundreds of gigabytes
+                        because it contains years of blocks.</dd>
+
+                    <dt>Chain</dt>
+                    <dd>Each new block points back to the block before it. They are essentially chained together.</dd>
+
+                    <dt>Hash</dt>
+                    <dd>A fingerprint for data. If the data changes, the fingerprint changes. This is how tampering
+                        becomes obvious.</dd>
+
+                    <dt>Consensus</dt>
+                    <dd>The nodes agreeing on whether an output is valid.</dd>
+
+                    <dt>Gas</dt>
+                    <dd>A transaction fee. You pay gas because the computers processing your transaction need to be
+                        paid.</dd>
+
+                    <dt>Private key</dt>
+                    <dd>Your secret key. If someone gets it, they can spend your funds.</dd>
+
+                    <dt>Public key / address</dt>
+                    <dd>The public part of your wallet. People can send funds to it.</dd>
+
+                    <dt>Smart contract</dt>
+                    <dd>Code that runs on a blockchain. It follows rules automatically, and everyone can view or audit
+                        it.</dd>
+                </dl>
+
+                <h2>Types of proof</h2>
+
+                <dl class="definition-list">
+                    <dt>Proof of work</dt>
+                    <dd>Computers compete to solve a hard puzzle. The first one to solve it gets to add the next block
+                        and earns a reward. Simple version: prove you spent real computing power.</dd>
+
+                    <dt>Proof of stake</dt>
+                    <dd>Validators lock up money in the network. That locked money is their stake. If they lie or cheat,
+                        they can lose some of it. Simple version: put money at risk.</dd>
+
+                    <dt>Proof of history</dt>
+                    <dd>A math-heavy way to derive a unique timestamp. It is more like a clock for the blockchain.
+                        Changing the timestamp means everything new gets out of sync, which makes tampering obvious.
+                    </dd>
+                </dl>
+
+                <h2>Why use one?</h2>
+                <p>
+                    Blockchain makes sense when people need to share records but do not want one central person or
+                    company to control everything.
+                </p>
+
+                <h2>Good for</h2>
+                <ul>
+                    <li>Sending digital money without banks or middlemen.</li>
+                    <li>Tracking ownership of digital assets.</li>
+                    <li>Making records harder to secretly change.</li>
+                    <li>Letting many people check the same history.</li>
+                </ul>
+
+                <h2>Bad at</h2>
+                <ul>
+                    <li>Speed.</li>
+                    <li>Cheap transactions.</li>
+                    <li>Privacy by default.</li>
+                    <li>Fixing mistakes.</li>
+                </ul>
+
+                <h2>Blockchain vs a normal database</h2>
+                <p>
+                    If one company controls the app and everyone trusts that company, a normal database is usually
+                    better. It is faster, cheaper, and easier to fix. Blockchain makes sense when the whole point is
+                    that no single party should be fully in charge.
+                </p>
+
+                <h2>Where does the money come into this?</h2>
+                <p>Interacting with a smart contract requires gas fees. Gas fees are paid in cryptocurrency.</p>
+
+                <p>
+                    Crypto prices are heavily affected by supply and demand. During hype periods, more people want to
+                    use a chain, buy tokens, or interact with smart contracts. That extra demand can push prices up.
+                </p>
+                <p>
+                    For example, when a popular new project launches, everyone may want to try it at the same time. If
+                    the network is busy, people may pay more in fees to get their transactions processed faster.
+                </p>
+
+                <p>
+                    During slower periods, fewer people want to use the chain or buy the token, so prices and fees can
+                    fall again. That is part of what causes crypto volatility.
+                </p>
+
+                <p>
+                    Cryptocurrencies can have limited or unlimited supply depending on the chain. Bitcoin has a fixed
+                    supply, so people often compare it to gold. Like gold, it is also heavily traded. In that case, the
+                    price does not always match the technology itself; it mostly reflects what people are willing to pay
+                    for it.
+                </p>
+                <p>
+                    Ethereum does not have a fixed maximum supply. When some transactions happen, part of the gas fee is
+                    burned, meaning it is removed from circulation. During busy periods, more ETH can be burned than
+                    created, which can put pressure on supply.
+                </p>
+
+                <h2>Stablecoins</h2>
+                <p>
+                    Crypto can be used as digital money, especially when normal banking is difficult. For example, it
+                    can help people send money across borders, support family in restricted countries, or transact when
+                    they cannot easily access a bank account.
+                </p>
+                <p>
+                    <strong>The volatility</strong>, however, makes normal crypto hard to use as everyday money. That is
+                    where stablecoins come in. Stablecoins are tokens designed to stay close to the value of a
+                    real-world currency. For example, USDC and USDT aim to stay close to one US dollar.
+                </p>
+                <p>
+                    That means someone can send or receive crypto without worrying as much about the price suddenly
+                    moving up or down.
+                </p>
+
+                <h2>Conclusion</h2>
+
+                <p>
+                    That is it. The words sound fancy, but the basic idea is relatively simple. Blockchain has genuinely
+                    valid uses when you are not just chasing the money. The problem is that investment hype makes people
+                    try to force blockchain into everything, which is part of why it gets a bad reputation.
+                </p>
+
+                <br>
+                <p>Also read: <a href="/educational/zero-knowledge-proofs">Zero-Knowledge Proofs Explained</a></p>
+            </article>
+        </main>
+    </div>
+
+    <script>
+        document.fonts.ready.then(() => {
+            document.documentElement.style.visibility = '';
+        });
+    </script>
+    <script src="/scripts/theme-toggle.js" defer></script>
+    <script src="/scripts/mobile-nav.js" defer></script>
+    <script src="/scripts/command-palette.js" defer></script>
+    <script src="/scripts/article-reader.js" defer></script>
+    <script data-analytics-src="/scripts/analytics.js">
+        (function () {
+            var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+            if (!analyticsSrc) return;
+            window.addEventListener("load", function () {
+                var script = document.createElement("script");
+                script.src = analyticsSrc;
+                script.async = true;
+                script.defer = true;
+                document.head.appendChild(script);
+            });
+        })();
+    </script>
+</body>
+
+</html>

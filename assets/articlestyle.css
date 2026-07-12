@@ -20,6 +20,22 @@
   font-size: var(--font-size-body);
   font-family: var(--font-body);
 }
+.definition-list {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.38fr) minmax(0, 1fr);
+  gap: 0.65rem 1rem;
+  margin: 1.2rem 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+}
+.definition-list dt {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.definition-list dd {
+  margin: 0;
+  color: var(--color-text);
+}
 .article-hero figcaption,
 .related-articles li {
   font-family: var(--font-body);
@@ -129,6 +145,13 @@
     margin-left: 160px;
     padding: 1rem 1.2rem;
     padding-bottom: 1rem;
+  }
+  .definition-list {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+  .definition-list dd + dt {
+    margin-top: 0.65rem;
   }
 }
 
