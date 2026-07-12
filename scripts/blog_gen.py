@@ -247,6 +247,51 @@ def ensure_article_url_meta(html, path):
     return html
 
 
+def ensure_article_reader_script(html):
+    """Ensure generated article pages load the shared reading-preferences control."""
+    script = '  <script src="/scripts/article-reader.js" defer></script>'
+    if '/scripts/article-reader.js' in html:
+        return html
+    if re.search(r'<script src="/scripts/theme-toggle\.js" defer></script>', html):
+        return re.sub(
+            r'(<script src="/scripts/theme-toggle\.js" defer></script>)',
+            r'\1\n' + script,
+            html,
+            count=1,
+        )
+    return html.replace("</body>", f"{script}\n</body>", 1)
+
+
+def ensure_mobile_nav_script(html):
+    """Ensure generated article pages load the shared responsive navigation."""
+    script = '  <script src="/scripts/mobile-nav.js" defer></script>'
+    if '/scripts/mobile-nav.js' in html:
+        return html
+    if re.search(r'<script src="/scripts/theme-toggle\.js" defer></script>', html):
+        return re.sub(
+            r'(<script src="/scripts/theme-toggle\.js" defer></script>)',
+            r'\1\n' + script,
+            html,
+            count=1,
+        )
+    return html.replace("</body>", f"{script}\n</body>", 1)
+
+
+def ensure_command_palette_script(html):
+    """Ensure generated article pages load the shared command palette."""
+    script = '  <script src="/scripts/command-palette.js" defer></script>'
+    if '/scripts/command-palette.js' in html:
+        return html
+    if re.search(r'<script src="/scripts/mobile-nav\.js" defer></script>', html):
+        return re.sub(
+            r'(<script src="/scripts/mobile-nav\.js" defer></script>)',
+            r'\1\n' + script,
+            html,
+            count=1,
+        )
+    return html.replace("</body>", f"{script}\n</body>", 1)
+
+
 def extract_article_dates(path):
     """Read schema dates from an article file, with filesystem fallback for publish date."""
     html = path.read_text(encoding="utf-8")
@@ -262,6 +307,9 @@ def update_article_page(path):
     html = path.read_text(encoding="utf-8")
     original = html
     html = ensure_article_url_meta(html, path)
+    html = ensure_article_reader_script(html)
+    html = ensure_mobile_nav_script(html)
+    html = ensure_command_palette_script(html)
 
     breadcrumb_html = build_breadcrumb_html(path)
 
@@ -347,12 +395,43 @@ def parse_display_date(date_str, fallback_path):
             pass
     # Fallback to filesystem modification time if parsing fails
     return datetime.fromtimestamp(os.path.getmtime(fallback_path))
+def infer_topics(post_path, title):
+    """Infer shareable filter topics from a post's section, path, and title."""
+    searchable = f"{post_path} {title}".lower()
+    topics = []
+
+    if str(post_path).startswith("travel/"):
+        return ["travel"]
+    if str(post_path).startswith("educational/"):
+        topics.append("educational")
+
+    cybersecurity_terms = (
+        "cybersecurity", "metasploit", "shodan", "tryhackme", "dvwa",
+        "wireshark", "encryption", "security",
+    )
+    blockchain_terms = ("blockchain", "zero-knowledge", "zero knowledge", "zkp")
+    tech_terms = (
+        "git", "gitea", "raspberry", "quantum", "blockchain", "zero-knowledge",
+        "cybersecurity", "metasploit", "shodan", "tryhackme", "dvwa", "wireshark",
+    )
+
+    if any(term in searchable for term in cybersecurity_terms):
+        topics.append("cybersecurity")
+    if any(term in searchable for term in blockchain_terms):
+        topics.append("blockchain")
+    if str(post_path).startswith("blog/") or any(term in searchable for term in tech_terms):
+        topics.append("tech")
+
+    return list(dict.fromkeys(topics)) or ["educational"]
+
+
 def generate_post_entry(post_path, title, date_str, reading_time, icon):
     """Generate HTML list item for a post with the provided icon."""
     meta = f"{date_str} · {reading_time}" if reading_time else date_str
     public_href = to_public_href(post_path)
+    topics = " ".join(infer_topics(post_path, title))
     return f"""
-  <li>
+  <li data-topics="{topics}">
     <a href="{public_href}" class="post-link">
       <img class="post-icon" src="{icon}" alt="Post icon" />
       <span class="post-copy">

@@ -59,6 +59,18 @@ async function renderMovies() {
     `
     )
     .join('');
+
+  const requestedMovie = new URLSearchParams(window.location.search).get('movie');
+  if (requestedMovie) {
+    const target = Array.from(grid.querySelectorAll('.movie-card')).find(card => {
+      const title = card.querySelector('h3');
+      return title && title.textContent.startsWith(`${requestedMovie} (`);
+    });
+    if (target) {
+      target.classList.add('is-target');
+      window.setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', renderMovies);

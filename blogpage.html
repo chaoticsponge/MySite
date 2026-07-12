@@ -120,8 +120,21 @@
   <div class="article-container">
     <h1>Blog</h1>
     <section class="posts-section">
+      <div class="blog-filters" aria-label="Filter blog posts">
+        <label class="blog-search-label" for="blog-search">Search posts</label>
+        <input id="blog-search" class="blog-search" type="search" placeholder="Search articles…" autocomplete="off">
+        <div class="topic-chips" aria-label="Filter by topic">
+          <button class="topic-chip is-active" type="button" data-topic="all" aria-pressed="true">All</button>
+          <button class="topic-chip" type="button" data-topic="cybersecurity" aria-pressed="false">Cybersecurity</button>
+          <button class="topic-chip" type="button" data-topic="tech" aria-pressed="false">Tech</button>
+          <button class="topic-chip" type="button" data-topic="blockchain" aria-pressed="false">Blockchain</button>
+          <button class="topic-chip" type="button" data-topic="educational" aria-pressed="false">Educational</button>
+          <button class="topic-chip" type="button" data-topic="travel" aria-pressed="false">Travel</button>
+        </div>
+        <p class="blog-filter-status" aria-live="polite"></p>
+      </div>
       <ul class="posts-list">
-<li>
+<li data-topics="educational cybersecurity tech">
     <a href="/educational/quantum-computing" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:pencil.svg?color=%23fb8c00" alt="Post icon" />
       <span class="post-copy">
@@ -131,7 +144,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="cybersecurity tech">
     <a href="/blog/metasploit" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38" alt="Post icon" />
       <span class="post-copy">
@@ -141,7 +154,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="cybersecurity tech">
     <a href="/blog/shodan-beginner-guide" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38" alt="Post icon" />
       <span class="post-copy">
@@ -151,7 +164,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="educational">
     <a href="/educational/us-economy-overview" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:pencil.svg?color=%23fb8c00" alt="Post icon" />
       <span class="post-copy">
@@ -161,7 +174,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="educational blockchain tech">
     <a href="/educational/zero-knowledge-proofs" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:pencil.svg?color=%23fb8c00" alt="Post icon" />
       <span class="post-copy">
@@ -171,7 +184,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="travel">
     <a href="/travel/cebu-philippines" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/mdi:airplane.svg?color=%235DADE2" alt="Post icon" />
       <span class="post-copy">
@@ -181,7 +194,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="travel">
     <a href="/travel/perhentian-malaysia" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/mdi:airplane.svg?color=%235DADE2" alt="Post icon" />
       <span class="post-copy">
@@ -191,7 +204,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="cybersecurity tech">
     <a href="/blog/learning-cybersecurity" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38" alt="Post icon" />
       <span class="post-copy">
@@ -201,7 +214,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="tech">
     <a href="/blog/gitea-setup" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38" alt="Post icon" />
       <span class="post-copy">
@@ -211,7 +224,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="cybersecurity tech">
     <a href="/blog/tryhackme-guide" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38" alt="Post icon" />
       <span class="post-copy">
@@ -221,7 +234,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="cybersecurity tech">
     <a href="/blog/dvwa" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38" alt="Post icon" />
       <span class="post-copy">
@@ -231,7 +244,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="cybersecurity tech">
     <a href="/blog/wireshark" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38" alt="Post icon" />
       <span class="post-copy">
@@ -241,7 +254,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="travel">
     <a href="/travel/singapore" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/mdi:airplane.svg?color=%235DADE2" alt="Post icon" />
       <span class="post-copy">
@@ -251,7 +264,7 @@
     </a>
   </li>
 
-<li>
+<li data-topics="tech">
     <a href="/blog/git4dummies" class="post-link">
       <img class="post-icon" src="https://api.iconify.design/tabler:device-laptop.svg?color=%23406B38" alt="Post icon" />
       <span class="post-copy">
@@ -261,12 +274,6 @@
     </a>
   </li>
 </ul>
-
-
-
-      <!-- Add more posts here -->
-
-      </ul>
     </section>
   </div>
 
@@ -285,6 +292,9 @@
   </div>
 
   <script src="/scripts/theme-toggle.js" defer></script>
+  <script src="/scripts/mobile-nav.js" defer></script>
+  <script src="/scripts/command-palette.js" defer></script>
+  <script src="/scripts/blog-filter.js" defer></script>
   <script data-analytics-src="/scripts/analytics.js">
     (function () {
       var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;

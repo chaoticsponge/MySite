@@ -38,6 +38,11 @@ main.movie-gallery {
   box-shadow: 0 10px 24px var(--card-hover-shadow);
 }
 
+.movie-card.is-target {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+}
+
 .movie-card img {
   display: block;
   width: 100%;
