@@ -63,7 +63,6 @@
   let visibleItems = [];
   let activeIndex = 0;
   let searchIndexPromise = null;
-  let lastTintedEasterEgg = "";
 
   function readRecent() {
     try {
@@ -388,8 +387,13 @@
     },
     matrix: {
       title: "matrix",
-      response: "follow the green text",
+      response: "You aren't the chosen one.",
       effect: "matrix",
+    },
+    spongebob: {
+      title: "spongebob",
+      mediaUrl: "https://tenor.com/embed/8958390",
+      autoRender: true,
     },
   };
 
@@ -407,12 +411,12 @@
     };
   }
 
-  function flashMatrix() {
+  function enableMatrixTint() {
     dialog.classList.add("is-matrix");
-    window.clearTimeout(dialog.matrixTimeout);
-    dialog.matrixTimeout = window.setTimeout(function () {
-      dialog.classList.remove("is-matrix");
-    }, 900);
+  }
+
+  function clearMatrixTint() {
+    dialog.classList.remove("is-matrix");
   }
 
   function aliasesFor(command) {
@@ -457,6 +461,22 @@
     results.innerHTML = `<div class="command-empty"><strong>${title}</strong><span>${subtitle}</span></div>`;
   }
 
+  function renderEasterEggMedia(egg) {
+    const wrapper = document.createElement("div");
+    const frame = document.createElement("iframe");
+
+    visibleItems = [];
+    wrapper.className = "command-empty command-easter-egg";
+    frame.className = "command-easter-egg-frame";
+    frame.src = egg.mediaUrl;
+    frame.title = `${egg.title} GIF`;
+    frame.loading = "lazy";
+    frame.allow = "autoplay; encrypted-media; picture-in-picture";
+
+    wrapper.append(frame);
+    results.replaceChildren(wrapper);
+  }
+
   function resultButton(item, index) {
     const button = document.createElement("button");
     button.type = "button";
@@ -493,7 +513,7 @@
   function render() {
     const query = normalize(input.value);
     if (!query) {
-      lastTintedEasterEgg = "";
+      clearMatrixTint();
       const recent = readRecent()
         .filter(function (item) {
           return item.url !== window.location.pathname + window.location.search;
@@ -524,11 +544,15 @@
         );
       });
       const easterEgg = resolveEasterEgg(query);
-      if (easterEgg?.easterEgg !== lastTintedEasterEgg) {
-        lastTintedEasterEgg = easterEgg?.easterEgg || "";
-        if (easterEggs[easterEgg?.easterEgg]?.effect === "matrix") {
-          flashMatrix();
-        }
+      if (easterEggs[easterEgg?.easterEgg]?.effect === "matrix") {
+        enableMatrixTint();
+      } else {
+        clearMatrixTint();
+      }
+      if (easterEggs[easterEgg?.easterEgg]?.autoRender) {
+        activeIndex = 0;
+        renderEasterEggMedia(easterEggs[easterEgg.easterEgg]);
+        return;
       }
       visibleItems = exactCommand
         .concat(easterEgg ? [easterEgg] : [])
@@ -551,7 +575,11 @@
   function runItem(item) {
     if (item.easterEgg && easterEggs[item.easterEgg]) {
       const egg = easterEggs[item.easterEgg];
-      if (egg.effect === "matrix") flashMatrix();
+      if (egg.effect === "matrix") enableMatrixTint();
+      if (egg.mediaUrl) {
+        renderEasterEggMedia(egg);
+        return;
+      }
       renderMessage(egg.title, egg.response);
       return;
     }
@@ -582,7 +610,10 @@
   }
 
   function closePalette() {
-    if (dialog.open) dialog.close();
+    if (dialog.open) {
+      clearMatrixTint();
+      dialog.close();
+    }
   }
 
   input.addEventListener("input", render);
