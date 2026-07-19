@@ -16,6 +16,7 @@ venv/
 ## Build outputs
 dist/
 build/
+googlefeedback/
 
 ## Logs
 *.log

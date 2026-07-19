@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://emmr.me/</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -14,31 +14,31 @@
   </url>
   <url>
     <loc>https://emmr.me/blog/dvwa</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/blog/git4dummies</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/blog/gitea-setup</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/blog/learning-cybersecurity</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/blog/metasploit</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -50,19 +50,19 @@
   </url>
   <url>
     <loc>https://emmr.me/blog/tryhackme-guide</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/blog/wireshark</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/blogpage</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -92,43 +92,43 @@
   </url>
   <url>
     <loc>https://emmr.me/movies/movies</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/photos</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/projects</loc>
-    <lastmod>2026-07-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://emmr.me/travel/Singapore_DJ-POV</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/travel/cebu-philippines</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/travel/perhentian-malaysia</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://emmr.me/travel/singapore</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emmr.me/travel/singapore-dj-pov</loc>
+    <lastmod>2026-07-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

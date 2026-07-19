@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# Preserve the old mixed-case Singapore article URL after its canonical rename.
+RewriteRule ^travel/Singapore_DJ-POV(?:\.html)?$ /travel/singapore-dj-pov [R=301,L]
+
 # Serve favicon from its folder when browsers request /favicon.ico directly
 RewriteRule ^favicon\.ico$ /favicon/favicon.ico [L]
 
