@@ -1,0 +1,317 @@
+.about-page {
+  --about-surface: color-mix(in srgb, var(--color-bg) 94%, var(--color-text));
+  --about-muted-surface: color-mix(in srgb, var(--color-bg) 97%, var(--color-text));
+  max-width: 920px;
+  padding-bottom: 5rem;
+}
+
+.about-intro {
+  padding: 3.5rem 0 2.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-page .about-eyebrow,
+.about-page .section-kicker {
+  margin: 0 0 0.35rem;
+  color: var(--color-meta);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.about-page .about-intro h1 {
+  margin: 0;
+  font-size: clamp(3.2rem, 8vw, 6.2rem);
+  letter-spacing: -0.04em;
+}
+
+.about-page .about-lede {
+  max-width: 760px;
+  margin: 1.25rem 0 0;
+  color: var(--color-text);
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.about-jump-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.75rem;
+}
+
+.about-jump-links a {
+  padding: 0.42rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.about-jump-links a:hover,
+.about-jump-links a:focus-visible {
+  background: var(--color-hover-bg);
+  text-decoration: none;
+}
+
+.about-section {
+  scroll-margin-top: 2rem;
+  margin: 0;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-page .section-heading {
+  margin-bottom: 1.4rem;
+}
+
+.about-page .section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+}
+
+.about-page .section-heading > p:last-child:not(.section-kicker) {
+  margin: 0.45rem 0 0;
+  color: var(--color-meta);
+  font-size: 0.88rem;
+}
+
+.about-page .services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.about-page .service-card {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 0.85rem;
+  align-items: start;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--about-muted-surface);
+}
+
+.about-page .service-icon {
+  width: 28px;
+  height: 28px;
+  margin: 0.1rem 0 0;
+  border-radius: 0;
+  filter: var(--service-icon-filter);
+}
+
+.about-page .service-content h3,
+.about-page .service-content p {
+  margin: 0;
+}
+
+.about-page .service-content h3 {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.about-page .service-content p {
+  margin-top: 0.25rem;
+  color: var(--color-meta);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.experience-list {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.about-page .timeline-entry {
+  margin: 0;
+}
+
+.about-page .timeline-entry::before {
+  content: none;
+}
+
+.timeline-content,
+.education-card,
+.activity-disclosure,
+.skills-disclosure {
+  background: transparent;
+}
+
+.about-page details > summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 2rem;
+  align-items: center;
+  min-height: 3.25rem;
+  box-sizing: border-box;
+  padding: 0.8rem 2.75rem 0.8rem 0;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+}
+
+.about-page details > summary::marker,
+.about-page details > summary::-webkit-details-marker {
+  content: "";
+  display: none;
+}
+
+.about-page details > summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--color-meta);
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.about-page details[open] > summary::after {
+  content: "−";
+}
+
+.about-page details > summary > span {
+  display: grid;
+  min-width: 0;
+  row-gap: 0.3rem;
+}
+
+.about-page details > summary strong {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.35;
+}
+
+.about-page details > summary small,
+.about-page details > summary time {
+  display: block;
+  color: var(--color-meta);
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.about-page details > summary time {
+  min-width: 3.25rem;
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+
+.timeline-content > p,
+.education-card > p {
+  max-width: 720px;
+  margin: 0;
+  padding: 0 2.5rem 1.15rem 0;
+  color: var(--color-meta);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.education-card,
+.activity-disclosure,
+.skills-disclosure {
+  display: block;
+  padding: 0 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--about-muted-surface);
+}
+
+.about-page .volunteering {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  padding: 0 0 0.9rem;
+}
+
+.about-page .volunteering p {
+  margin: 0;
+  padding: 0.6rem 0.75rem 0.6rem 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.8rem;
+  position: relative;
+}
+
+.about-page .volunteering p::before {
+  content: "";
+  position: absolute;
+  top: 1.05rem;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-meta);
+}
+
+.about-page .skills-section,
+.about-page.skills-section {
+  max-width: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.about-page .skills-container {
+  gap: 0.45rem;
+  padding: 0 0 1rem;
+}
+
+.about-page .skill-tag {
+  padding: 0.34rem 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 0.72rem;
+  font-weight: 500;
+  white-space: normal;
+}
+
+.about-page .skill-tag:hover {
+  background: var(--color-hover-bg);
+  transform: none;
+}
+
+@media (max-width: 700px) {
+  .about-intro {
+    padding-top: 2rem;
+  }
+
+  .about-page .services-grid,
+  .about-page .volunteering {
+    grid-template-columns: 1fr;
+  }
+
+  .about-section {
+    padding: 2.25rem 0;
+  }
+
+  .timeline-content summary,
+  .education-card summary {
+    column-gap: 1.25rem;
+  }
+
+  .timeline-content > p,
+  .education-card > p {
+    padding-right: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page *,
+  .about-page *::before,
+  .about-page *::after {
+    scroll-behavior: auto;
+    transition: none !important;
+  }
+}

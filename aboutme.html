@@ -45,9 +45,11 @@
   <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/globalstyles.css" as="style">
   <link rel="preload" href="/assets/style.css" as="style">
+  <link rel="preload" href="/assets/about.css?v=3" as="style">
   <link rel="stylesheet" href="/assets/fonts.css" />
   <link rel="stylesheet" href="/assets/globalstyles.css" />
   <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/assets/about.css?v=3" />
 
   <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -120,15 +122,22 @@
   </button>
 
   <!-- Main Content -->
-  <div class="article-container">
-    <h1>About me</h1>
-    <p>
-      I'm a fresh graduate with experience in vulnerability assessments, penetration testing, IT support
-      (Windows/MacOS/Linux), and audio-visual systems. I'm familiar with Apache, Cloudflare, D1 storage, Workers, and
-      Docker. I
-      enjoy learning new things and taking on challenges that push me out of my comfort zone.
-    </p>
-    <section class="services-section">
+  <main class="article-container about-page">
+    <header class="about-intro">
+      <p class="about-eyebrow">Profile</p>
+      <p class="about-lede">
+        I'm a fresh graduate with experience in vulnerability assessments, penetration testing, IT support
+        (Windows/MacOS/Linux), and audio-visual systems. I'm familiar with Apache, Cloudflare, D1 storage, Workers, and
+        Docker. I
+        enjoy learning new things and taking on challenges that push me out of my comfort zone.
+      </p>
+    </header>
+
+    <section class="services-section about-section" id="focus" aria-labelledby="focus-title">
+      <div class="section-heading">
+        <p class="section-kicker">What I do</p>
+        <h2 id="focus-title">Areas of focus</h2>
+      </div>
       <div class="services-grid">
 
         <div class="service-card">
@@ -166,160 +175,188 @@
       </div>
     </section>
 
-    <h1 id="experience">Experience</h1>
-    <section class="timeline">
-      <div class="timeline-entry" data-year="2025">
-        <div class="timeline-content">
-          <h3>Paramount Assure (Dubai) - VA/PT Consulting Services</h3>
-          <p>Allowed me to apply VA/PT knowledge in
-            real-world scenarios and write official documentation and reports.</p>
-        </div>
+    <section class="about-section" id="experience" aria-labelledby="experience-title">
+      <div class="section-heading">
+        <p class="section-kicker">Past roles</p>
       </div>
+      <div class="experience-list">
+        <div class="timeline-entry" data-year="2025">
+          <details class="timeline-content">
+            <summary><span><strong>VA/PT Consulting Services</strong><small>Paramount Assure ·
+                  Dubai</small></span><time>2025</time></summary>
+            <p>Allowed me to apply VA/PT knowledge in
+              real-world scenarios and write official documentation and reports.</p>
+          </details>
+        </div>
 
-      <div class="timeline-entry" data-year="2024">
-        <div class="timeline-content">
-          <h3>Vega Global (Malaysia) - AV/IT Engineer</h3>
-          <p> Led AI and Copliot demos for clients and in research and implementation of digital signage
-            solutions. The day-to-day AV/IT tasks included troubleshooting technical issues, setting up equipment for
-            events, and providing user support.</p>
+        <div class="timeline-entry" data-year="2024">
+          <details class="timeline-content">
+            <summary><span><strong>AV/IT Engineer</strong><small>Vega Global · Malaysia</small></span><time>2024</time>
+            </summary>
+            <p> Led AI and Copliot demos for clients and in research and implementation of digital signage
+              solutions. The day-to-day AV/IT tasks included troubleshooting technical issues, setting up equipment for
+              events, and providing user support.</p>
+          </details>
         </div>
-      </div>
 
-      <div class="timeline-entry" data-year="2023">
-        <div class="timeline-content">
-          <h3>Sunway Blockchain Club - Design Lead</h3>
-          <p>I got to learn a lot of everything like mentoring, public speaking, networking, coding on the blockchain,
-            how cryptocurrencies work and so much more. It also took me to Token2049 SG, met
-            a
-            <strong>TON</strong> of amazing people and a lot more.
-          </p>
+        <div class="timeline-entry" data-year="2023">
+          <details class="timeline-content">
+            <summary><span><strong>Design Lead</strong><small>Sunway Blockchain Club</small></span><time>2023</time>
+            </summary>
+            <p>I got to learn a lot of everything like mentoring, public speaking, networking, coding on the blockchain,
+              how cryptocurrencies work and so much more. It also took me to Token2049 SG, met
+              a
+              <strong>TON</strong> of amazing people and a lot more.
+            </p>
+          </details>
         </div>
-      </div>
 
-      <div class="timeline-entry" data-year="2023">
-        <div class="timeline-content">
-          <h3>TedXSunwayUniversity - IT Director</h3>
-          <p>Took care of the website, hosting, email domains etc. and A/V setup for events. Allowed me to use my
-            project skills in a real-world setting and gain valuable experience in managing technical aspects of
-            events.
-          </p>
+        <div class="timeline-entry" data-year="2023">
+          <details class="timeline-content">
+            <summary><span><strong>IT Director</strong><small>TedXSunwayUniversity</small></span><time>2023</time>
+            </summary>
+            <p>Took care of the website, hosting, email domains etc. and A/V setup for events. Allowed me to use my
+              project skills in a real-world setting and gain valuable experience in managing technical aspects of
+              events.
+            </p>
+          </details>
         </div>
-      </div>
 
-      <div class="timeline-entry" data-year="2023">
-        <div class="timeline-content">
-          <h3>Sunway Social Innovators Club - Secretary</h3>
-          <p>Coordinated club meetings, outreach, emails and communications; worked closely with executive members to
-            plan social impact initiatives and the day-to-day tasks.</p>
+        <div class="timeline-entry" data-year="2023">
+          <details class="timeline-content">
+            <summary><span><strong>Secretary</strong><small>Sunway Social Innovators
+                  Club</small></span><time>2023</time></summary>
+            <p>Coordinated club meetings, outreach, emails and communications; worked closely with executive members to
+              plan social impact initiatives and the day-to-day tasks.</p>
+          </details>
         </div>
-      </div>
 
-      <div class="timeline-entry" data-year="2023">
-        <div class="timeline-content">
-          <h3>Sunway Mathematics Club - IT Director</h3>
-          <p>Handled technical logistics and setup for mathematics-related events and competitions.</p>
+        <div class="timeline-entry" data-year="2023">
+          <details class="timeline-content">
+            <summary><span><strong>IT Director</strong><small>Sunway Mathematics Club</small></span><time>2023</time>
+            </summary>
+            <p>Handled technical logistics and setup for mathematics-related events and competitions.</p>
+          </details>
+        </div>
+        <div class="timeline-entry" data-year="2021">
+          <details class="timeline-content">
+            <summary><span><strong>Student Cohort Representative</strong></span><time>2021</time></summary>
+            <p>Acted as a bridge between student body and University management. Addressed Student concerns and queries.
+            </p>
+          </details>
         </div>
       </div>
-      <div class="timeline-entry" data-year="2021">
-        <div class="timeline-content">
-          <h3>Student Cohort Representative</h3>
-          <p>Acted as a bridge between student body and University management. Addressed Student concerns and queries.
-          </p>
-        </div>
-      </div>
-
-      <div class="timeline-entry" data-year="2021">
-        <div class="timeline-content">
-          <h3>Sunway & Lancaster University</h3>
-          <p>Bachelors in BSc. IT (Hons) Cybersecurity which is a fancy way of saying I learned a lot about protecting
-            computers and networks from attacks. It was a great experience that gave me a solid foundation in
-            cybersecurity principles and practices.</p>
-        </div>
     </section>
 
-    <h2>Additional Activities</h2>
-    <section class="volunteering">
-      <p>Token2049 Participant</p>
-      <p>ImagineHack Participant</p>
-      <p>Malaysia Blockchain Week Partner</p>
-      <p>E-Waste Recycling Center Volunteer</p>
-      <p>Make It Challenge 2024 Hackathon Organizer</p>
-      <p>IOV2055 Volunteer</p>
-      <p>'Noobathon' hackathon training Organizer</p>
-      <p>Sunway University Cultural Exchange Host</p>
-      <p>SU Convocation Guest Ambassador</p>
-      <p>SU Open Day Ambassador</p>
-      <p>SU Student Council Nominee</p>
-
-    </section>
-    <section class="skills-section">
-      <h2>Skills</h2>
-      <div class="skills-container">
-        <span class="skill-tag">Wireshark</span>
-        <span class="skill-tag">Nessus Software</span>
-        <span class="skill-tag">Cisco Packet Tracer</span>
-        <span class="skill-tag">Cisco Technologies</span>
-        <span class="skill-tag">Leadership & Mentoring</span>
-        <span class="skill-tag">Project Coordination</span>
-        <span class="skill-tag">Ethical Hacking</span>
-        <span class="skill-tag">Microsoft Office 365</span>
-        <span class="skill-tag">Git Version Control System</span>
-        <span class="skill-tag">Hardware Maintenance</span>
-        <span class="skill-tag">Critical Thinking</span>
-        <span class="skill-tag">Cross-Team Communication</span>
-        <span class="skill-tag">Threat Analysis</span>
-        <span class="skill-tag">SOP Creation</span>
-        <span class="skill-tag">Technical Documentation</span>
-        <span class="skill-tag">Metasploit</span>
-        <span class="skill-tag">SNORT</span>
-        <span class="skill-tag">Apache</span>
-        <span class="skill-tag">Problem Solving</span>
-        <span class="skill-tag">VPN</span>
-        <span class="skill-tag">Git</span>
-        <span class="skill-tag">Cloudflare</span>
-        <span class="skill-tag">Report Writing</span>
-        <span class="skill-tag">NMap Software</span>
-        <span class="skill-tag">Burp Suite</span>
-        <span class="skill-tag">Bash Scripting</span>
-        <span class="skill-tag">Python Programming</span>
-        <span class="skill-tag">Command-Line Interface</span>
-        <span class="skill-tag">Linux Server Administration</span>
-        <span class="skill-tag">Kali Linux</span>
-        <span class="skill-tag">Handling Customer Feedback</span>
-        <span class="skill-tag">Team Building</span>
-        <span class="skill-tag">Team Work</span>
+    <section class="about-section" id="education" aria-labelledby="education-title">
+      <div class="section-heading">
+        <p class="section-kicker">Academic background</p>
       </div>
+      <details class="education-card" open>
+        <summary><span><strong>Sunway &amp; Lancaster University</strong><small>BSc. IT (Hons)
+              Cybersecurity</small></span><time>2021</time></summary>
+        <p>Bachelors in BSc. IT (Hons) Cybersecurity which is a fancy way of saying I learned a lot about protecting
+          computers and networks from attacks. It was a great experience that gave me a solid foundation in
+          cybersecurity principles and practices.</p>
+      </details>
     </section>
-    <!-- Font fade-in -->
-    <script>
-      document.fonts.ready.then(() => {
-        document.documentElement.style.visibility = '';
-      });
-    </script>
 
-    <div class="leaf-fall" aria-hidden="true">
-      <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
-      <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
-      <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
-      <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
-    </div>
+    <section class="about-section" id="activities" aria-labelledby="activities-title">
+      <div class="section-heading">
+        <p class="section-kicker">Beyond work</p>
+      </div>
+      <details class="activity-disclosure" open>
+        <summary><span><strong>Community, events &amp; leadership</strong><small>11 activities</small></span></summary>
+        <div class="volunteering">
+          <p>Token2049 Participant</p>
+          <p>ImagineHack Participant</p>
+          <p>Malaysia Blockchain Week Partner</p>
+          <p>E-Waste Recycling Center Volunteer</p>
+          <p>Make It Challenge 2024 Hackathon Organizer</p>
+          <p>IOV2055 Volunteer</p>
+          <p>'Noobathon' hackathon training Organizer</p>
+          <p>Sunway University Cultural Exchange Host</p>
+          <p>SU Convocation Guest Ambassador</p>
+          <p>SU Open Day Ambassador</p>
+          <p>SU Student Council Nominee</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="skills-section about-section" id="skills" aria-labelledby="skills-title">
+      <div class="section-heading">
+        <p class="section-kicker">Toolkit/Skill</p>
+      </div>
+      <details class="skills-disclosure" open>
+        <summary><span><strong>Technical &amp; professional toolkit</strong><small>33 skills</small></span></summary>
+        <div class="skills-container">
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">Nessus Software</span>
+          <span class="skill-tag">Cisco Packet Tracer</span>
+          <span class="skill-tag">Cisco Technologies</span>
+          <span class="skill-tag">Leadership & Mentoring</span>
+          <span class="skill-tag">Project Coordination</span>
+          <span class="skill-tag">Ethical Hacking</span>
+          <span class="skill-tag">Microsoft Office 365</span>
+          <span class="skill-tag">Git Version Control System</span>
+          <span class="skill-tag">Hardware Maintenance</span>
+          <span class="skill-tag">Critical Thinking</span>
+          <span class="skill-tag">Cross-Team Communication</span>
+          <span class="skill-tag">Threat Analysis</span>
+          <span class="skill-tag">SOP Creation</span>
+          <span class="skill-tag">Technical Documentation</span>
+          <span class="skill-tag">Metasploit</span>
+          <span class="skill-tag">SNORT</span>
+          <span class="skill-tag">Apache</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">VPN</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Cloudflare</span>
+          <span class="skill-tag">Report Writing</span>
+          <span class="skill-tag">NMap Software</span>
+          <span class="skill-tag">Burp Suite</span>
+          <span class="skill-tag">Bash Scripting</span>
+          <span class="skill-tag">Python Programming</span>
+          <span class="skill-tag">Command-Line Interface</span>
+          <span class="skill-tag">Linux Server Administration</span>
+          <span class="skill-tag">Kali Linux</span>
+          <span class="skill-tag">Handling Customer Feedback</span>
+          <span class="skill-tag">Team Building</span>
+          <span class="skill-tag">Team Work</span>
+        </div>
+      </details>
+    </section>
+  </main>
+  <!-- Font fade-in -->
+  <script>
+    document.fonts.ready.then(() => {
+      document.documentElement.style.visibility = '';
+    });
+  </script>
+
+  <div class="leaf-fall" aria-hidden="true">
+    <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
+    <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
+    <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
+    <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
+  </div>
 
   <script src="/scripts/theme-toggle.js" defer></script>
   <script src="/scripts/mobile-nav.js" defer></script>
   <script src="/scripts/command-palette.js" defer></script>
-        <script data-analytics-src="/scripts/analytics.js">
-      (function () {
-        var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
-        if (!analyticsSrc) return;
-        window.addEventListener("load", function () {
-          var script = document.createElement("script");
-          script.src = analyticsSrc;
-          script.async = true;
-          script.defer = true;
-          document.head.appendChild(script);
-        });
-      })();
-    </script>
+  <script data-analytics-src="/scripts/analytics.js">
+    (function () {
+      var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+      if (!analyticsSrc) return;
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.src = analyticsSrc;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      });
+    })();
+  </script>
 
 </body>
 
