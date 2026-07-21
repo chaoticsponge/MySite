@@ -1,3 +1,7 @@
+.about-page-body {
+  background-image: none;
+}
+
 .about-page {
   --about-surface: color-mix(in srgb, var(--color-bg) 94%, var(--color-text));
   --about-muted-surface: color-mix(in srgb, var(--color-bg) 97%, var(--color-text));
