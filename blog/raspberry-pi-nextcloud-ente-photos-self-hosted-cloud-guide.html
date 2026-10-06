@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow, noai, noimageai" />
+
+  <title>Self-Hosted Raspberry Pi Cloud: Nextcloud + Ente Photos Setup Guide</title>
+  <meta name="description" content="Build a private Raspberry Pi cloud with Nextcloud and Ente Photos using encrypted storage, Docker, Caddy HTTPS, automated backups, and security hardening." />
+  <meta name="author" content="Emmanuel Rodriguez" />
+        <link rel="canonical" href="https://emmr.me/blog/raspberry-pi-nextcloud-ente-photos-self-hosted-cloud-guide" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Self-Hosted Raspberry Pi Cloud: Nextcloud + Ente Photos Setup Guide" />
+  <meta property="og:description" content="Build a private Raspberry Pi cloud with Nextcloud and Ente Photos using encrypted storage, Docker, Caddy HTTPS, automated backups, and security hardening." />
+        <meta property="og:url" content="https://emmr.me/blog/raspberry-pi-nextcloud-ente-photos-self-hosted-cloud-guide" />
+  <meta property="og:site_name" content="emmr.me" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Self-Hosted Raspberry Pi Cloud: Nextcloud + Ente Photos Setup Guide" />
+  <meta name="twitter:description" content="Build a private Raspberry Pi cloud with Nextcloud and Ente Photos using encrypted storage, Docker, Caddy HTTPS, automated backups, and security hardening." />
+
+  <script>
+    (function () {
+      var key = "theme";
+      var stored = "";
+      try {
+        stored = localStorage.getItem(key);
+      } catch (e) {}
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+
+  <link rel="preload" href="/assets/fonts/Montserrat-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/PlayfairDisplay-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/globalstyles.css" as="style">
+  <link rel="preload" href="/assets/articlestyle.css" as="style">
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/assets/globalstyles.css" />
+  <link rel="stylesheet" href="/assets/articlestyle.css" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-196x196.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Self-Hosted Raspberry Pi Cloud: Nextcloud + Ente Photos Setup Guide",
+  "description": "Build a private Raspberry Pi cloud with Nextcloud and Ente Photos using encrypted storage, Docker, Caddy HTTPS, automated backups, and security hardening.",
+  "url": "https://emmr.me/blog/raspberry-pi-nextcloud-ente-photos-self-hosted-cloud-guide",
+  "author": {
+    "@type": "Person",
+    "name": "Emmanuel Rodriguez"
+  },
+  "datePublished": "2026-10-06",
+  "dateModified": "2026-10-06",
+  "publisher": {
+    "@type": "Organization",
+    "name": "emmr.me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://emmr.me/blog/raspberry-pi-nextcloud-ente-photos-self-hosted-cloud-guide"
+  }
+}
+  </script>
+</head>
+
+<body class="home-page">
+  <nav class="sidebar">
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/aboutme">About Me</a></li>
+      <li><a href="/blogpage">Blog</a></li>
+      <li><a href="/projects">Projects</a></li>
+      <li><a href="/photos">Photos</a></li>
+    </ul>
+
+    <div class="social-links">
+      <a href="/" title="Home">
+        <img src="/assets/icons/home-rounded.svg" alt="Home icon" width="24" height="24" />
+      </a>
+      <a href="/aboutme" title="About Me">
+        <img src="/assets/icons/account-box.svg" alt="About Me icon" width="24" height="24" />
+        <span>About Me</span>
+      </a>
+      <a href="/blogpage" title="Blog">
+        <img src="/assets/icons/edit-square-rounded.svg" alt="Blog icon" width="24" height="24" />
+      </a>
+      <a href="/projects" title="Projects">
+        <img src="/assets/icons/github-box.svg" alt="Projects icon" width="24" height="24" />
+        <span>Projects</span>
+      </a>
+      <a href="/photos" title="Photos">
+        <img src="/assets/icons/android-camera.svg" alt="Photos icon" width="24" height="24" />
+      </a>
+      <a href="https://t.me/spongier" target="_blank" rel="noopener noreferrer" title="Telegram">
+        <img src="/assets/icons/telegram.svg" alt="Telegram icon" width="24" height="24" />
+        <span>Telegram</span>
+      </a>
+      <a href="https://linkedin.com/in/emmrod19" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <img src="/assets/icons/linkedin.svg" alt="LinkedIn icon" width="24" height="24" />
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </nav>
+
+  <button class="theme-toggle" type="button" aria-label="Toggle theme">
+    <img data-theme-icon="light" src="/assets/icons/sunny-loop.svg" alt="Light theme icon">
+    <img data-theme-icon="dark" src="/assets/icons/moon-rising-twotone-alt-loop.svg" alt="Dark theme icon">
+  </button>
+
+  <div class="page-wrapper">
+    <main class="article-container">
+      <article>
+                                <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/blogpage">Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>Tech</span>
+        </nav>
+
+<h1>Self-Hosted Raspberry Pi Cloud: Nextcloud + Ente Photos Setup Guide</h1>
+                        <p class="article-meta">By Emmanuel Rodriguez • Published October 6, 2026 • Updated October 6, 2026</p>
+<p>This guide builds a private Raspberry Pi cloud with encrypted storage, Nextcloud for files, Ente Photos for encrypted photo backup, Caddy HTTPS, Cloudflare DNS, No-IP DDNS, automated backups, and basic hardening.</p>
+<blockquote>
+<p><strong>Security note:</strong> this setup exposes web services to the internet. Use strong passwords, enable 2FA, keep off-device backups, and never expose database, MinIO, or app container ports directly.</p>
+</blockquote>
+<h2>Requirements</h2>
+<ul>
+<li>Raspberry Pi 4 or newer, preferably 8 GB RAM.</li>
+<li>64-bit Raspberry Pi OS Lite.</li>
+<li>Two external HDDs or SSDs.</li>
+<li>Reliable power supply and powered USB storage if needed.</li>
+<li>Router access for DHCP reservation and port forwarding.</li>
+<li>Domain name managed in Cloudflare.</li>
+<li>No-IP hostname for dynamic DNS.</li>
+<li>Resend account for SMTP email.</li>
+<li>Computer with SSH access to the Pi.</li>
+</ul>
+<h2>What You Will Build</h2>
+<ul>
+<li>LUKS2 encryption on both drives.</li>
+<li>One Btrfs storage pool at <code>/srv/secure</code>.</li>
+<li>Nextcloud with PostgreSQL.</li>
+<li>Ente Photos with Museum, PostgreSQL, and local MinIO-compatible storage.</li>
+<li>Caddy reverse proxy with automatic HTTPS.</li>
+<li>Cloudflare DNS-only CNAME records.</li>
+<li>No-IP dynamic DNS client.</li>
+<li>UFW firewall and SSH key-only login.</li>
+<li>Nextcloud cron jobs.</li>
+<li>Daily database/config backups.</li>
+<li>Monthly Btrfs scrub.</li>
+</ul>
+<h2>Before You Start</h2>
+<p>Replace every value in angle brackets before running commands.</p>
+<pre class="mac-terminal"><code class="language-text">&lt;PI_USER&gt;                 Linux admin user on the Raspberry Pi
+&lt;PI_LAN_IP&gt;               Static LAN IP, for example 192.168.1.50
+&lt;DOMAIN&gt;                  Your domain, for example example.com
+&lt;DDNS_HOSTNAME&gt;           Your No-IP hostname
+&lt;ADMIN_EMAIL&gt;             Email used for HTTPS certificate notices
+&lt;NEXTCLOUD_ADMIN_USER&gt;    Nextcloud admin username
+&lt;ENTE_OWNER_EMAIL&gt;        First Ente owner email address
+&lt;DISK_A&gt;                  First whole disk, for example /dev/sda
+&lt;DISK_B&gt;                  Second whole disk, for example /dev/sdb
+</code></pre>
+<p>The final public URLs will be:</p>
+<pre class="mac-terminal"><code class="language-text">https://nextcloud.&lt;DOMAIN&gt;
+https://photos.&lt;DOMAIN&gt;
+https://ente-api.&lt;DOMAIN&gt;
+https://albums.&lt;DOMAIN&gt;
+</code></pre>
+<p>In your router:</p>
+<ul>
+<li>Reserve <code>&lt;PI_LAN_IP&gt;</code> for the Raspberry Pi.</li>
+<li>Forward public TCP <code>80</code> to <code>&lt;PI_LAN_IP&gt;:80</code>.</li>
+<li>Forward public TCP <code>443</code> to <code>&lt;PI_LAN_IP&gt;:443</code>.</li>
+<li>Do not forward PostgreSQL, MinIO, Nextcloud <code>8080</code>, Ente <code>8082</code>, or web app ports.</li>
+</ul>
+<p>This guide follows the current public docs for the <a href="https://github.com/nextcloud/docker">Nextcloud Docker image</a>, <a href="https://ente.com/help/self-hosting/">Ente self-hosting</a>, and <a href="https://caddyserver.com/docs/quick-starts/https">Caddy HTTPS</a>.</p>
+<h2>1. Update Raspberry Pi OS</h2>
+<p>Run this on the Pi.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo apt update
+sudo apt full-upgrade -y
+sudo apt install -y \
+  btrfs-progs ca-certificates cryptsetup curl git jq openssl smartmontools \
+  unattended-upgrades ufw util-linux
+sudo reboot
+</code></pre>
+<p>Reconnect after reboot.</p>
+<pre class="mac-terminal"><code class="language-bash">ssh &lt;PI_USER&gt;@&lt;PI_LAN_IP&gt;
+</code></pre>
+<h2>2. Set Up SSH Keys</h2>
+<p>Run this on your computer, not on the Pi.</p>
+<pre class="mac-terminal"><code class="language-bash">ssh-keygen -t ed25519 -a 100
+ssh-copy-id &lt;PI_USER&gt;@&lt;PI_LAN_IP&gt;
+ssh &lt;PI_USER&gt;@&lt;PI_LAN_IP&gt;
+</code></pre>
+<p>Confirm SSH key login works before disabling password login later.</p>
+<h2>3. Save Your Main Settings</h2>
+<p>Run this on the Pi and replace the values first.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo install -d -m 700 /etc/private-cloud
+sudo tee /etc/private-cloud/private-cloud.env &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+PI_USER=&lt;PI_USER&gt;
+PI_LAN_IP=&lt;PI_LAN_IP&gt;
+DOMAIN=&lt;DOMAIN&gt;
+DDNS_HOSTNAME=&lt;DDNS_HOSTNAME&gt;
+ADMIN_EMAIL=&lt;ADMIN_EMAIL&gt;
+NEXTCLOUD_ADMIN_USER=&lt;NEXTCLOUD_ADMIN_USER&gt;
+ENTE_OWNER_EMAIL=&lt;ENTE_OWNER_EMAIL&gt;
+DISK_A=&lt;DISK_A&gt;
+DISK_B=&lt;DISK_B&gt;
+EOF
+sudo chmod 600 /etc/private-cloud/private-cloud.env
+</code></pre>
+<p>Load these values in every new shell.</p>
+<pre class="mac-terminal"><code class="language-bash">set -a
+. /etc/private-cloud/private-cloud.env
+set +a
+</code></pre>
+<h2>4. Install Docker</h2>
+<p>Install Docker from Docker&#39;s Debian repository.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg \
+  -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+. /etc/os-release
+echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $VERSION_CODENAME stable&quot; | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt;/dev/null
+
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io \
+  docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+sudo usermod -aG docker &quot;$PI_USER&quot;
+</code></pre>
+<p>Log out and back in, then verify Docker.</p>
+<pre class="mac-terminal"><code class="language-bash">docker version
+docker compose version
+</code></pre>
+<blockquote>
+<p>Users in the <code>docker</code> group effectively have root access. Only add trusted admins.</p>
+</blockquote>
+<h2>5. Prepare Encrypted Storage</h2>
+<p>This erases both selected disks. Check the disk names carefully.</p>
+<pre class="mac-terminal"><code class="language-bash">lsblk -o NAME,PATH,SIZE,TYPE,FSTYPE,LABEL,MOUNTPOINTS,MODEL,SERIAL,TRAN
+</code></pre>
+<p>Unmount and wipe old filesystem signatures.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo umount &quot;${DISK_A}&quot;?* 2&gt;/dev/null || true
+sudo umount &quot;${DISK_B}&quot;?* 2&gt;/dev/null || true
+sudo wipefs --all &quot;$DISK_A&quot;
+sudo wipefs --all &quot;$DISK_B&quot;
+</code></pre>
+<p>Create one encrypted LUKS2 container per disk.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo cryptsetup luksFormat --type luks2 &quot;$DISK_A&quot;
+sudo cryptsetup open &quot;$DISK_A&quot; secure_a
+
+sudo cryptsetup luksFormat --type luks2 &quot;$DISK_B&quot;
+sudo cryptsetup open &quot;$DISK_B&quot; secure_b
+</code></pre>
+<p>Create a Btrfs pool. Data uses combined capacity; metadata is mirrored.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo mkfs.btrfs -f -d single -m raid1 -L secure_pool \
+  /dev/mapper/secure_a /dev/mapper/secure_b
+
+sudo mkdir -p /srv/secure
+sudo mount -o noatime,compress=zstd:3 LABEL=secure_pool /srv/secure
+sudo mkdir -p \
+  /srv/secure/nextcloud/{html,db} \
+  /srv/secure/ente \
+  /srv/secure/backups/{db,config,logs}
+sudo chmod 700 /srv/secure /srv/secure/backups
+</code></pre>
+<blockquote>
+<p>This pool is encrypted, but it is not a backup. If either drive fails, data loss is possible. Keep off-device backups.</p>
+</blockquote>
+<p>Configure unlock and mount on boot.</p>
+<pre class="mac-terminal"><code class="language-bash">DISK_A_UUID=$(sudo blkid -s UUID -o value &quot;$DISK_A&quot;)
+DISK_B_UUID=$(sudo blkid -s UUID -o value &quot;$DISK_B&quot;)
+POOL_UUID=$(sudo blkid -s UUID -o value /dev/mapper/secure_a)
+
+printf &#39;secure_a UUID=%s none luks,nofail\n&#39; &quot;$DISK_A_UUID&quot; | \
+  sudo tee -a /etc/crypttab
+printf &#39;secure_b UUID=%s none luks,nofail\n&#39; &quot;$DISK_B_UUID&quot; | \
+  sudo tee -a /etc/crypttab
+printf &#39;UUID=%s /srv/secure btrfs defaults,noatime,compress=zstd:3,nofail 0 0\n&#39; &quot;$POOL_UUID&quot; | \
+  sudo tee -a /etc/fstab
+
+sudo chmod 600 /etc/crypttab
+findmnt /srv/secure
+sudo btrfs filesystem usage /srv/secure
+</code></pre>
+<p>After each reboot, unlock both drives locally and verify the mount before starting containers.</p>
+<pre class="mac-terminal"><code class="language-bash">findmnt /srv/secure
+</code></pre>
+<h2>6. Deploy Nextcloud</h2>
+<p>Generate credentials and save them in a root-only environment file.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo install -d -m 700 /srv/secure/nextcloud
+sudo tee /srv/secure/nextcloud/.env &gt;/dev/null &lt;&lt;EOF
+POSTGRES_DB=nextcloud
+POSTGRES_USER=nextcloud
+POSTGRES_PASSWORD=$(openssl rand -base64 32)
+POSTGRES_HOST=db
+NEXTCLOUD_ADMIN_USER=$NEXTCLOUD_ADMIN_USER
+NEXTCLOUD_ADMIN_PASSWORD=$(openssl rand -base64 32)
+NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.$DOMAIN
+OVERWRITECLIURL=https://nextcloud.$DOMAIN
+OVERWRITEPROTOCOL=https
+TRUSTED_PROXIES=127.0.0.1 172.16.0.0/12
+APACHE_DISABLE_REWRITE_IP=1
+EOF
+sudo chmod 600 /srv/secure/nextcloud/.env
+</code></pre>
+<p>Create the Compose file.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /srv/secure/nextcloud/compose.yaml &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+services:
+  db:
+    image: postgres:18
+    container_name: nextcloud-db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PGDATA: /var/lib/postgresql/18/docker
+    volumes:
+      - ./db:/var/lib/postgresql
+
+  app:
+    image: nextcloud:apache
+    container_name: nextcloud
+    restart: unless-stopped
+    depends_on:
+      - db
+    env_file: .env
+    ports:
+      - &quot;127.0.0.1:8080:80&quot;
+    volumes:
+      - ./html:/var/www/html
+EOF
+
+sudo chmod 600 /srv/secure/nextcloud/compose.yaml
+cd /srv/secure/nextcloud
+sudo docker compose up -d
+</code></pre>
+<p>Wait for the containers, then configure Nextcloud.</p>
+<pre class="mac-terminal"><code class="language-bash">until sudo docker exec nextcloud-db pg_isready -U nextcloud -d nextcloud; do sleep 2; done
+
+sudo docker exec -u www-data nextcloud php occ background:cron
+sudo docker exec -u www-data nextcloud php occ config:app:set files default_quota \
+  --value=&#39;200 GB&#39;
+sudo docker exec -u www-data nextcloud php occ user:setting \
+  &quot;$NEXTCLOUD_ADMIN_USER&quot; files quota none
+</code></pre>
+<p>Enable audit logging and the end-to-end encryption app.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo docker exec -u www-data nextcloud php occ app:enable admin_audit
+sudo docker exec -u www-data nextcloud php occ app:install end_to_end_encryption
+sudo docker exec -u www-data nextcloud php occ app:enable end_to_end_encryption
+sudo docker exec -u www-data nextcloud php occ app:disable encryption 2&gt;/dev/null || true
+</code></pre>
+<p>Show the generated admin password when you are ready to log in.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo awk -F= &#39;/^NEXTCLOUD_ADMIN_PASSWORD=/{print $2}&#39; /srv/secure/nextcloud/.env
+</code></pre>
+<p>Create family users in the web admin page after HTTPS is working. Use <code>Default quota</code>, enable 2FA, and initialize E2EE from an official Nextcloud client.</p>
+<h2>7. Deploy Ente Photos</h2>
+<p>Create the Ente directory and credentials.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo install -d -m 700 /srv/secure/ente/{data,minio,postgres}
+sudo tee /srv/secure/ente/.env &gt;/dev/null &lt;&lt;EOF
+PG_PASSWORD=$(openssl rand -base64 32)
+MINIO_USER=minio-$(openssl rand -hex 8)
+MINIO_PASSWORD=$(openssl rand -base64 32)
+ENTE_KEY=$(openssl rand -base64 32)
+ENTE_HASH=$(openssl rand -base64 64 | tr -d &#39;\n&#39;)
+ENTE_JWT=$(openssl rand -base64 32 | tr &#39;+/&#39; &#39;-_&#39; | tr -d &#39;\n&#39;)
+DOMAIN=$DOMAIN
+EOF
+sudo chmod 600 /srv/secure/ente/.env
+</code></pre>
+<p>Create the Compose file.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /srv/secure/ente/compose.yaml &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+services:
+  museum:
+    image: ghcr.io/ente/server:latest
+    container_name: ente-museum
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_started
+    ports:
+      - &quot;127.0.0.1:8082:8080&quot;
+    volumes:
+      - ./museum.yaml:/museum.yaml:ro
+      - ./data:/data
+
+  socat:
+    image: alpine/socat:latest
+    container_name: ente-socat
+    restart: unless-stopped
+    network_mode: service:museum
+    depends_on:
+      - museum
+    command: &quot;TCP-LISTEN:3200,fork,reuseaddr TCP:minio:3200&quot;
+
+  web:
+    image: ghcr.io/ente/web:latest
+    container_name: ente-web
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      ENTE_API_ORIGIN: https://ente-api.${DOMAIN}
+      ENTE_ALBUMS_ORIGIN: https://albums.${DOMAIN}
+    ports:
+      - &quot;127.0.0.1:3000:3000&quot;
+      - &quot;127.0.0.1:3002:3002&quot;
+
+  postgres:
+    image: postgres:15
+    container_name: ente-postgres
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ente_db
+    healthcheck:
+      test: [&quot;CMD-SHELL&quot;, &quot;pg_isready -q -d ente_db -U pguser&quot;]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  minio:
+    image: minio/minio:latest
+    container_name: ente-minio
+    restart: unless-stopped
+    env_file: .env
+    command: server /data --address &quot;:3200&quot; --console-address &quot;:3201&quot;
+    ports:
+      - &quot;127.0.0.1:3200:3200&quot;
+    volumes:
+      - ./minio:/data
+EOF
+
+sudo chmod 600 /srv/secure/ente/compose.yaml
+</code></pre>
+<p>Create <code>museum.yaml</code>.</p>
+<pre class="mac-terminal"><code class="language-bash">set -a
+. /srv/secure/ente/.env
+set +a
+
+sudo tee /srv/secure/ente/museum.yaml &gt;/dev/null &lt;&lt;EOF
+db:
+  host: postgres
+  port: 5432
+  name: ente_db
+  user: pguser
+  password: $PG_PASSWORD
+
+s3:
+  are_local_buckets: true
+  use_path_style_urls: true
+  b2-eu-cen:
+    key: $MINIO_USER
+    secret: $MINIO_PASSWORD
+    endpoint: localhost:3200
+    region: eu-central-2
+    bucket: b2-eu-cen
+  wasabi-eu-central-2-v3:
+    key: $MINIO_USER
+    secret: $MINIO_PASSWORD
+    endpoint: localhost:3200
+    region: eu-central-2
+    bucket: wasabi-eu-central-2-v3
+    compliance: false
+  scw-eu-fr-v3:
+    key: $MINIO_USER
+    secret: $MINIO_PASSWORD
+    endpoint: localhost:3200
+    region: eu-central-2
+    bucket: scw-eu-fr-v3
+
+apps:
+  public-albums: https://albums.$DOMAIN
+  accounts: https://photos.$DOMAIN
+
+key:
+  encryption: $ENTE_KEY
+  hash: $ENTE_HASH
+
+jwt:
+  secret: $ENTE_JWT
+EOF
+
+sudo chmod 600 /srv/secure/ente/museum.yaml
+</code></pre>
+<p>Start PostgreSQL and MinIO, create the required buckets, then start Ente.</p>
+<pre class="mac-terminal"><code class="language-bash">cd /srv/secure/ente
+sudo docker compose up -d postgres minio
+sleep 20
+
+sudo docker run --rm --network container:ente-minio \
+  --entrypoint /bin/sh \
+  --env-file /srv/secure/ente/.env \
+  minio/mc -c &#39;
+    mc alias set local http://localhost:3200 &quot;$MINIO_USER&quot; &quot;$MINIO_PASSWORD&quot;
+    mc mb --ignore-existing local/b2-eu-cen
+    mc mb --ignore-existing local/wasabi-eu-central-2-v3
+    mc mb --ignore-existing local/scw-eu-fr-v3
+  &#39;
+
+sudo docker compose up -d
+sudo docker compose ps
+curl -fsS http://127.0.0.1:8082/ping
+</code></pre>
+<p>Create the first Ente account at <code>https://photos.&lt;DOMAIN&gt;</code> after Caddy is configured. Use <code>&lt;ENTE_OWNER_EMAIL&gt;</code> for the owner account and save the recovery key offline.</p>
+<p>After the owner account exists, get its ID.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo docker exec ente-postgres psql -U pguser -d ente_db \
+  -c &#39;SELECT user_id, email, creation_time FROM users ORDER BY creation_time;&#39;
+</code></pre>
+<p>Add the owner ID to <code>/srv/secure/ente/museum.yaml</code>.</p>
+<pre class="mac-terminal"><code class="language-yaml">internal:
+  admins:
+    - &lt;ENTE_OWNER_USER_ID&gt;
+</code></pre>
+<p>Apply the change.</p>
+<pre class="mac-terminal"><code class="language-bash">cd /srv/secure/ente
+sudo docker compose up -d --force-recreate museum socat
+</code></pre>
+<p>Once all family accounts are registered and verified, disable new Ente registrations in <code>/srv/secure/ente/museum.yaml</code>.</p>
+<p>Edit the file.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo nano /srv/secure/ente/museum.yaml
+</code></pre>
+<p>Add or update this block.</p>
+<pre class="mac-terminal"><code class="language-yaml">internal:
+  admins:
+    - &lt;ENTE_OWNER_USER_ID&gt;
+  disable-registration: true
+</code></pre>
+<p>Recreate only the Ente API container and check its logs.</p>
+<pre class="mac-terminal"><code class="language-bash">cd /srv/secure/ente
+sudo docker compose up -d --force-recreate museum
+sudo docker compose logs --tail=50 museum
+</code></pre>
+<p>Existing users can continue signing in and uploading, but new account creation will be rejected.</p>
+<p>To temporarily reopen registration, change the same block.</p>
+<pre class="mac-terminal"><code class="language-yaml">internal:
+  admins:
+    - &lt;ENTE_OWNER_USER_ID&gt;
+  disable-registration: false
+</code></pre>
+<p>Recreate <code>museum</code> again. Keep registration closed normally and open it only briefly while adding a known family member.</p>
+<h2>8. Set Ente Storage Quotas</h2>
+<p>Back up Ente&#39;s database before changing quotas.</p>
+<pre class="mac-terminal"><code class="language-bash">STAMP=$(date -u +%Y%m%dT%H%M%SZ)
+sudo docker exec ente-postgres pg_dump -U pguser -d ente_db | \
+  gzip | sudo tee &quot;/srv/secure/backups/db/ente-before-quota-${STAMP}.sql.gz&quot; &gt;/dev/null
+</code></pre>
+<p>Give the owner effectively unlimited storage. Ente represents this as 100 TB.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo docker exec ente-postgres psql -v ON_ERROR_STOP=1 -U pguser -d ente_db \
+  -c &quot;INSERT INTO storage_bonus (bonus_id,type,user_id,storage,valid_till)
+      VALUES (&#39;self-hosted-owner-unlimited&#39;,&#39;ADD_ON_SUPPORT&#39;,&lt;ENTE_OWNER_USER_ID&gt;,109951162777600,0)
+      ON CONFLICT (bonus_id) DO UPDATE SET
+      storage=EXCLUDED.storage,
+      valid_till=EXCLUDED.valid_till,
+      is_revoked=false,
+      revoke_reason=NULL;&quot;
+</code></pre>
+<p>Give each family member 200 GB total. Replace <code>&lt;USER_ID&gt;</code>.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo docker exec ente-postgres psql -v ON_ERROR_STOP=1 -U pguser -d ente_db \
+  -c &quot;INSERT INTO storage_bonus (bonus_id,type,user_id,storage,valid_till)
+      VALUES (&#39;family-default-&lt;USER_ID&gt;&#39;,&#39;ADD_ON_SUPPORT&#39;,&lt;USER_ID&gt;,204010946560,0)
+      ON CONFLICT (bonus_id) DO UPDATE SET
+      storage=EXCLUDED.storage,
+      valid_till=EXCLUDED.valid_till,
+      is_revoked=false,
+      revoke_reason=NULL;&quot;
+</code></pre>
+<p>For future accounts, install an hourly quota increase job.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /etc/private-cloud/ente-family-quotas.sql &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+INSERT INTO storage_bonus (bonus_id, type, user_id, storage, valid_till)
+VALUES (
+  &#39;self-hosted-owner-unlimited&#39;,
+  &#39;ADD_ON_SUPPORT&#39;,
+  &lt;ENTE_OWNER_USER_ID&gt;,
+  109951162777600,
+  0
+)
+ON CONFLICT (bonus_id) DO UPDATE SET
+  storage = EXCLUDED.storage,
+  valid_till = EXCLUDED.valid_till,
+  is_revoked = false,
+  revoke_reason = NULL;
+
+INSERT INTO storage_bonus (bonus_id, type, user_id, storage, valid_till)
+SELECT
+  &#39;family-default-&#39; || s.user_id,
+  &#39;ADD_ON_SUPPORT&#39;,
+  s.user_id,
+  GREATEST(214748364800 - s.storage, 0),
+  0
+FROM subscriptions s
+WHERE s.user_id &lt;&gt; &lt;ENTE_OWNER_USER_ID&gt;
+ON CONFLICT (bonus_id) DO UPDATE SET
+  storage = EXCLUDED.storage,
+  valid_till = EXCLUDED.valid_till,
+  is_revoked = false,
+  revoke_reason = NULL;
+EOF
+
+sudo chmod 600 /etc/private-cloud/ente-family-quotas.sql
+
+sudo tee /etc/cron.d/ente-family-quotas &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+17 * * * * root /usr/bin/docker exec -i ente-postgres psql -v ON_ERROR_STOP=1 -U pguser -d ente_db &lt; /etc/private-cloud/ente-family-quotas.sql &gt;/dev/null 2&gt;&amp;1
+EOF
+
+sudo chmod 644 /etc/cron.d/ente-family-quotas
+sudo docker exec -i ente-postgres psql -v ON_ERROR_STOP=1 -U pguser \
+  -d ente_db &lt; /etc/private-cloud/ente-family-quotas.sql
+</code></pre>
+<h2>9. Configure No-IP Dynamic DNS</h2>
+<p>Create restricted No-IP credentials, then store them on the Pi.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo install -m 600 /dev/null /etc/private-cloud/noip-duc.env
+sudo tee /etc/private-cloud/noip-duc.env &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+NOIP_USERNAME=&lt;NOIP_DDNS_KEY_USERNAME&gt;
+NOIP_PASSWORD=&lt;NOIP_DDNS_KEY_PASSWORD&gt;
+NOIP_HOSTNAMES=all.ddnskey.com
+EOF
+sudo chmod 600 /etc/private-cloud/noip-duc.env
+</code></pre>
+<p>Run the No-IP client with a locked-down container profile.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo docker pull ghcr.io/noipcom/noip-duc:3.3.0
+sudo docker run -d \
+  --name noip-duc \
+  --restart unless-stopped \
+  --read-only \
+  --cap-drop ALL \
+  --security-opt no-new-privileges:true \
+  --env-file /etc/private-cloud/noip-duc.env \
+  ghcr.io/noipcom/noip-duc:3.3.0
+
+sudo docker logs noip-duc
+</code></pre>
+<h2>10. Configure Cloudflare DNS</h2>
+<p>Create a Cloudflare API token limited to DNS edit access for <code>&lt;DOMAIN&gt;</code>. Then run this.</p>
+<pre class="mac-terminal"><code class="language-bash">read -rsp &#39;Cloudflare API token: &#39; CLOUDFLARE_API_TOKEN
+echo
+export CLOUDFLARE_API_TOKEN
+
+ZONE_ID=$(curl -fsS \
+  -H &quot;Authorization: Bearer $CLOUDFLARE_API_TOKEN&quot; \
+  &quot;https://api.cloudflare.com/client/v4/zones?name=$DOMAIN&quot; | \
+  jq -r &#39;.result[0].id&#39;)
+
+for NAME in nextcloud photos ente-api albums; do
+  RECORD_ID=$(curl -fsS \
+    -H &quot;Authorization: Bearer $CLOUDFLARE_API_TOKEN&quot; \
+    &quot;https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records?type=CNAME&amp;name=${NAME}.${DOMAIN}&quot; | \
+    jq -r &#39;.result[0].id // empty&#39;)
+
+  DATA=$(jq -n \
+    --arg name &quot;${NAME}.${DOMAIN}&quot; \
+    --arg content &quot;$DDNS_HOSTNAME&quot; \
+    &#39;{type:&quot;CNAME&quot;, name:$name, content:$content, ttl:120, proxied:false}&#39;)
+
+  if [ -n &quot;$RECORD_ID&quot; ]; then
+    curl -fsS -X PUT \
+      -H &quot;Authorization: Bearer $CLOUDFLARE_API_TOKEN&quot; \
+      -H &#39;Content-Type: application/json&#39; \
+      --data &quot;$DATA&quot; \
+      &quot;https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records/${RECORD_ID}&quot; &gt;/dev/null
+  else
+    curl -fsS -X POST \
+      -H &quot;Authorization: Bearer $CLOUDFLARE_API_TOKEN&quot; \
+      -H &#39;Content-Type: application/json&#39; \
+      --data &quot;$DATA&quot; \
+      &quot;https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records&quot; &gt;/dev/null
+  fi
+done
+
+unset CLOUDFLARE_API_TOKEN ZONE_ID RECORD_ID DATA
+</code></pre>
+<p>Cloudflare must show <strong>DNS only</strong>, not proxied. Caddy will handle HTTPS directly.</p>
+<h2>11. Configure Caddy HTTPS</h2>
+<p>Install Caddy.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo apt install -y caddy
+</code></pre>
+<p>Create the Caddyfile.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /etc/caddy/Caddyfile &gt;/dev/null &lt;&lt;EOF
+{
+    email $ADMIN_EMAIL
+}
+
+nextcloud.$DOMAIN {
+    reverse_proxy 127.0.0.1:8080
+    header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;
+}
+
+photos.$DOMAIN {
+    reverse_proxy 127.0.0.1:3000
+    header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;
+}
+
+ente-api.$DOMAIN {
+    reverse_proxy 127.0.0.1:8082
+    header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;
+}
+
+albums.$DOMAIN {
+    reverse_proxy 127.0.0.1:3002
+    header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot;
+}
+EOF
+
+sudo caddy fmt --overwrite /etc/caddy/Caddyfile
+sudo caddy validate --config /etc/caddy/Caddyfile
+sudo systemctl enable --now caddy
+sudo systemctl reload caddy
+</code></pre>
+<p>Test from outside your home network.</p>
+<pre class="mac-terminal"><code class="language-bash">curl -I &quot;https://nextcloud.$DOMAIN&quot;
+curl -I &quot;https://photos.$DOMAIN&quot;
+curl -I &quot;https://ente-api.$DOMAIN/ping&quot;
+curl -I &quot;https://albums.$DOMAIN&quot;
+</code></pre>
+<h2>12. Configure Email</h2>
+<p>In Resend, verify <code>notify.&lt;DOMAIN&gt;</code> as a sending domain. Add the DNS records Resend provides.</p>
+<p>Add SMTP to Ente.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee -a /srv/secure/ente/museum.yaml &gt;/dev/null &lt;&lt;EOF
+
+smtp:
+  host: smtp.resend.com
+  port: 465
+  username: resend
+  password: &lt;ENTE_RESEND_API_KEY&gt;
+  email: ente@notify.$DOMAIN
+  sender-name: Ente
+  encryption: tls
+EOF
+
+sudo chmod 600 /srv/secure/ente/museum.yaml
+cd /srv/secure/ente
+sudo docker compose restart museum
+</code></pre>
+<p>Configure Nextcloud SMTP without placing the API key in shell history.</p>
+<pre class="mac-terminal"><code class="language-bash">read -rsp &#39;Nextcloud Resend API key: &#39; NEXTCLOUD_SMTP_PASSWORD
+echo
+
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_smtpmode --value=smtp
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_smtphost --value=smtp.resend.com
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_smtpport --type=integer --value=587
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_smtpsecure --value=tls
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_smtpauth --type=boolean --value=true
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_smtpname --value=resend
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_smtppassword \
+  --value=&quot;$NEXTCLOUD_SMTP_PASSWORD&quot;
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_from_address --value=nextcloud
+sudo docker exec -u www-data nextcloud php occ config:system:set mail_domain --value=&quot;notify.$DOMAIN&quot;
+unset NEXTCLOUD_SMTP_PASSWORD
+</code></pre>
+<p>Send test emails from both apps before inviting family members.</p>
+<h2>13. Enable Firewall and SSH Hardening</h2>
+<p>Allow only SSH, HTTP, and HTTPS.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+sudo ufw --force enable
+sudo ufw status verbose
+</code></pre>
+<p>Keep a second SSH session open, then disable password login.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /etc/ssh/sshd_config.d/90-private-cloud-hardening.conf &gt;/dev/null &lt;&lt;EOF
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PubkeyAuthentication yes
+X11Forwarding no
+MaxAuthTries 3
+AllowUsers $PI_USER
+EOF
+
+sudo sshd -t
+sudo systemctl reload ssh
+</code></pre>
+<p>Enable unattended security updates.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /etc/apt/apt.conf.d/52private-cloud-unattended-upgrades &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+APT::Periodic::Update-Package-Lists &quot;1&quot;;
+APT::Periodic::Unattended-Upgrade &quot;1&quot;;
+APT::Periodic::AutocleanInterval &quot;7&quot;;
+Unattended-Upgrade::Automatic-Reboot &quot;false&quot;;
+EOF
+
+sudo systemctl enable --now unattended-upgrades.service
+</code></pre>
+<h2>14. Schedule Nextcloud Cron</h2>
+<p>Nextcloud needs background jobs for cleanup, notifications, and file processing.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /etc/systemd/system/nextcloud-cron.service &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+[Unit]
+Description=Run Nextcloud cron.php
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker exec -u www-data nextcloud php -f /var/www/html/cron.php
+EOF
+
+sudo tee /etc/systemd/system/nextcloud-cron.timer &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+[Unit]
+Description=Run Nextcloud cron every five minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now nextcloud-cron.timer
+</code></pre>
+<h2>15. Configure Backups</h2>
+<p>These local backups help with bad upgrades and accidental changes. They do not replace off-device backups.</p>
+<p>Install the backup script.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /usr/local/sbin/private-cloud-backup &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+#!/usr/bin/env bash
+set -euo pipefail
+
+stamp=$(date -u +%Y%m%dT%H%M%SZ)
+base=/srv/secure/backups
+install -d -m 700 &quot;$base/db&quot; &quot;$base/config&quot; &quot;$base/logs&quot;
+exec &gt; &gt;(tee -a &quot;$base/logs/backup-$stamp.log&quot;) 2&gt;&amp;1
+
+docker exec nextcloud-db pg_dumpall -U nextcloud | gzip -9 &gt; \
+  &quot;$base/db/nextcloud-postgres-$stamp.sql.gz&quot;
+docker exec ente-postgres pg_dumpall -U pguser | gzip -9 &gt; \
+  &quot;$base/db/ente-postgres-$stamp.sql.gz&quot;
+
+tar -czf &quot;$base/config/private-cloud-config-$stamp.tar.gz&quot; \
+  /etc/caddy/Caddyfile \
+  /etc/crypttab \
+  /etc/fstab \
+  /etc/private-cloud \
+  /srv/secure/nextcloud/compose.yaml \
+  /srv/secure/nextcloud/.env \
+  /srv/secure/ente/compose.yaml \
+  /srv/secure/ente/.env \
+  /srv/secure/ente/museum.yaml
+
+find &quot;$base/db&quot; -type f -name &#39;*.sql.gz&#39; -mtime +14 -delete
+find &quot;$base/config&quot; -type f -name &#39;*.tar.gz&#39; -mtime +30 -delete
+find &quot;$base/logs&quot; -type f -name &#39;*.log&#39; -mtime +30 -delete
+EOF
+
+sudo chmod 700 /usr/local/sbin/private-cloud-backup
+</code></pre>
+<p>Create the systemd service and timer.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /etc/systemd/system/private-cloud-backup.service &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+[Unit]
+Description=Back up private cloud databases and configuration
+Requires=docker.service srv-secure.mount
+After=docker.service srv-secure.mount
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/private-cloud-backup
+EOF
+
+sudo tee /etc/systemd/system/private-cloud-backup.timer &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+[Unit]
+Description=Daily private cloud backup
+
+[Timer]
+OnCalendar=*-*-* 03:15:00
+RandomizedDelaySec=20min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now private-cloud-backup.timer
+sudo systemctl start private-cloud-backup.service
+sudo systemctl status private-cloud-backup.service --no-pager
+</code></pre>
+<p>Copy encrypted backups off the Pi. For Ente, back up PostgreSQL, MinIO data, and <code>museum.yaml</code> together. Ente object storage alone is not enough to restore accounts.</p>
+<h2>16. Schedule Monthly Btrfs Scrub</h2>
+<p>Btrfs scrub checks stored data and metadata for disk errors.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo tee /etc/systemd/system/private-cloud-scrub.service &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+[Unit]
+Description=Scrub private cloud Btrfs pool
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/btrfs scrub start -Bd /srv/secure
+EOF
+
+sudo tee /etc/systemd/system/private-cloud-scrub.timer &gt;/dev/null &lt;&lt;&#39;EOF&#39;
+[Unit]
+Description=Monthly private cloud Btrfs scrub
+
+[Timer]
+OnCalendar=monthly
+RandomizedDelaySec=2h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now private-cloud-scrub.timer
+</code></pre>
+<h2>17. Final Verification</h2>
+<p>Run these checks.</p>
+<pre class="mac-terminal"><code class="language-bash">findmnt /srv/secure
+sudo cryptsetup status secure_a
+sudo cryptsetup status secure_b
+sudo btrfs filesystem usage /srv/secure
+
+sudo docker ps --format &#39;table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}&#39;
+sudo ss -lntup
+sudo ufw status verbose
+sudo systemctl --no-pager --full status caddy docker
+sudo systemctl list-timers --all | grep -E &#39;nextcloud|private-cloud&#39;
+
+sudo docker exec -u www-data nextcloud php occ status
+curl -fsS &quot;https://ente-api.$DOMAIN/ping&quot;
+</code></pre>
+<p>Confirm this before relying on the setup:</p>
+<ul>
+<li>Only ports <code>22</code>, <code>80</code>, and <code>443</code> are publicly reachable.</li>
+<li>App container ports bind to <code>127.0.0.1</code>.</li>
+<li>Cloudflare records are DNS-only.</li>
+<li>Nextcloud opens at <code>https://nextcloud.&lt;DOMAIN&gt;</code>.</li>
+<li>Ente Photos opens at <code>https://photos.&lt;DOMAIN&gt;</code>.</li>
+<li>Ente mobile apps use <code>https://ente-api.&lt;DOMAIN&gt;</code> as the custom server.</li>
+<li>Nextcloud family users have 200 GB quota.</li>
+<li>Ente family users have 200 GB quota.</li>
+<li>Admin/owner accounts are unlimited.</li>
+<li>Every account has a unique password and 2FA if needed.</li>
+<li>Nextcloud E2EE recovery mnemonic is stored offline.</li>
+<li>Ente recovery keys are stored offline.</li>
+<li>Backups have been copied off the Pi and test-restored.</li>
+</ul>
+<h2>18. Routine Maintenance</h2>
+<p>Back up databases before updates.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo systemctl start private-cloud-backup.service
+
+sudo apt update
+sudo apt upgrade -y
+
+cd /srv/secure/nextcloud
+sudo docker compose pull
+sudo docker compose up -d
+sudo docker exec -u www-data nextcloud php occ upgrade
+sudo docker exec -u www-data nextcloud php occ maintenance:repair
+
+cd /srv/secure/ente
+sudo docker compose pull
+sudo docker compose up -d
+</code></pre>
+<p>Check health regularly.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo journalctl -u caddy --since today
+sudo journalctl -u nextcloud-cron.service --since today
+sudo docker logs --since 24h nextcloud
+cd /srv/secure/ente &amp;&amp; sudo docker compose logs --since 24h
+sudo smartctl -a &quot;$DISK_A&quot;
+sudo smartctl -a &quot;$DISK_B&quot;
+sudo btrfs device stats /srv/secure
+df -h /srv/secure
+</code></pre>
+<h2>19. Talk High-Performance Calls and Optional E2EE</h2>
+<p>Nextcloud Talk call E2EE requires the high-performance backend (HPB). Run the
+installer after replacing both example values:</p>
+<pre class="mac-terminal"><code class="language-bash">cd ~/private-cloud-setup
+sudo ./scripts/setup-talk-hpb.sh domain.com home-name.ddns.net
+</code></pre>
+<p>The router must forward TCP and UDP <code>3478</code> to the Pi. The Cloudflare record for
+<code>talk.domain.com</code> must remain <strong>DNS only</strong>. Verify the backend:</p>
+<pre class="mac-terminal"><code class="language-bash">docker inspect -f &#39;{{.State.Health.Status}}&#39; nextcloud-talk-hpb
+curl -fsS https://talk.domain.com/standalone-signaling/api/v1/welcome
+docker exec -u www-data nextcloud php occ talk:signaling:verify-keys
+</code></pre>
+<p>Enable end-to-end encryption for call audio and video:</p>
+<pre class="mac-terminal"><code class="language-bash">docker exec -u www-data nextcloud php occ config:app:set \
+  spreed call_end_to_end_encryption --type=boolean --value=true
+docker exec -u www-data nextcloud php occ config:app:get \
+  spreed call_end_to_end_encryption
+</code></pre>
+<p>Restart the Talk app on every phone and computer. Test one-to-one and group
+calls using every client type. If any client reports that calls are unsupported,
+disable call E2EE:</p>
+<pre class="mac-terminal"><code class="language-bash">docker exec -u www-data nextcloud php occ config:app:set \
+  spreed call_end_to_end_encryption --type=boolean --value=false
+docker exec -u www-data nextcloud php occ config:app:get \
+  spreed call_end_to_end_encryption
+</code></pre>
+<p>The returned value is <code>1</code> when enabled and <code>0</code> when disabled. This setting
+encrypts call media; it does not add end-to-end encryption to Talk chat
+messages. Keep it disabled unless every user&#39;s Talk clients support it. See the
+<a href="https://github.com/nextcloud/spreed/blob/main/docs/settings.md">official Talk setting reference</a>.</p>
+<h2>Quick Troubleshooting</h2>
+<h3>HTTPS Does Not Work</h3>
+<p>Check DNS and router forwarding first.</p>
+<pre class="mac-terminal"><code class="language-bash">getent hosts &quot;nextcloud.$DOMAIN&quot;
+curl -I &quot;http://nextcloud.$DOMAIN&quot;
+sudo journalctl -u caddy --since &quot;30 minutes ago&quot;
+</code></pre>
+<h3>Nextcloud Says Untrusted Domain</h3>
+<p>Reapply the trusted domain.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo docker exec -u www-data nextcloud php occ config:system:set trusted_domains 1 \
+  --value=&quot;nextcloud.$DOMAIN&quot;
+</code></pre>
+<h3>Ente Uploads Fail</h3>
+<p>Check Museum, MinIO, and Caddy logs.</p>
+<pre class="mac-terminal"><code class="language-bash">cd /srv/secure/ente
+sudo docker compose logs --since 30m museum minio
+curl -fsS &quot;https://ente-api.$DOMAIN/ping&quot;
+</code></pre>
+<h3>Storage Is Not Mounted After Reboot</h3>
+<p>Unlock the drives locally, then mount the pool.</p>
+<pre class="mac-terminal"><code class="language-bash">sudo cryptsetup open &quot;$DISK_A&quot; secure_a
+sudo cryptsetup open &quot;$DISK_B&quot; secure_b
+sudo mount /srv/secure
+findmnt /srv/secure
+</code></pre>
+<h2>Conclusion</h2>
+<p>This Raspberry Pi self-hosted cloud setup gives you private file sync with Nextcloud, encrypted photo backup with Ente Photos, HTTPS with Caddy, DNS through Cloudflare and No-IP, encrypted Btrfs storage, automated backups, and practical security hardening. It is built for home users who want a private Google Drive and Google Photos alternative on their own hardware.</p>
+
+      </article>
+    </main>
+  </div>
+
+  <script>
+    document.fonts.ready.then(() => {
+      document.documentElement.style.visibility = "";
+    });
+  </script>
+  <script src="/scripts/theme-toggle.js" defer></script>
+  <script src="/scripts/mobile-nav.js" defer></script>
+  <script src="/scripts/command-palette.js" defer></script>
+  <script src="/scripts/article-reader.js" defer></script>
+  <script data-analytics-src="/scripts/analytics.js">
+    (function () {
+      var analyticsSrc = document.currentScript && document.currentScript.dataset.analyticsSrc;
+      if (!analyticsSrc) return;
+      window.addEventListener("load", function () {
+        var script = document.createElement("script");
+        script.src = analyticsSrc;
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      });
+    })();
+  </script>
+</body>
+
+</html>
